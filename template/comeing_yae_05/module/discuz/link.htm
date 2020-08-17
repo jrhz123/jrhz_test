@@ -1,0 +1,24 @@
+<!--{if empty($gid) && ($_G['cache']['forumlinks'][0] || $_G['cache']['forumlinks'][1] || $_G['cache']['forumlinks'][2])}-->
+$comeing_box_n
+<div class="bm lk">
+  $comeing_box_nh
+  $comeing_box_c
+  <div id="category_lk" class="bm_c">
+    <!--{if $_G['cache']['forumlinks'][0]}-->
+      <ul class="m mbn cl">$_G['cache']['forumlinks'][0]</ul>
+    <!--{/if}-->
+    <!--{if $_G['cache']['forumlinks'][1]}-->
+      <div class="mbn cl">
+        $_G['cache']['forumlinks'][1]
+      </div>
+    <!--{/if}-->
+    <!--{if $_G['cache']['forumlinks'][2]}-->
+      <ul class="x mbm cl">
+        $_G['cache']['forumlinks'][2]
+      </ul>
+    <!--{/if}-->
+  </div>
+  $comeing_box_2de
+</div>
+$comeing_box_1de
+<!--{/if}-->

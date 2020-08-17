@@ -1,0 +1,372 @@
+<!--{if $_GET['mycenter'] && !$_G['uid']}-->
+  <!--{eval dheader('Location:member.php?mod=logging&action=login');exit;}-->
+<!--{/if}-->
+<!--{template common/header}-->
+<style type="text/css">
+.m_nav {
+  background: #f1f1f1;
+  overflow: hidden;
+  padding: 15px 0px 15px 87px;
+}
+.m_nav li {
+  float: left;
+  text-align: center;
+  width: 100px;
+  margin-left: 14px;
+  display: inline;
+  padding: 5px 0px;
+}
+.m_nav li a {
+  font-size: 30px;
+  color: #057299;
+}
+.userinfo table {
+  width: 100%;
+}
+
+.userinfo {
+  padding: 1rem;
+}
+
+.userinfo th {
+  line-height: 4rem;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.userinfo td {
+  font-size: 1.5rem;
+  line-height: 4rem;
+}
+
+.userinfo input {
+  line-height: 3rem;
+  font-size: 1.5rem;
+}
+
+button#profilesubmitbtn {
+  padding: 0 3rem;
+  font-size: 1.5rem;
+}
+</style>
+<!--{if !$_GET['mycenter']}-->
+
+<!-- header start -->
+<header>
+    <div class="nav">
+       <a href="javascript:history.go(-1)" class="z cf iconBack" style="margin-top:17px;"></a>
+    <!--{if $_GET['uid']==$_G['uid']}-->
+      <span class="name">我的认证</span>
+     <!--{else}-->
+      <span class="name">{$space[username]}的个人认证</span>
+     <!--{/if}-->
+   </div>
+</header>
+<!-- header end -->
+<!-- userinfo start -->
+<div class="userinfo">
+<form action="{if $operation != 'plugin'}home.php?mod=spacecp&ac=profile&op=$operation{else}home.php?mod=spacecp&ac=plugin&op=profile&id=$_GET[id]{/if}" method="post" enctype="multipart/form-data" autocomplete="off"{if $operation != 'plugin'} target="frame_profile"{/if} onsubmit="clearErrorInfo();">
+  <input type="hidden" value="{FORMHASH}" name="formhash" />
+  <!--{if $_GET[vid]}-->
+  <input type="hidden" value="$_GET[vid]" name="vid" />
+  <!--{/if}-->
+  <table cellspacing="0" cellpadding="0" class="tfm" id="profilelist">
+    <tr>
+      <th>{lang username}</th>
+      <td>$_G[member][username]</td>
+      <td>&nbsp;</td>
+    </tr>
+  <!--{loop $settings $key $value}-->
+  <!--{if $value[available]}-->
+    <tr id="tr_$key">
+      <th id="th_$key"><!--{if $value[required]}--><span class="rq" title="{lang required}">*</span><!--{/if}-->$value[title]</th>
+      <td id="td_$key">
+        $htmls[$key]
+        {if !empty($_G['verify_needed']) && $key == 'mobile'}
+        <!-- 实名制手机验证码 Enicn_d modified 2017-09-28 -->
+        {eval $verifycode = TRUE}
+          <button type="button" id="btn-getverifycode">获取验证码</button>
+          <script type="text/javascript">
+          $(function () {
+            $('#btn-getverifycode').click(function () {
+              var url = '/verifycode.php?m=' + $('#mobile').val();
+              console.log(url);
+              $.get(url, function (data) {
+                if (data === 'OK') {
+                  $('#btn-getverifycode').html('验证码已发送，120 秒后方可重试');
+                  $('#btn-getverifycode').attr('disabled', 'disabled');
+                } else {
+                  alert(data);
+                }
+              });
+            })
+          })
+          </script>
+        {/if}
+      </td>
+      <td class="p">
+        <!--{if $vid}-->
+        <input type="hidden" name="privacy[$key]" value="3" />
+        <!--{else}-->
+        <select name="privacy[$key]">
+          <option value="0"{if $privacy[$key] == "0"} selected="selected"{/if}>{lang open_privacy}</option>
+          <option value="1"{if $privacy[$key] == "1"} selected="selected"{/if}>{lang friend_privacy}</option>
+          <option value="3"{if $privacy[$key] == "3"} selected="selected"{/if}>{lang secrecy}</option>
+        </select>
+        <!--{/if}-->
+      </td>
+    </tr>
+    {if !empty($verifycode)}
+    <tr>
+      <th id="th_verifycode"><span class="rq" title="{lang required}">*</span>请输入验证码</th>
+      <td id="td_verifycode">
+        <input type="text" name="verifycode" id="verifycode" class="px" value="">
+        <div class="rq mtn" id="showerror_verifycode"></div>
+      </td>
+    </tr>
+    {/if}
+  <!--{/if}-->
+  <!--{/loop}-->
+  <!--{if $allowcstatus && in_array('customstatus', $allowitems)}-->
+  <tr>
+    <th id="th_customstatus">{lang permission_basic_status}</th>
+    <td id="td_customstatus">
+      <input type="text" value="$space[customstatus]" name="customstatus" id="customstatus" class="px" />
+      <div class="rq mtn" id="showerror_customstatus"></div>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+  <!--{if $_G['group']['maxsigsize'] && in_array('sightml', $allowitems)}-->
+  <tr>
+    <th id="th_sightml">{lang personal_signature}</th>
+    <td id="td_sightml">
+      <div class="tedt">
+        <div class="bar">
+          <span class="y"><a href="javascript:;" onclick="$('signhtmlpreview').innerHTML = bbcode2html($('sightmlmessage').value)">{lang preview}</a></span>
+          <!--{if $_G['group']['allowsigbbcode']}-->
+            <!--{if $_G['group']['allowsigimgcode']}-->
+              <!--{eval $seditor = array('sightml', array('bold', 'color', 'img', 'link', 'smilies'));}-->
+            <!--{else}-->
+              <!--{eval $seditor = array('sightml', array('bold', 'color', 'link', 'smilies'));}-->
+            <!--{/if}-->
+            <!--{subtemplate common/seditor}-->
+          <!--{/if}-->
+        </div>
+        <div class="area">
+          <textarea rows="3" cols="80" name="sightml" id="sightmlmessage" class="pt" onkeydown="ctrlEnter(event, 'profilesubmitbtn');">$space[sightml]</textarea>
+        </div>
+      </div>
+      <div id="signhtmlpreview"></div>
+      <div id="showerror_sightml" class="rq mtn"></div>
+      <script type="text/javascript" src="{$_G[setting][jspath]}bbcode.js?{VERHASH}"></script>
+      <script type="text/javascript">var forumallowhtml = 0,allowhtml = 0,allowsmilies = 0,allowbbcode = parseInt('{$_G[group][allowsigbbcode]}'),allowimgcode = parseInt('{$_G[group][allowsigimgcode]}');var DISCUZCODE = [];DISCUZCODE['num'] = '-1';DISCUZCODE['html'] = [];</script>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+  <!--{if in_array('timeoffset', $allowitems)}-->
+  <tr>
+    <th id="th_timeoffset">{lang time_zone}</th>
+    <td id="td_timeoffset">
+      <!--{eval $timeoffset = array({lang timezone});}-->
+      <select name="timeoffset">
+        <!--{loop $timeoffset $key $desc}-->
+        <option value="$key"{if $key==$space[timeoffset]} selected="selected"{/if}>$desc</option>
+        <!--{/loop}-->
+      </select>
+      <p class="mtn">{lang current_time} : <!--{date($_G[timestamp])}--></p>
+      <p class="d">{lang time_zone_message}</p>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+
+  <!--{if $operation == 'contact'}-->
+  <tr>
+    <th id="th_sightml">Email</th>
+    <td id="td_sightml">$space[email]&nbsp;(<a href="home.php?mod=spacecp&ac=profile&op=password&from=contact#contact">{lang modify}</a>)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+
+  <!--{if $operation == 'plugin'}-->
+    <!--{eval include(template($_GET['id']));}-->
+  <!--{/if}-->
+  <!--{hook/spacecp_profile_extra}-->
+  <!--{if $showbtn}-->
+  <tr>
+    <th>&nbsp;</th>
+    <td colspan="2">
+      <input type="hidden" name="profilesubmit" value="true" />
+      <button type="submit" name="profilesubmitbtn" id="profilesubmitbtn" value="true" class="pn pnc" /><strong>{lang save}</strong></button>
+      <span id="submit_result" class="rq"></span>
+    </td>
+  </tr>
+  <!--{/if}-->
+  </table>
+  <!--{hook/spacecp_profile_bottom}-->
+</form>
+</div>
+<!-- userinfo end -->
+
+<!--{else}-->
+
+<!-- header start -->
+<header>
+    <div class="nav">
+   <a href="{$_G['siteurl']}" class="z cf iconBack" style="margin-top:17px;"></a>
+     <span class="name">我的认证</span>
+   </div>
+</header>
+<!-- header end -->
+<!-- userinfo start -->
+<div class="userinfo">
+<form action="{if $operation != 'plugin'}home.php?mod=spacecp&ac=profile&op=$operation{else}home.php?mod=spacecp&ac=plugin&op=profile&id=$_GET[id]{/if}" method="post" enctype="multipart/form-data" autocomplete="off"{if $operation != 'plugin'} target="frame_profile"{/if} onsubmit="clearErrorInfo();">
+  <input type="hidden" value="{FORMHASH}" name="formhash" />
+  <!--{if $_GET[vid]}-->
+  <input type="hidden" value="$_GET[vid]" name="vid" />
+  <!--{/if}-->
+  <table cellspacing="0" cellpadding="0" class="tfm" id="profilelist">
+    <tr>
+      <th>{lang username}</th>
+      <td>$_G[member][username]</td>
+      <td>&nbsp;</td>
+    </tr>
+  <!--{loop $settings $key $value}-->
+  <!--{if $value[available]}-->
+    <tr id="tr_$key">
+      <th id="th_$key"><!--{if $value[required]}--><span class="rq" title="{lang required}">*</span><!--{/if}-->$value[title]</th>
+      <td id="td_$key">
+        $htmls[$key]
+        {if !empty($_G['verify_needed']) && $key == 'mobile'}
+        <!-- 实名制手机验证码 Enicn_d modified 2017-09-28 -->
+        {eval $verifycode = TRUE}
+          <button type="button" id="btn-getverifycode">获取验证码</button>
+          <script type="text/javascript">
+          $(function () {
+            $('#btn-getverifycode').click(function () {
+              var url = '/verifycode.php?m=' + $('#mobile').val();
+              console.log(url);
+              $.get(url, function (data) {
+                if (data === 'OK') {
+                  $('#btn-getverifycode').html('验证码已发送，120 秒后方可重试');
+                  $('#btn-getverifycode').attr('disabled', 'disabled');
+                } else {
+                  alert(data);
+                }
+              });
+            })
+          })
+          </script>
+        {/if}
+      </td>
+      <td class="p">
+        <!--{if $vid}-->
+        <input type="hidden" name="privacy[$key]" value="3" />
+        <!--{else}-->
+        <select name="privacy[$key]">
+          <option value="0"{if $privacy[$key] == "0"} selected="selected"{/if}>{lang open_privacy}</option>
+          <option value="1"{if $privacy[$key] == "1"} selected="selected"{/if}>{lang friend_privacy}</option>
+          <option value="3"{if $privacy[$key] == "3"} selected="selected"{/if}>{lang secrecy}</option>
+        </select>
+        <!--{/if}-->
+      </td>
+    </tr>
+    {if !empty($verifycode)}
+    <tr>
+      <th id="th_verifycode"><span class="rq" title="{lang required}">*</span>请输入验证码</th>
+      <td id="td_verifycode">
+        <input type="text" name="verifycode" id="verifycode" class="px" value="">
+        <div class="rq mtn" id="showerror_verifycode"></div>
+      </td>
+    </tr>
+    {/if}
+  <!--{/if}-->
+  <!--{/loop}-->
+  <!--{if $allowcstatus && in_array('customstatus', $allowitems)}-->
+  <tr>
+    <th id="th_customstatus">{lang permission_basic_status}</th>
+    <td id="td_customstatus">
+      <input type="text" value="$space[customstatus]" name="customstatus" id="customstatus" class="px" />
+      <div class="rq mtn" id="showerror_customstatus"></div>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+  <!--{if $_G['group']['maxsigsize'] && in_array('sightml', $allowitems)}-->
+  <tr>
+    <th id="th_sightml">{lang personal_signature}</th>
+    <td id="td_sightml">
+      <div class="tedt">
+        <div class="bar">
+          <span class="y"><a href="javascript:;" onclick="$('signhtmlpreview').innerHTML = bbcode2html($('sightmlmessage').value)">{lang preview}</a></span>
+          <!--{if $_G['group']['allowsigbbcode']}-->
+            <!--{if $_G['group']['allowsigimgcode']}-->
+              <!--{eval $seditor = array('sightml', array('bold', 'color', 'img', 'link', 'smilies'));}-->
+            <!--{else}-->
+              <!--{eval $seditor = array('sightml', array('bold', 'color', 'link', 'smilies'));}-->
+            <!--{/if}-->
+            <!--{subtemplate common/seditor}-->
+          <!--{/if}-->
+        </div>
+        <div class="area">
+          <textarea rows="3" cols="80" name="sightml" id="sightmlmessage" class="pt" onkeydown="ctrlEnter(event, 'profilesubmitbtn');">$space[sightml]</textarea>
+        </div>
+      </div>
+      <div id="signhtmlpreview"></div>
+      <div id="showerror_sightml" class="rq mtn"></div>
+      <script type="text/javascript" src="{$_G[setting][jspath]}bbcode.js?{VERHASH}"></script>
+      <script type="text/javascript">var forumallowhtml = 0,allowhtml = 0,allowsmilies = 0,allowbbcode = parseInt('{$_G[group][allowsigbbcode]}'),allowimgcode = parseInt('{$_G[group][allowsigimgcode]}');var DISCUZCODE = [];DISCUZCODE['num'] = '-1';DISCUZCODE['html'] = [];</script>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+  <!--{if in_array('timeoffset', $allowitems)}-->
+  <tr>
+    <th id="th_timeoffset">{lang time_zone}</th>
+    <td id="td_timeoffset">
+      <!--{eval $timeoffset = array({lang timezone});}-->
+      <select name="timeoffset">
+        <!--{loop $timeoffset $key $desc}-->
+        <option value="$key"{if $key==$space[timeoffset]} selected="selected"{/if}>$desc</option>
+        <!--{/loop}-->
+      </select>
+      <p class="mtn">{lang current_time} : <!--{date($_G[timestamp])}--></p>
+      <p class="d">{lang time_zone_message}</p>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+
+  <!--{if $operation == 'contact'}-->
+  <tr>
+    <th id="th_sightml">Email</th>
+    <td id="td_sightml">$space[email]&nbsp;(<a href="home.php?mod=spacecp&ac=profile&op=password&from=contact#contact">{lang modify}</a>)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <!--{/if}-->
+
+  <!--{if $operation == 'plugin'}-->
+    <!--{eval include(template($_GET['id']));}-->
+  <!--{/if}-->
+  <!--{hook/spacecp_profile_extra}-->
+  <!--{if $showbtn}-->
+  <tr>
+    <th>&nbsp;</th>
+    <td colspan="2">
+      <input type="hidden" name="profilesubmit" value="true" />
+      <button type="submit" name="profilesubmitbtn" id="profilesubmitbtn" value="true" class="pn pnc" /><strong>{lang save}</strong></button>
+      <span id="submit_result" class="rq"></span>
+    </td>
+  </tr>
+  <!--{/if}-->
+  </table>
+  <!--{hook/spacecp_profile_bottom}-->
+</form>
+</div>
+<!-- userinfo end -->
+
+<!--{/if}-->
+<!--{eval $nofooter = true;}-->
+<!--{template common/footer}-->

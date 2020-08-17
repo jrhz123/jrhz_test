@@ -1,0 +1,204 @@
+<!--{template common/header}-->
+<!--{if $_G['forum']['ismoderator']}-->
+	<script type="text/javascript" src="{$_G[setting][jspath]}forum_moderate.js?{VERHASH}"></script>
+<!--{/if}-->
+<style id="diy_style" type="text/css"></style>
+<!--[diy=diynavtop]--><!--<div id="diynavtop" class="area"></div> 史漫漫修改--><!--[/diy]-->
+<div id="pt" class="bm cl">
+	<div class="z">
+		<span>当前位置:</span><a href="forum.php">东江{$_G[setting][navs][2][navname]}</a>$navigation
+
+
+	</div>
+
+    <div class="float_r">
+    <span class="y">
+
+      <a href="home.php?mod=spacecp&ac=favorite&type=forum&id=$_G[fid]&handlekey=favoriteforum" id="a_favorite" class="fa_fav" onclick="showWindow(this.id, this.href, 'get', 0);">{lang forum_favorite} <strong class="xi1" id="number_favorite" {if !$_G[forum][favtimes]} style="display:none;"{/if}>(<span id="number_favorite_num">$_G[forum][favtimes]</span>)</strong></a>
+      <!--{if rssforumperm($_G['forum']) && $_G[setting][rssstatus] && !$_GET['archiveid'] && !$subforumonly}--><span class="pipe">|</span><a href="forum.php?mod=rss&fid=$_G[fid]&auth=$rssauth" class="fa_rss" target="_blank" title="RSS">{lang rss_subscribe_this}</a><!--{/if}-->
+      <!--{if !empty($forumarchive)}-->
+        <span class="pipe">|</span><a id="forumarchive" href="javascript:;" class="fa_achv" onmouseover="showMenu(this.id)"><!--{if $_GET['archiveid']}-->$forumarchive[$_GET['archiveid']]['displayname']<!--{else}-->{lang forum_archive}<!--{/if}--></a>
+      <!--{/if}-->
+      <!--{hook/forumdisplay_forumaction}-->
+
+      <!--{if $_G['forum']['ismoderator']}-->
+      <!--{if $_G['forum']['recyclebin']}-->
+        <span class="pipe">|</span>
+
+        <a href="{if $_G['adminid'] == 1}admin.php?mod=forum&action=recyclebin&frames=yes{elseif $_G['forum']['ismoderator']}forum.php?mod=modcp&action=recyclebin&fid=$_G[fid]{/if}" class="fa_bin" target="_blank">{lang forum_recyclebin}</a>
+
+      <!--{/if}-->
+      <!--{if $_G['forum']['ismoderator'] && !$_GET['archiveid']}-->
+        <span class="pipe">|</span><strong>
+        <!--{if $_G['forum']['status'] != 3}-->
+          <a href="forum.php?mod=modcp&fid=$_G[fid]">{lang modcp}</a>
+        <!--{else}-->
+          <a href="forum.php?mod=group&action=manage&fid=$_G[fid]">{lang modcp}</a>
+        <!--{/if}-->
+        </strong>
+      <!--{/if}-->
+
+
+      <!--{hook/forumdisplay_modlink}-->
+      <!--{/if}-->
+      <span class="pipe">|</span>
+        <a href="javascript:;" id="switchwidth" onClick="widthauto(this)" title="{if widthauto()}{lang switch_narrow}{else}{lang switch_wide}{/if}"   ><!--{if widthauto()}-->{lang switch_narrow}<!--{else}-->{lang switch_wide}<!--{/if}--></a>
+    </span>
+    </div>
+</div>
+
+<!--{ad/text/wp a_t}-->
+
+<!--<div class="wp"> 史漫漫修改 -->
+	<!--[diy=diy1]--><!--<div id="diy1" class="area"></div> 史漫漫修改--><!--[/diy]-->
+<!--</div> 史漫漫修改-->
+
+<div class="boardnav">
+	<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"{if $leftside && empty($_G['forum']['picstyle'])} style="margin-left:{$_G['leftsidewidth_mwidth']}px"{/if}>
+		<!--{if $leftside && empty($_G['forum']['picstyle'])}-->
+			<div id="sd_bdl" class="bdl $discuz_bdl" onmouseover="showMenu({'ctrlid':this.id, 'pos':'dz'});" style="width:{$_G['setting']['leftsidewidth']}px;margin-left:-{$_G['leftsidewidth_mwidth']}px">
+				<!--{hook/forumdisplay_leftside_top}-->
+				<!--[diy=diyleftsidetop]--><div id="diyleftsidetop" class="area">ddd</div><!--[/diy]-->
+
+				<div class="tbn" id="forumleftside">
+					<!--{subtemplate forum/forumdisplay_leftside}-->
+				</div>
+
+				<!--[diy=diyleftsidebottom]--><div id="diyleftsidebottom" class="area"></div><!--[/diy]-->
+				<!--{hook/forumdisplay_leftside_bottom}-->
+			</div>
+		<!--{/if}-->
+
+		<div class="mn">
+      <!--{if $_G[forum][banner] && !$subforumonly}--><img src="$_G[forum][banner]" alt="$_G['forum'][name]" /><!--{/if}-->
+
+    <!--史漫漫2015年3月23日修改 把模块移到下面 -->
+			<!--{hook/forumdisplay_top}-->
+			<!--{if $subexists && $_G['page'] == 1}--><!--{template forum/forumdisplay_subforum}--><!--{/if}-->
+
+			<!--<div class="drag"> 史漫漫修改-->
+				<!--[diy=diy4]--><!--<div id="diy4" class="area"></div> 史漫漫修改--><!--[/diy]-->
+			<!--</div>史漫漫修改-->
+
+			<!--{if !empty($_G['forum']['recommendlist'])}-->
+      $comeing_box_d
+				<div class="bm">
+					<div class="bm_h cl">
+            $comeing_box_h
+						<h2>{lang forum_recommend}</h2>
+            $comeing_box_2de
+					</div>
+          $comeing_box_c
+					<div class="bm_c comeing_recommend cl">
+						<!--{subtemplate forum/recommend}-->
+					</div>
+          $comeing_box_2de
+				</div>
+        $comeing_box_1de
+			<!--{/if}-->
+			<!--{hook/forumdisplay_middle}-->
+
+			<!--{if !$subforumonly}-->
+        <!--{subtemplate module/forumdisplay/recommended_groups}-->
+
+				<!--{if $threadmodcount}--><div class="bm"><div class="ntc_l hm xi2"><strong>{lang forum_moderate_unhandled}</strong></div></div><!--{/if}-->
+        <!--{subtemplate module/forumdisplay/livethread}-->
+
+<!--{if $_G['fid']=='863'}-->
+<!--Enicn_d added 2016-08-15 书记论坛样式修改-->
+                <!--{subtemplate module/forumdisplay/pgt}-->
+                <!--[diy=diysjlt]--><div id="diysjlt" class="area"></div><!--[/diy]-->
+                <!--{subtemplate module/forumdisplay/sjlt_nav}-->
+
+<!--{else}-->
+
+				<!--{subtemplate module/forumdisplay/pgt}-->
+        <!--{subtemplate module/forumdisplay/thread_types}-->
+<!--{/if}-->
+
+                <!--{hook/forumdisplay_threadtype_extra}-->
+                <!--{if empty($_G['forum']['sortmode'])}-->
+                    <!--{subtemplate forum/forumdisplay_list}-->
+                <!--{else}-->
+                    <!--{subtemplate forum/forumdisplay_sort}-->
+                <!--{/if}-->
+            <!--{/if}-->
+
+                         <!--{subtemplate module/forumdisplay/forum_top}-->
+
+			<!--[diy=diyfastposttop]--><div id="diyfastposttop" class="area"></div><!--[/diy]-->
+			<!--{if $fastpost}-->
+				<!--{template forum/forumdisplay_fastpost}-->
+			<!--{/if}-->
+
+			<!--{hook/forumdisplay_bottom}-->
+			<!--[diy=diyforumdisplaybottom]--><div id="diyforumdisplaybottom" class="area"></div><!--[/diy]-->
+		</div>
+
+		<!--{if $_G['forum']['allowside']}-->
+		<div class="sd">
+      <!--{subtemplate module/forumdisplay/sd}-->
+			<div class="drag">
+				<!--[diy=diy2]--><div id="diy2" class="area"></div><!--[/diy]-->
+			</div>
+			<!--{hook/forumdisplay_side_bottom}-->
+		</div>
+		<!--{/if}-->
+	</div>
+</div>
+
+
+
+<!--{if $_G['group']['allowpost'] && ($_G['group']['allowposttrade'] || $_G['group']['allowpostpoll'] || $_G['group']['allowpostreward'] || $_G['group']['allowpostactivity'] || $_G['group']['allowpostdebate'] || $_G['setting']['threadplugins'] || $_G['forum']['threadsorts'])}-->
+	<ul class="p_pop" id="newspecial_menu" style="display: none">
+		<!--{if !$_G['forum']['allowspecialonly']}--><li><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]">{lang post_newthread}</a></li><!--{/if}-->
+		<!--{if $_G['forum']['threadsorts'] && !$_G['forum']['allowspecialonly']}-->
+			<!--{loop $_G['forum']['threadsorts']['types'] $id $threadsorts}-->
+				<!--{if $_G['forum']['threadsorts']['show'][$id]}-->
+					<li class="popupmenu_option"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]&extra=$extra&sortid=$id">$threadsorts</a></li>
+				<!--{/if}-->
+			<!--{/loop}-->
+		<!--{/if}-->
+		<!--{if $_G['group']['allowpostpoll']}--><li class="poll"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]&special=1">{lang post_newthreadpoll}</a></li><!--{/if}-->
+		<!--{if $_G['group']['allowpostreward']}--><li class="reward"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]&special=3">{lang post_newthreadreward}</a></li><!--{/if}-->
+		<!--{if $_G['group']['allowpostdebate']}--><li class="debate"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]&special=5">{lang post_newthreaddebate}</a></li><!--{/if}-->
+		<!--{if $_G['group']['allowpostactivity']}--><li class="activity"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]&special=4">{lang post_newthreadactivity}</a></li><!--{/if}-->
+		<!--{if $_G['group']['allowposttrade']}--><li class="trade"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]&special=2">{lang post_newthreadtrade}</a></li><!--{/if}-->
+		<!--{if $_G['setting']['threadplugins']}-->
+			<!--{loop $_G['forum']['threadplugin'] $tpid}-->
+				<!--{if array_key_exists($tpid, $_G['setting']['threadplugins']) && @in_array($tpid, $_G['group']['allowthreadplugin'])}-->
+					<li class="popupmenu_option"{if $_G['setting']['threadplugins'][$tpid][icon]} style="background-image:url(source/plugin/$tpid/$_G[setting][threadplugins][$tpid][icon])"{/if}><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]&specialextra=$tpid">{$_G[setting][threadplugins][$tpid][name]}</a></li>
+				<!--{/if}-->
+			<!--{/loop}-->
+		<!--{/if}-->
+	</ul>
+<!--{/if}-->
+
+<!--{if $_G['setting']['visitedforums'] && $_G['forum']['status'] != 3}-->
+	<div id="visitedforums_menu" class="p_pop blk cl" style="display: none;">
+		<table cellspacing="0" cellpadding="0">
+			<tr>
+				<td id="v_forums">
+					<h3 class="mbn pbn bbda xg1">{lang viewed_forums}</h3>
+					<ul class="xl xl1">
+						$_G['setting']['visitedforums']
+					</ul>
+				</td>
+			</tr>
+		</table>
+	</div>
+<!--{/if}-->
+<!--{if $_G['setting']['threadmaxpages'] > 1 && $page && !$subforumonly}-->
+	<script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, <!--{if $page > 1}-->1<!--{else}-->0<!--{/if}-->, <!--{if $page < $_G['setting']['threadmaxpages'] && $page < $_G['page_next']}-->1<!--{else}-->0<!--{/if}-->, 'forum.php?mod=forumdisplay&fid={$_G[fid]}&filter={$filter}&orderby={$_GET[orderby]}{$forumdisplayadd[page]}&{$multipage_archive}', $page);}</script>
+<!--{/if}-->
+
+<!--{if empty($_G['forum']['picstyle']) && $_GET['orderby'] == 'lastpost' && empty($_GET['filter']) }-->
+	<script type="text/javascript">checkForumnew_handle = setTimeout(function () {checkForumnew($_G[fid], lasttime);}, checkForumtimeout);</script>
+<!--{/if}-->
+<div class="wp mtn">
+	<!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+</div>
+
+
+<!--{if empty($_G['setting']['disfixednv_forumdisplay']) }--><script>fixed_top_nv();</script><!--{/if}-->
+<!--{template common/footer}-->

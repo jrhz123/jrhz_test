@@ -1,0 +1,154 @@
+<!--{subtemplate common/header}-->
+<style>
+
+.clearfix:before,
+.clearfix:after,
+.dl-horizontal dd:before,
+.dl-horizontal dd:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+.row:before,
+.row:after,
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after,
+.btn-toolbar:before,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:before,
+.btn-group-vertical > .btn-group:after,
+.nav:before,
+.nav:after,
+.navbar:before,
+.navbar:after,
+.navbar-header:before,
+.navbar-header:after,
+.navbar-collapse:before,
+.navbar-collapse:after,
+.pager:before,
+.pager:after,
+.panel-body:before,
+.panel-body:after,
+.modal-footer:before,
+.modal-footer:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after,
+.dl-horizontal dd:after,
+.container:after,
+.container-fluid:after,
+.row:after,
+.form-horizontal .form-group:after,
+.btn-toolbar:after,
+.btn-group-vertical > .btn-group:after,
+.nav:after,
+.navbar:after,
+.navbar-header:after,
+.navbar-collapse:after,
+.pager:after,
+.panel-body:after,
+.modal-footer:after {
+  clear: both;
+}
+
+*{ margin:0px; padding:0px;}
+img{ border:0; vertical-align:bottom;}
+body {font-family:"Helvetica Neue",Helvetica,STHeiTi,sans-serif; font-size:100%; }
+li{ list-style:none; list-style-type:none;}
+a{ text-decoration:none; color:#424242}
+a:hover{ text-decoration:none;color:#ea4420;}
+.area{ height:auto; overflow:hidden; zoom:1;}
+.float_l{ float:left; display:inline;}
+.float_r{ float:right; display:inline;}
+.clear{clear:both;overflow:hidden}
+.m_t25{ margin-top:25px;}
+.m_t{ margin-top:20px;}
+.m_t5{ margin-top:5px;}
+.m_t15{ margin-top:15px;}
+.m_t10{ margin-top:10px;}
+.center{ text-align:center;}
+.w20p{ width:20%;}
+.w60p{ width:60%;}
+.w95p{ width:95%; margin:0px auto;}
+.w150{ width:150px;  }
+.w193{ width:193px;  }
+
+.w582{ width:582px; margin: auto;}
+
+.dsf_login h3{ color:#8b8b8b; line-height:30px; font-size:18px;}
+.dsf_login_xg h3 {color:#8b8b8b; line-height:20px; font-size:14px; font-weight:normal;}
+.dsf_login_cg,.dsf_login{ width:100% ; overflow:hidden; margin:0px auto;}
+.dsf_login_cg li { width:88%;border-radius:5px;-moz-border-radius:5px; line-height:43px; margin-top:10px;}
+
+.dsf_bd_login li,.dsf_login_xg li{ border-radius:5px;-moz-border-radius:5px; line-height:43px;   width:88%; margin:10px auto 0px; text-align:center}
+
+
+.dsf_login_cg li.bg615{border:1px solid #72b615; background:#72b615 url(images/sqwap_back.jpg) no-repeat 120px 21px;}
+.dsf_login_cg li.bgf85{border:1px solid #2aaf85; background:#2aaf85 url(images/sqwap_gr.jpg) no-repeat 120px 21px;}
+
+li.bg615{border:1px solid #72b615; background:#72b615 ;}
+li.bgf85{border:1px solid #2aaf85; background:#2aaf85 ;}
+
+.dsf_login_cg li a,.dsf_bd_login li a,.dsf_login_xg li a{font-size:18px; color:#fff;}
+
+
+
+
+.login_input {border-top: 1px solid #e1e1e1;border-bottom: 1px solid #e1e1e1;border-left:none;border-right:none;width: 534px;
+height: 85px;line-height: 85px;padding-left: 105px;color: #c3c3c3;font-size: 30px;}
+.login_text {
+background: url(./images/sqwap_login_text.png) no-repeat 42px 19px;
+}
+
+
+.login_input {border-top: 1px solid #e1e1e1;border-bottom: 1px solid #e1e1e1;border-left:none;border-right:none;width: 534px;height: 85px;
+line-height: 85px;padding-left: 105px;color: #c3c3c3;font-size: 30px;}
+.login_text {
+background: url(./images/sqwap_login_text.png) no-repeat 42px 19px;
+}
+.dsf_bd p{ text-indent:60px; font-size:32px; line-height:50px; padding:0px 10px ;}
+.login_select {display: block;position: relative;}
+.login_select .login-btn-inner {display: block;font-size: 32px;font-weight: 700;min-width: 0.75em;overflow: hidden;position: relative;text-overflow: ellipsis;white-space: nowrap;}
+.login_select label {padding-left: 35px;font-size: 40px;z-index: 2;
+color: #a1a1a1;line-height: 85px;height: 85px;display: block;border:1px solid #e1e1e1;}
+.login_select select {position: absolute;top: 0;
+width: 100%;z-index: 2;
+cursor: pointer;height: 3em;left: 0;max-height: 100%;min-height: 100%;opacity: 0.0001;
+}
+
+
+
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+
+<!-- header start -->
+<header class="header">
+  <div class="hdc cl">
+    <!--{if $_G['setting']['domain']['app']['mobile']}-->
+      {eval $nav = 'http://'.$_G['setting']['domain']['app']['mobile'];}
+    <!--{else}-->
+      {eval $nav = "forum.php";}
+    <!--{/if}-->
+    <h2><a title="$_G[setting][bbname]" href="$nav"><img src="{STATICURL}image/mobile/images/logo.png" /></a></h2>
+    <ul class="user_fun">
+      <li><a href="search.php?mod=forum" class="icon_search">{lang search}</a></li>
+      <li><a href="forum.php?forumlist=1" class="icon_threadlist">{lang forum_list}</a></li>
+      <li class="on" id="usermsg"><a href="<!--{if $_G[uid]}-->home.php?mod=space&uid=$_G[uid]&do=profile&mycenter=1<!--{else}-->member.php?mod=logging&action=login<!--{/if}-->" class="icon_userinfo">{lang user_info}</a><!--{if $_G[member][newpm]}--><span class="icon_msg"></span><!--{/if}--></li>
+      <!--{if $_G['setting']['mobile']['mobilehotthread']}-->
+      <li><a href="forum.php?mod=guide&view=hot" class="icon_hotthread">{lang hot_thread}</a></li>
+      <!--{/if}-->
+    </ul>
+  </div>
+</header>
+<!-- header end -->
+
+<div class="area">
+  <div class="dsf_login m_t">
+    <ul class="dsf_bd_login">
+    	<li class="bg615"><a href="member.php?mod=connect&action=bind">绑定账户</a></li>
+      <li class="bgf85"><a href="plugin.php?id=qqconnect:quick">直接登录</a></li>
+    </ul>
+  </div>
+</div>
+<!--{subtemplate common/footer}-->

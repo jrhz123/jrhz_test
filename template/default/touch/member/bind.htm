@@ -1,0 +1,67 @@
+<!--{template common/header}-->
+<link rel="stylesheet" href="static/image/mobile/style.css" type="text/css" media="all">
+<!-- header start -->
+<header class="header">
+    <div class="nav">
+        <a href="javascript:;" onclick="history.go(-1)" class="z m_t"><img src="{STATICURL}image/mobile/images/icon_back.png" /></a>
+    <span>绑定</span>
+    </div>
+</header>
+<!-- header end -->
+<!--{eval $loginhash = 'L'.random(4);}-->
+<div class="alyout">
+<form method="post" autocomplete="off" name="login" id="loginform_$loginhash" class="cl"{if $_G['setting']['regconnect']} style="display:none"{/if} onsubmit="ajaxpost('loginform_$loginhash', 'returnmessage4', 'returnmessage4', 'onerror');return false;" action="member.php?mod=connect&action=login&loginsubmit=yes{if !empty($_GET['handlekey'])}&handlekey=$_GET[handlekey]{/if}&loginhash=$loginhash">
+    <div class="login_from m_t">
+    <div class="dsf">
+      <span>亲爱的{$_G['cookie']['connect_qq_nick']}，您将使用<font color="#2aaf85">腾讯QQ</font>的帐号绑定本站帐号，请输入您东江社区的用户名和密码。</span>
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <input type="hidden" name="referer" value="{$_G['qc']['dreferer']}" />
+        <input type="hidden" id="auth_hash" name="auth_hash" value="{$_G['qc']['connect_auth_hash']}" />
+        <input type="hidden" id="is_notify" name="is_notify" value="{$_G['qc']['connect_is_notify']}" />
+        <input type="hidden" id="is_feed" name="is_feed" value="{$_G['qc']['connect_is_feed']}" />
+        <!--{if $_G['qc']['uinlimit']}-->
+        <!--<div class="bm xi1 xw1"><div class="bm_c"><img src="{IMGDIR}/connect_qq.gif" alt="QQ" class="vm" />&nbsp;{lang qqconnect:connect_uin_limit}</div></div>-->
+          <img src="{IMGDIR}/connect_qq.gif" alt="QQ" class="mtn" />{lang qqconnect:connect_uin_limit}
+        <!--{/if}-->
+        <ul class="dsf_login_xg">
+          <li>
+            <input type="text" tabindex="1" class="login_text login_input" size="30" autocomplete="off" name="username" id="username_$loginhash" placeholder="{lang inputyourname}" />
+          </li>
+          <li>
+            <input type="password" tabindex="2" class="login_password login_input" size="30" name="password" id="password3_$loginhash" placeholder="{lang login_password}" />
+          </li>
+          <li class="questionli">
+            <div class="login_select">
+            <span class="login-btn-inner" style="display:none" >
+              <span class="login-btn-text">
+                <span class="span_question">{lang security_question}</span>
+              </span>
+              <span class="icon-arrow">&nbsp;</span>
+            </span>
+            <label>{lang security_q}(未设置请忽略)</label>
+            <select id="loginquestionid_$loginhash" width="213" name="questionid" onchange="if($('loginquestionid_$loginhash').value > 0) $('loginanswer_row_$loginhash').style.display=''; else $('loginanswer_row_$loginhash').style.display='none'">
+              <option value="0"><!--{if $questionexist}-->{lang security_question_0}<!--{else}-->{lang security_question}<!--{/if}--></option>
+              <option value="1">{lang security_question_1}</option>
+              <option value="2">{lang security_question_2}</option>
+              <option value="3">{lang security_question_3}</option>
+              <option value="4">{lang security_question_4}</option>
+              <option value="5">{lang security_question_5}</option>
+              <option value="6">{lang security_question_6}</option>
+              <option value="7">{lang security_question_7}</option>
+            </select>
+            </div>
+          </li>
+        </ul>
+      </div>
+          <div style="display:none">
+            <input type="checkbox" name="use_qqshow" id="use_qqshow_bind" class="pc" value="1" checked="checked" tabindex="1" />
+          </div>
+          <div class="btn_login">
+            <button tabindex="3" value="true" name="loginsubmit" type="submit" class="formdialog pn pnc"><span>确定绑定</span></button>
+          </div>
+        </form>
+    </div>
+</div>
+
+<!--{eval updatesession();}-->
+<!--{template common/footer}-->

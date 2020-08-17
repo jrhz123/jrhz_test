@@ -1,0 +1,107 @@
+<!--{template common/header}-->
+<style id="diy_style" type="text/css"></style>
+<div id="pt" class="bm cl">
+	<!--{if empty($gid) && $announcements}-->
+	<div class="y">
+		<div id="an">
+			<dl class="cl">
+				<dt class="z xw1">{lang announcements}:&nbsp;</dt>
+				<dd>
+					<div id="anc"><ul id="ancl">$announcements</ul></div>
+				</dd>
+			</dl>
+		</div>
+		<script type="text/javascript">announcement();</script>
+	</div>
+	<!--{/if}-->
+	<div class="z">
+
+		<!--<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em>-->
+                <span>当前位置： </span><a href="bbs">东江社区</a><em>&raquo;</em><!--史漫漫 2015年3月25日修改 -->
+                <a href="forum.php">东江{$_G[setting][navs][2][navname]}</a>$navigation
+	</div>
+	<div class="z"><!--{hook/index_status_extra}--></div>
+</div>
+<!--{if $discuz_forumdiyarea}-->
+<div class="$discuz_forumdiyarea" style="display:none"> <!--3.31修改-->
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="diy1_l">
+    <!--[diy=diy1_l]--><div id="diy1_l" class="area"></div><!--[/diy]-->
+    </td>
+    <td class="diy1_r">
+    <!--[diy=diy1_r]--><div id="diy1_r" class="area"></div><!--[/diy]-->
+    </td>
+  </tr>
+</table>
+</div>
+<!--{/if}-->
+<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+<!--{if empty($gid)}-->
+	<!--{ad/text/wp a_t}-->
+<!--{/if}-->
+<div id="ct" class="wp cl{if $_G['setting']['forumallowside']} ct2{/if}">
+	<!--{if empty($gid)}-->
+		<div id="chart" class="bm bw0 cl">
+			<p class="chart z">{lang index_today}: <em>$todayposts</em><span class="pipe">|</span>{lang index_yesterday}: <em>$postdata[0]</em><span class="pipe">|</span>{lang index_posts}: <em>$posts</em><span class="pipe">|</span>{lang index_members}: <em>$_G['cache']['userstats']['totalmembers']</em><!--{if $_G['cache']['userstats']['newsetuser']}--><span class="pipe">|</span>{lang welcome_new_members}: <em><a href="home.php?mod=space&username={echo rawurlencode($_G['cache']['userstats']['newsetuser'])}" target="_blank" class="xi2">$_G['cache']['userstats']['newsetuser']</a></em><!--{/if}--></p>
+			<div class="y">
+				<!--{hook/index_nav_extra}-->
+				<!--{if $_G['uid']}--><a href="forum.php?mod=guide&view=my" title="{lang my_posts}" class="xi2">{lang my_posts}</a><!--{/if}--><!--{if !empty($_G['setting']['search']['forum']['status'])}--><!--{if $_G['uid']}--><span class="pipe">|</span><!--{/if}--><a href="forum.php?mod=guide&view=new" title="{lang show_newthreads}" class="xi2">{lang show_newthreads}</a><!--{/if}-->
+			</div>
+		</div>
+	<!--{/if}-->
+	<!--[diy=diy_chart]--><!--<div id="diy_chart" class="area"></div>--><!--[/diy]--><!--3.31修改-->
+	<div class="mn">
+
+		<!--{if !empty($_G['setting']['grid']['showgrid'])}-->
+		<!-- index four grid -->
+
+		<!-- index four grid end -->
+		<!--{/if}-->
+		<!--{hook/index_top}-->
+    <!--{subtemplate module/discuz/hotthreads_forum}-->
+
+		<!--{hook/index_catlist_top}-->
+		<div class="fl bm">
+      <!--{subtemplate module/discuz/my_order_collection}-->
+      <!--{subtemplate module/discuz/forum_myfav}-->
+      <!--{subtemplate module/discuz/catlist}-->
+      <!--{subtemplate module/discuz/recommend_collection}-->
+		</div>
+
+		<!--{hook/index_middle}-->
+		<div class="wp mtn">
+                    <div id="threadlist" class="bm" style="position: relative;">
+
+  <div class="comeing_box_cl">
+  <div class="comeing_box_cr cl">
+  <div class="bm_c tl">
+
+			<!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+    </div>
+</div>
+</div>
+</div>
+
+		</div>
+
+    <!--{subtemplate module/discuz/online}-->
+    <!--{subtemplate module/discuz/link}-->
+		<!--{hook/index_bottom}-->
+	</div>
+
+	<!--{if $_G['setting']['forumallowside']}-->
+		<div id="sd" class="sd">
+			<!--{hook/index_side_top}-->
+			<div class="drag">
+				<!--[diy=diy2]--><div id="diy2" class="area"></div><!--[/diy]-->
+			</div>
+			<!--{hook/index_side_bottom}-->
+		</div>
+	<!--{/if}-->
+</div>
+<!--{if $_G['group']['radminid'] == 1}-->
+	<!--{eval helper_manyou::checkupdate();}-->
+<!--{/if}-->
+<!--{if empty($_G['setting']['disfixednv_forumindex']) }--><script>fixed_top_nv();</script><!--{/if}-->
+<!--{template common/footer}-->

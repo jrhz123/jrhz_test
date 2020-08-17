@@ -1,0 +1,71 @@
+<!--{if $recommendgroups && !$_G['forum']['allowside']}-->
+$comeing_box
+<div class="bm {if $_G['forum']['forumcolumns']} flg{/if}">
+  <div class="bm_h cl">
+    $comeing_box_h
+    <span class="o"><img id="recommendgroups_{$_G[forum][fid]}_img" src="{IMGDIR}/$collapseimg[recommendgroups]" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('recommendgroups_{$_G[forum][fid]}');" /></span>
+    <h2>{lang recommended_groups}</h2>
+    $comeing_box_2de
+  </div>
+  $comeing_box_c
+  <div class="bm_c">
+    <div  id="recommendgroups_{$_G[forum][fid]}" style="$collapse[recommendgroups]">
+    <table cellspacing="0" cellpadding="0" class="fl_tb">
+      <!--{loop $recommendgroups $key $group}-->
+      <!--{if $_G['forum']['forumcolumns']}-->
+        <!--{if $key && ($key % $_G['forum']['forumcolumns'] == 0)}-->
+          </tr>
+          <!--{if $key < $_G['forum']['forumcolumns']}-->
+            <tr class="fl_row">
+          <!--{/if}-->
+        <!--{/if}-->
+        <td class="fl_g">
+          <div class="fl_icn_g">
+            <a href="forum.php?mod=group&fid=$group[fid]" title="$group[name]" target="_blank"><img src="$group[icon]" alt="$group[name]" width="32" /></a>
+          </div>
+          <dl>
+            <dt><a href="forum.php?mod=group&fid=$group[fid]" target="_blank">$group[name]</a><span class="xg1 xw0"> ($group[membernum] {lang activity_member_unit})</span>
+            <dd><em>{lang forum_threads}: $group[threads]</em></dd>
+            <dd>
+              <!--{if is_array($group['lastpost'])}-->
+                <!--{if $_G['forum']['forumcolumns'] < 3}-->
+                <a href="forum.php?mod=redirect&tid=$group[lastpost][tid]&goto=lastpost#lastpost" class="xi2"><!--{echo cutstr($group[lastpost][subject], 30)}--></a> <cite>$group[lastpost][dateline] <!--{if $group['lastpost']['author']}--><a href="home.php?mod=space&username={$group[lastpost][encode_author]}">{$group[lastpost][author]}</a><!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
+                <!--{else}-->
+                  <a href="forum.php?mod=redirect&tid=$group[lastpost][tid]&goto=lastpost#lastpost" class="xi2">$group[lastpost][dateline]</a>
+                <!--{/if}-->				<!--{else}-->
+              {lang never}
+              <!--{/if}-->
+            </dd>
+          </dl>
+        </td>
+      <!--{else}-->
+        <tr {if $key != 0}class="fl_row"{/if}>
+          <td class="fl_icn">
+            <a href="forum.php?mod=group&fid=$group[fid]" title="$group[name]" target="_blank"><img src="$group[icon]" alt="$group[name]" width="32" /></a>
+          </td>
+          <td>
+            <h2><a href="forum.php?mod=group&fid=$group[fid]" target="_blank">$group[name]</a><span class="xg1 xw0"> ($group[membernum] {lang activity_member_unit})</span></h2>
+            <p><!--{echo cutstr($group[description], 100)}--></p>
+          </td>
+          <td class="fl_i">
+            <span class="xi2">$group[threads] {lang index_threads}</span>
+          </td>
+          <td class="fl_by">
+            <div>
+              <!--{if is_array($group['lastpost'])}-->
+              <a href="forum.php?mod=redirect&tid=$group[lastpost][tid]&goto=lastpost#lastpost" class="xi2"><!--{echo cutstr($group[lastpost][subject], 30)}--></a> <cite>$group[lastpost][dateline] <!--{if $group['lastpost']['author']}--><a href="home.php?mod=space&username={$group[lastpost][encode_author]}">{$group[lastpost][author]}</a><!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
+              <!--{else}-->
+              {lang never}
+              <!--{/if}-->
+            </div>
+          </td>
+        </tr>
+      <!--{/if}-->
+      <!--{/loop}-->
+    </table>
+    </div>
+  </div>
+  $comeing_box_2de
+</div>
+$comeing_box_1de
+<!--{/if}-->

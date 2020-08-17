@@ -1,0 +1,676 @@
+<!--{subtemplate common/header_common}-->
+<!--{if $_G['cache']['plugin']['comeing_skin']}-->
+<!--{eval require './source/plugin/comeing_skin/core.inc.php';}-->
+<!--{/if}-->
+<!--{eval require $_G['cache']['style_default']['directory'].'/lang/'.CHARSET.'.php';}-->
+<!--{eval define('STYLEIMGDIR', $_G[style][styleimgdir]);}-->
+<meta name="application-name" content="$_G['setting']['bbname']" />
+<meta name="msapplication-tooltip" content="$_G['setting']['bbname']" />
+<!--{if $_G['setting']['portalstatus']}-->
+<meta name="msapplication-task" content="name=$_G['setting']['navs'][1]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['portal']) ? 'http://'.$_G['setting']['domain']['app']['portal'] : $_G[siteurl].'portal.php'};icon-uri={$_G[siteurl]}{IMGDIR}/portal.ico" />
+<!--{/if}-->
+<meta name="msapplication-task" content="name=$_G['setting']['navs'][2]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['forum']) ? 'http://'.$_G['setting']['domain']['app']['forum'] : $_G[siteurl].'forum.php'};icon-uri={$_G[siteurl]}{IMGDIR}/bbs.ico" />
+<!--{if $_G['setting']['groupstatus']}-->
+<meta name="msapplication-task" content="name=$_G['setting']['navs'][3]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['group']) ? 'http://'.$_G['setting']['domain']['app']['group'] : $_G[siteurl].'group.php'};icon-uri={$_G[siteurl]}{IMGDIR}/group.ico" />
+<!--{/if}-->
+<!--{if helper_access::check_module('feed')}-->
+<meta name="msapplication-task" content="name=$_G['setting']['navs'][4]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['home']) ? 'http://'.$_G['setting']['domain']['app']['home'] : $_G[siteurl].'home.php'};icon-uri={$_G[siteurl]}{IMGDIR}/home.ico" />
+<!--{/if}-->
+<!--{if $_G['basescript'] == 'forum' && $_G['setting']['archiver']}-->
+<link rel="archives" title="$_G['setting']['bbname']" href="{$_G[siteurl]}archiver/" />
+<!--{/if}-->
+<!--{if !empty($rsshead)}-->
+$rsshead<!--{/if}-->
+<!--{if widthauto()}-->
+
+<link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_{STYLEID}_widthauto.css?{VERHASH}" />
+<script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
+<!--{/if}-->
+<!--{if $_G['basescript'] == 'forum' || $_G['basescript'] == 'group'}-->
+<script type="text/javascript" src="{$_G[setting][jspath]}forum.js?{VERHASH}"></script>
+<!--{elseif $_G['basescript'] == 'home' || $_G['basescript'] == 'userapp'}-->
+<script type="text/javascript" src="{$_G[setting][jspath]}home.js?{VERHASH}"></script>
+<!--{elseif $_G['basescript'] == 'portal'}-->
+<script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+<!--{/if}-->
+<!--{if $_G['basescript'] != 'portal' && $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+<script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+<!--{/if}-->
+<!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+<link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_{STYLEID}_css_diy.css?{VERHASH}" />
+
+<style>
+/** forum::index **/
+/*统计*/
+#chart { margin-bottom: 15px; }
+.chart { padding-left: 32px; background: url({STYLEIMGDIR}/forum/chart.png) no-repeat 0 50%; color:#666; }
+.chart em { color:#ff6600; }
+
+
+/** end **/
+
+/** forum::index,forum::forumdisplay,group::index,group::group,search::group **/
+/*fl*/
+.fl{ border:0px; background:none}
+.fl .comeing_box .bm{ margin-bottom:10px; border:0px;}
+.fl .comeing_box .bm .bm_h{ height:44px; line-height:44px; color:#333; border:0px; border-right:1px solid #E2E2E2; background:url({STYLEIMGDIR}/forum/bm_h.gif) repeat-x 0 0; padding:0  }
+.fl .comeing_box .bm .bm_h a{ color:#333;}
+.fl .comeing_box .bm .bm_h h2{ float:left;}
+.fl .comeing_box .bm .bm_h h2 a{ float:left; height:44px; padding:0px 27px 0px 15px; color:#FFF; background:url({STYLEIMGDIR}/forum/bm_h.gif) no-repeat 100% -44px #444;}
+.fl .comeing_box .bm_c{ padding:0px; border:1px solid #E2E2E2; border-top:0px;}
+.fl .comeing_box .bm_h .o { width: 25px; margin-right:10px; }
+.fl .comeing_box .bm_h .o img { margin-top: 12px; }
+
+.comeing_box .fl_tb td { padding: 10px; }
+.comeing_box .fl_row{ }
+.comeing_box .fl_row td { border-top: 1px solid #efefef;  }
+
+.comeing_box .fl_icn { width: 50px; }
+.comeing_box .fl_icn_g { width: 50px; }
+.comeing_box .fl_g dl { margin-left: 50px;}
+
+.comeing_box .fl_tb h2,.comeing_box .fl_g dt{ font-weight:700;}
+.comeing_box .fl_tb h2 a,.comeing_box .fl_g dt a{ font-size:14px; color:#000}
+
+.comeing_box .fl_tb tr:hover{ background:#f6f6f6}
+
+/** end **/
+
+/** forum::forumdisplay,group::group **/
+/*直播*/
+.comeing_box #livethread { background: #f9f9f9; border:1px solid #ddd; }
+.comeing_box .livethreadtitle .replynumber{ margin-top:10px; }
+
+/** end **/
+
+/** forum::forumdisplay **/
+
+.comeing_bdl { 
+	border: 1px solid #ddd; 
+	background-color: #fff;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+	-moz-box-shadow:0 2px 0px 0px #ddd ; 
+	-webkit-box-shadow:0 2px 0px 0px #ddd ; 
+	box-shadow:0 2px 0px 0px #ddd ;
+}
+.comeing_bdl .tbn{ margin:0px!important;}
+.comeing_bdl .tbn dl{ padding:0 10px;}
+.comeing_bdl .tbn h2{
+	border-top: 0px; 
+	border-bottom: 1px solid #ddd;
+	color:#333;
+	padding-left:10px;
+	font-size:18px;
+	font-weight:400;
+	background:url({STYLEIMGDIR}/box/bm_h.gif) repeat-x 0 -42px;
+	line-height:42px;
+	height: 42px;
+	/*圆角*/
+  -moz-border-radius: 3px 3px 0 0; 
+	-webkit-border-radius: 3px 3px 0 0; 
+	border-radius: 3px 3px 0 0; 
+}
+.comeing_bdl .tbn h2 a{ color:#333}
+
+.comeing_bdl  dt { overflow: hidden; height: 27px; line-height: 27px; border: solid #ebebeb; border-width: 1px 0; background:url({STYLEIMGDIR}/box/bm_h.gif) repeat-x 0 0!important; }
+.comeing_bdl  dd.bdl_a a { background-color: #f6f6f6; font-weight: 700; color:#000; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+
+/*下一页*/
+#autopbn { 
+	border: 1px solid #ddd; 
+	background:#fff; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px; 
+	/*阴影*/
+	-moz-box-shadow:0 2px 0px 0px #ddd ; 
+	-webkit-box-shadow:0 2px 0px 0px #ddd ; 
+	box-shadow:0 2px 0px 0px #ddd ;
+}
+#autopbn:hover {
+	background: #ff9900!important;
+	border:1px solid #ff9900;
+	color:#fff;
+	/*阴影*/
+	-moz-box-shadow: inset 0 -3px 0px 0px #f18900; 
+	-webkit-box-shadow: inset 0 -3px 0px 0px #f18900; 
+	box-shadow: inset 0 -3px 0px 0px #f18900 ;
+}
+/** end **/
+
+/** forum::forumdisplay,forum::viewthread,group::viewthread **/
+#vfastpost{
+  background:#f6f6f6;
+  padding:10px;
+  position:relative;
+	/*圆角*/
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+}
+#vfastpost #vf_b button{
+	/*阴影*/
+	-moz-box-shadow: 0 0px 0px 0px; 
+	-webkit-box-shadow: 0 0px 0px 0px; 
+	box-shadow: 0 0px 0px 0px;
+}
+#vfastpost #vf_l{ background: url({STYLEIMGDIR}/forum/v.png) no-repeat -30px -39px;}
+#vfastpost #vf_m{ background: url({STYLEIMGDIR}/forum/v.png) repeat-x 0px -79px;}
+#vfastpost #vf_r{ background: url({STYLEIMGDIR}/forum/v.png) no-repeat -47px -119px;}
+#vfastpost #vf_b button{ background: url({STYLEIMGDIR}/forum/v.png) no-repeat 0 0;}
+/** end **/
+
+/** forum::viewthread,group::viewthread,forum::trade,forum::misc **/
+
+.comeing_threadview { border:0px; background:none} 
+.comeing_threadview .pls{ background:#f6f6f6; border-right: 1px solid #ddd; }
+
+.comeing_threadview .ad .pls { background:#f6f6f6;}
+.comeing_threadview .ad .plc { background:none;}
+.comeing_threadview .pi { border-bottom: 1px solid #ddd; }
+.comeing_threadview .po { border-top: 1px solid #ddd; }
+
+.comeing_threadview .comeing_viewthread{
+  border:1px solid #ddd;
+	background:#fff;
+	margin-bottom:10px;
+	/*圆角*/
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+	/*阴影*/
+	-moz-box-shadow:0 2px 0px 0px #ddd ; 
+	-webkit-box-shadow:0 2px 0px 0px #ddd ; 
+	box-shadow:0 2px 0px 0px #ddd ;
+}
+
+/*帖子头部*/
+.comeing_threadview #first{
+	/*圆角*/
+	-moz-border-radius: 0px 0px 5px 5px; 
+	-webkit-border-radius: 0px 0px 5px 5px; 
+	border-radius: 0px 0px 5px 5px;
+}
+.comeing_vt_pf{
+  border:1px solid #ddd;
+	border-bottom:0px;
+	-moz-border-radius: 5px 5px 0 0; 
+	-webkit-border-radius: 5px 5px 0 0; 
+	border-radius: 5px 5px 0 0;
+	background:url({STYLEIMGDIR}/box/bm_h.gif) repeat-x 0 -42px;
+}
+
+.comeing_viewthread_top td{
+	height:30px;
+}
+.comeing_viewthread_top .pls{ padding-top:5px; padding-bottom:5px; border-right:0px; background:none }
+.comeing_viewthread_top .plc{ padding-top:12px;}
+
+.comeing_threadview #pl_top{ border-left:1px solid #ddd; border-right:1px solid #ddd;}
+.comeing_threadview #pl_top .ad .pls, .comeing_threadview #pl_top .ad .plc { background:#ddd}
+
+
+
+.comeing_viewthread_top .side_btn a { width:10px; height:38px;}
+
+
+/** end **/
+
+/** forum::forumdisplay,forum::viewthread,forum::modcp,forum::collection,group,home::space,home::task,home::follow,search::forum,search::group,member::groupexpiry,misc::ranklist,misc::stat,misc::tag,forum::guide,portal::block **/
+
+/*帖子类型*/
+.ttp{ border-color:#ddd}
+
+.ttp a, .ttp strong { 
+	border: 1px solid #ddd; 
+	background:#fff; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+}
+.ttp .a a,.ttp a:hover {
+	border-color:#1483cd; 
+	background: #1483cd!important; 
+	color: #fff;
+	/*圆角*/
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+}
+.ttp .num { background:#999; padding:0 5px; margin-left:5px; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius:3px; color:#fff !important; }
+.ttp .a .num,.ttp a:hover .num { background:#fff; color:#999 !important; }
+
+/*帖子列表*/
+#threadlist .bm_h table{ width:100%; }
+#threadlist .bm_c{ padding:0 0 0 0; }
+#atarget{ margin-left:10px; }
+
+
+.tl th, .tl td { padding: 8px 0; border-bottom: 1px solid #eee; background:#F8F8F8;}
+.comeing_bd th,.comeing_bd td{ background:#FFF;}
+.tl .ts th, .tl .ts td { padding: 5px 0; border-bottom-color: {COMMONBORDER}; background: #F8F8F8; }
+
+/*预览*/
+.comeing_tdpre{
+	visibility: hidden;
+	background: #444;
+	margin-right:10px;
+	color:#fff;
+	padding:3px 10px;
+	/*圆角*/
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+	/*阴影*/
+	-moz-box-shadow: inset 0 -3px 0px 0px #333; 
+	-webkit-box-shadow: inset 0 -3px 0px 0px #333; 
+	box-shadow: inset 0 -3px 0px 0px #333 ;
+}
+.comeing_tdpre:hover{ text-decoration:none}
+
+
+.tl .threadpre .threadpretd { border-left:0px; border-right:0px;}
+.tl .threadpretd{ padding:5px 10px 10px 10px; background:#f6f6f6;}
+.tl .icon_preview { background: url({STYLEIMGDIR}/forum/icon_preview.gif);}
+.tl .comeing_tl_sub .showhide{ -display:none}
+
+.tl th:hover .comeing_tdpre, .tl td.fn:hover .comeing_tdpre  { visibility: visible; }
+
+/** end **/
+
+/** forum::forumdisplay,group::forumdisplay **/
+
+/*帖子列表最后一行*/
+.tl tbody:last-child .threadpre .threadpretd { border:0px; border-top:1px solid #ddd}
+
+/*推荐帖子幻灯片*/
+.comeing_recommend{ padding:10px;}
+.comeing_recommend .slidebox{ position:relative;}
+.comeing_recommend .slideshow div{ overflow:hidden}
+.comeing_recommend .slideshow p{ height:40px; font-size:14px; background:url({STYLEIMGDIR}/png.png); position:absolute; left:0px; bottom:30px; color:#fff; text-align:left; line-height:40px; padding:0 10px; }
+
+.comeing_recommend .slidebar{ position:absolute; left:0px; bottom:0px; padding:4px 10px 10px 10px; height:16px; background:url({STYLEIMGDIR}/png.png); }
+.comeing_recommend .slidebar em{ float:left; width:16px; height:16px; cursor:pointer; font-size:9px; background:#fff; text-align:center; line-height:16px; margin:0 2px; color:#000; }
+.comeing_recommend .slidebar em.on{ background:#369; color:#fff; }
+
+/** end **/
+
+/** portal::list,portal::view **/
+
+#pt{ padding-bottom:6px; padding-left:10px; padding-right:10px;}
+
+.comeing_ct2{ padding:10px; margin-bottom:10px; border-top:1px solid #ddd; border-bottom:1px solid #ddd; background:url({STYLEIMGDIR}/portal/ct2.gif) repeat-y 100% 0 #fff;
+}
+.comeing_ct2 .sd{ float:right; width:300px; overflow:hidden}
+.comeing_ct2 .mn{ float:left; width:659px; overflow:hidden}
+
+.comeing_picnewslist{}
+.comeing_picnewslist li{ border-bottom:1px solid #ddd; padding-bottom:10px; padding-top:10px;}
+
+.comeing_picnewslist li img{ width:180px; height:130px; float:left; margin-right:10px; border:1px solid #ddd;}
+.comeing_picnewslist li h3{ font-size:18px; font-weight:400; height:40px; line-height:40px; overflow:hidden; }
+.comeing_picnewslist li p.about{ color:#666; line-height:22px;}
+.comeing_picnewslist li p.info{ color:#ccc; height:24px; line-height:24px; }
+.comeing_picnewslist li p.info a{ color:#ccc}
+
+.comeing_picnewslist li.on{ background:#f6f6f6}
+
+/*门户模块*/
+.comeing_portalbm,.comeing_portaldiy_comm{ border:0px; background:none; margin-bottom:0px; }
+.comeing_portalbm .bm_h,.comeing_portaldiy_comm .frame-title{ height:37px; line-height:24px; padding:0px; border:0px; font-size:18px;  background:url({STYLEIMGDIR}/portal/portalbm_h.gif) repeat-x 0 100%; }
+.comeing_portalbm .bm_h span.a,.comeing_portaldiy_comm .frame-title .titletext{ float:left; height:37px; padding:0 10px;font-weight:400; background:url({STYLEIMGDIR}/portal/portalbm_h_a.gif) repeat-x 0 100%;}
+.comeing_portalbm .bm_h span.a:hover,.comeing_portaldiy_comm .frame-title .titletext:hover{ background:url({STYLEIMGDIR}/portal/portalbm_h_a_hover.gif) repeat-x 0 100%;}
+.comeing_portaldiy_comm .column{ padding:5px 0;}
+
+/*推荐专题*/
+.comeing_pstslide{ height:162px; position:relative;}
+.comeing_pstslide .slideshow h3{ font-size:14px; height:40px; line-height:40px; font-weight:normal; width:100%; overflow:hidden }
+.comeing_pstslide .slideshow h3 a{ color:#369}
+.comeing_pstslide .slideshow img{ float:left; margin-right:10px; }
+.comeing_pstslide .slideshow p{ padding:5px 0; height:80px; line-height:20px; overflow:hidden; color:#999}
+
+.comeing_pstslide .slidebar{ position:absolute; left:90px; bottom:0px; height:12px; }
+.comeing_pstslide .slidebar em{ cursor:pointer; float:left; width:22px; height:12px; background:url({STYLEIMGDIR}/portal/pstslide.gif) no-repeat 50% 0;}
+.comeing_pstslide .slidebar em.on{ background:url({STYLEIMGDIR}/portal/pstslide.gif) no-repeat 50% -12px;}
+
+/*排行*/
+.comeing_top10{ line-height:28px; padding:0 5px; background:url({STYLEIMGDIR}/portal/top10.gif) no-repeat 5px 0}
+.comeing_top10 li{ height:28px; overflow: hidden; padding-left:29px;}
+
+/*comeing_diytb*/
+.comeing_diytab{ border:0px; background:none; margin-bottom:0px;}
+.comeing_diytab .tab-title{ background:#ff6600; height:40px;}
+
+.comeing_diytab .tb { padding-left:0; line-height:40px;}
+.comeing_diytab .tb li {}
+.comeing_diytab .tb li a { padding: 0 15px; border:0px; border-right:0px; color:#fff }
+.comeing_diytab .tb li.a a{ background: #0099cc; font-weight: 400; color:#fff}
+.comeing_diytab .tb-c { padding: 10px; }
+	
+/** end **/
+
+/** portal::view **/
+
+/*文章*/
+.comeing_newtitle{ background:#fff; padding:10px 10px; text-align:center}
+.comeing_newtitle h1{ font-size:24px; line-height:40px;}
+.comeing_newtitle p{ color:#ccc; line-height:20px; padding-top:10px; border-bottom:1px solid #eee; padding-bottom:10px;}
+.comeing_newtitle p a{ color:#ccc;}
+
+
+.comeing_newscontent{ background:#fff; margin-bottom:10px;}
+.comeing_summary{ padding:10px 20px; background:#f6f6f6; border:1px solid #eee; }
+.comeing_summary div{ line-height:24px;}
+
+.comeing_newscontent .d{ padding:20px;}
+.comeing_newscontent  #article_content{ font-size:14px; line-height:1.8;}
+
+.comeing_newsmanage{ padding:10px; border-top:1px solid #ddd; background:#eee}
+
+.comeing_portalbox{ border:0px; background:none;}
+.comeing_portalbox .bm_h { padding: 0 10px; height: 40px; line-height:40px; font-size: 16px; font-weight:400; border:0px; border-top:3px solid #ddd; background:none}
+.comeing_portalbox .bm_c{ padding:10px;}
+/** end **/
+</style>
+
+<!--{/if}-->
+<!--[if IE 6]>
+  <script type="text/javascript" src="{STYLEIMGDIR}/js/png.js"></script>
+  <script type="text/javascript">
+  DD_belatedPNG.fix('.png,#comeing_hd h2 img,.nvhm,#pt .z em,.chart,.comeing_cs,.comeing_cs:hover');
+  </script>
+<![endif]-->
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+/*theRequest = GetRequest();
+var is_mobile = '';
+is_mobile = theRequest['mobile'];
+if (is_mobile!='no') {
+	var userAgent = navigator.userAgent||navigator.vendor||window.opera;
+	var mobilePattern = /ipad|iphone|ipod|(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i;
+	var mobilePattern2 = /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i;
+
+	if (mobilePattern.test(userAgent) || mobilePattern2.test(userAgent.substr(0,4))) {
+	    window.location.href = "/forum.php?mobile=yes";
+	}
+}
+function GetRequest() { 
+	var url = location.search; //获取url中"?"符后的字串 
+	var theRequest = new Object(); 
+	if (url.indexOf("?") != -1) { 
+		var str = url.substr(1); 
+		strs = str.split("&"); 
+		for(var i = 0; i < strs.length; i ++) { 
+			theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]); 
+		} 
+	} 
+	return theRequest; 
+} */
+</script>
+
+</head>
+<body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}--> 
+<!--{template common/header_diy}--> 
+<!--{/if}--> 
+<!--{if check_diy_perm($topic)}--> 
+<!--{template common/header_diynav}--> 
+<!--{/if}--> 
+<!--{if CURMODULE == 'topic' && $topic && empty($topic['useheader']) && check_diy_perm($topic)}--> 
+$diynav 
+<!--{/if}--> 
+<!--{if empty($topic) || $topic['useheader']}--> 
+<!--{if $_G['setting']['mobile']['allowmobile'] && (!$_G['setting']['cacheindexlife'] && !$_G['setting']['cachethreadon'] || $_G['uid']) && ($_GET['diy'] != 'yes' || !$_GET['inajax']) && ($_G['mobile'] != '' && $_G['cookie']['mobile'] == '' && $_GET['mobile'] != 'no')}-->
+<div class="xi1 bm bm_c"> {lang your_mobile_browser}<a href="{$_G['siteurl']}forum.php?mobile=yes">{lang go_to_mobile}</a> <span class="xg1">|</span> <a href="$_G['setting']['mobile']['nomobileurl']">{lang to_be_continue}</a> </div>
+<!--{/if}--> 
+<!--{if $_G['setting']['shortcut'] && $_G['member'][credits] >= $_G['setting']['shortcut']}-->
+<div id="shortcut"> <span><a href="javascript:;" id="shortcutcloseid" title="{lang close}">{lang close}</a></span> {lang shortcut_notice} <a href="javascript:;" id="shortcuttip">{lang shortcut_add}</a> </div>
+<script type="text/javascript">setTimeout(setShortcut, 2000);</script> 
+<!--{/if}-->
+
+
+
+<div id="comeing_toptb"> 
+  <!--{if !empty($_G['style']['extstyle'])}--> 
+  <a class="comeing_cs" onClick="showWindow('style', this.href, 'get', 0)" href="plugin.php?id=comeing_skin:style"></a> 
+  <!--{/if}-->
+
+	  
+	  
+<div class="sq_nav clearfix">
+        
+		
+		
+		<div class="alyout ">
+        <h2 class="float_l"><a href="http://www.huizhou.cn/" target="_blank"><img src="template/comeing_yae_05/comeing/index_logo.jpg" /></a></h2>
+        <div class="sq_navlist w670 float_l">
+        	<ul >
+            	<li><a href="http://www.huizhou.cn/news/" target="_blank">新闻</a></li><li><a href="http://www.huizhou.cn/gov/" target="_blank">时政</a></li><li><a href="http://www.huizhou.cn/jrhz_hmlt/hd/" target="_blank">向书记说说心里话</a></li><li><a href="http://www.huizhou.cn/jrhz_hmlt/" target="_blank">惠民在线</a></li><li><a href="http://www.huizhou.cn/lawonline/" target="_blank">法治在线</a></li><li><a href="http://v.huizhou.cn/" target="_blank">视频</a></li><li><a href="http://www.huizhou.cn/house/" target="_blank">房产</a></li><li><a href="http://www.huizhou.cn/auto/" target="_blank">汽车</a></li><li><a href="http://www.huizhou.cn/travel/" target="_blank">旅游</a></li><li><a href="http://www.huizhou.cn/food/" target="_blank">美食</a></li><li><a href="http://www.huizhou.cn/ent/" target="_blank">文娱</a></li><li><a href="bbs" target="_blank">社区</a></li>
+                
+            </ul>
+        </div>
+		
+		<!--用户名-->
+		<div class="w185 float_r">
+           <ul class="menu float_r">
+              <!--{if $_G['uid']}--> 
+              <a id="user"  href="javascript:;" onMouseOver="delayShow(this, function () {showMenu({'ctrlid':'user','pos':'34!','ctrlclass':'a','duration':2});})"><!--{$_G[member][username]}--></a> 
+              <!--{elseif !empty($_G['cookie']['loginuser'])}--> 
+              <a id="loginuser" ><!--{echo dhtmlspecialchars($_G['cookie']['loginuser'])}--></a> <a href="member.php?mod=logging&action=login" onClick="showWindow('login', this.href)">{lang activation}</a> <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+              <!--{elseif !$_G[connectguest]}--> 
+              <a href="member.php?mod=register" class="float_r" style="margin-top:7px;" ><img src="template/comeing_yae_05/comeing/sq_reguit.jpg"/></a> <a href="member.php?mod=logging&amp;action=login" onClick="showWindow('login', this.href)" class="float_r" style="margin-right:10px; margin-top:7px;"  ><img src="template/comeing_yae_05/comeing/sq_login.jpg"/></a> 
+              <!--{/if}--> 
+            </ul>
+          </div>
+
+        <div class="clearfix"></div>
+        </div>
+		
+		</div>
+		
+
+</div>
+
+
+
+
+
+
+<!--{if !IS_ROBOT}-->
+<ul id="user_menu" class="cl" style="display:none;">
+  <li><a href="home.php?mod=space&uid=$_G[uid]" target="_blank" title="{lang visit_my_space}">我的空间</a></li>
+
+  <li><a href="home.php?mod=space&do=pm" id="pm_ntc">{lang pm_center}</a>{if $_G[member][newpm]}<span class="new">new</span>{/if}</li>
+  <li><a href="home.php?mod=space&do=notice" id="myprompt" >{lang remind}<!--{if $_G[member][newprompt]}--><span class="new">($_G[member][newprompt])</span><!--{/if}--></a><span id="myprompt_check"></span></li>
+  <!--{if $_G['setting']['taskon'] && !empty($_G['cookie']['taskdoing_'.$_G['uid']])}-->
+  <li><a href="home.php?mod=task&item=doing" id="task_ntc">{lang task_doing}<span class="new">new</span></a></li>
+  <!--{/if}--> 
+  <!--{if $_G['uid'] && $_G['adminid'] == 1 && $_G['setting']['cloud_status']}-->
+  <li><a href="admin.php?frames=yes&action=cloud&operation=applist" target="_blank">{lang cloudcp}</a></li>
+  <!--{/if}-->
+  <li><a href="home.php?mod=spacecp">$comeing_lang[10]</a></li>
+  <!--{if check_diy_perm($topic)}-->
+  <li><a href="javascript:openDiy();" title="{lang open_diy}">$comeing_lang[0]</a></li>
+  <!--{/if}--> 
+  <!--{if ($_G['group']['allowmanagearticle'] || $_G['group']['allowpostarticle'] || $_G['group']['allowdiy'] || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 6) || getstatus($_G['member']['allowadmincp'], 2) || getstatus($_G['member']['allowadmincp'], 3))}-->
+  <li><a href="portal.php?mod=portalcp"><!--{if $_G['setting']['portalstatus'] }-->{lang portal_manage}<!--{else}-->{lang portal_block_manage}<!--{/if}--></a></li>
+  <!--{/if}--> 
+  <!--{if $_G['uid'] && $_G['group']['radminid'] > 1}-->
+  <li><a href="forum.php?mod=modcp&fid=$_G[fid]" target="_blank">{lang forum_manager}</a></li>
+  <!--{/if}--> 
+  <!--{if $_G['uid'] && getstatus($_G['member']['allowadmincp'], 1)}-->
+  <li><a href="admin.php" target="_blank">{lang admincp}</a></li>
+  <!--{/if}-->
+  <!--{if empty($_G['disabledwidthauto']) && $_G['setting']['switchwidthauto']}-->
+  <li><a href="javascript:;" id="switchwidth" onClick="widthauto(this)" title="{if widthauto()}{lang switch_narrow}{else}{lang switch_wide}{/if}"><!--{if widthauto()}-->{lang switch_narrow}<!--{else}-->{lang switch_wide}<!--{/if}--></a></li>
+  <!--{/if}-->
+  <li><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a></li>
+</ul>
+
+
+			<!--{if $_G['uid']}-->
+				<ul id="myitem_menu" class="p_pop" style="display: none;">
+					<li><a href="forum.php?mod=guide&view=my">{lang mypost}</a></li>
+                    <li><a href="home.php?mod=space&do=blog&view=me&from=space">{lang blog}</a></li>
+					<li><a href="home.php?mod=space&do=favorite&view=me">{lang favorite}</a></li>
+					<li><a href="home.php?mod=space&do=friend">{lang friends}</a></li>
+					<!--{hook/global_myitem_extra}-->
+				</ul>
+			<!--{/if}-->
+<!--{/if}-->
+<div id="coeming_hd">
+  <div class="alyout">
+  <div style="display:none">
+  	{$_G['basescript']}
+  </div>
+  <!--检索页面-->
+  <!--Enicn_d modified 2015-04-09 unified header-->
+    <div class="hdc cl">
+      <h2><!--{if !isset($_G['setting']['navlogos'][$mnid])}-->
+      <!--{eval $phpself = explode('/',$_G['PHP_SELF']);}-->
+      	<!--{if $phpself[1]=='bbs'}-->
+  		<!--{eval $sns = ture}-->
+      		<a href="http://sns.huizhou.cn/bbs/" title="东江社区"><img src="template/comeing_yae_05/comeing/sq_logo.jpg" alt="东江社区" border="0"></a>
+      	<!--{elseif ($phpself[1]=='blog' || $_G['basescript']=='home') && empty($_GET['do']) && $_GET['mod']!='spacecp'}-->
+      	<!--{eval $blog = ture}-->
+      		<a href="http://blog.huizhou.cn/" title="东江博客"><img src="template/comeing_yae_05/comeing/sq_blog_logo.jpg" alt="东江博客" border="0"></a>
+      	<!--{elseif $_G['basescript']=='plugin'}-->
+      	<!--{eval $hd = ture}-->
+      		<a href="http://hd.huizhou.cn/" title="活动中心"><img src="template/comeing_yae_05/comeing/sq_hd_logo.jpg" alt="活动中心" border="0"></a>
+      	<!--{else}-->
+		<!--{eval $bbs = ture}-->
+      		<!--<a href="{if $_G['setting']['domain']['app']['default']}http://{$_G['setting']['domain']['app']['default']}/{else}./{/if}" title="$_G['setting']['bbname']">{$_G['style']['boardlogo']}</a>-->
+      		<a href="http://bbs.huizhou.cn/" title="东江论坛"><img src="template/comeing_yae_05/comeing/sq_bbs_logo.jpg" alt="东江论坛" border="0"></a>
+      	<!--{/if}-->
+      <!--{else}-->$_G['setting']['navlogos'][$mnid]<!--{/if}--></h2>
+      <div class=" y cl float_r" style="width:450px; padding-top:15px;">
+	   <!--{subtemplate common/header_userstatus}-->
+  
+      </div>
+    </div>
+	
+	
+    <!--{if !empty($_G['setting']['plugins']['jsmenu'])}-->
+    <ul class="p_pop h_pop" id="plugin_menu" style="display: none">
+      <!--{loop $_G['setting']['plugins']['jsmenu'] $module}--> 
+      <!--{if !$module['adminid'] || ($module['adminid'] && $_G['adminid'] > 0 && $module['adminid'] >= $_G['adminid'])}-->
+      <li>$module[url]</li>
+      <!--{/if}--> 
+      <!--{/loop}-->
+    </ul>
+    <!--{/if}--> 
+    $_G[setting][menunavs] </div>
+	
+	<div class="sq_navbar clear"  >
+	<div class="alyout">
+    	<ul class="float_l sq_subnavlist">
+        	<li<!--{if $sns}--> class="first"<!--{/if}-->><a href="http://sns.huizhou.cn">首页</a></li>
+            <li<!--{if $bbs}--> class="first"<!--{/if}-->><a href="http://bbs.huizhou.cn">论坛</a></li>
+            <li<!--{if $blog}--> class="first"<!--{/if}-->><a href="http://blog.huizhou.cn">博客</a></li>
+            <li<!--{if $hd}--> class="first"<!--{/if}-->><a href="http://hd.huizhou.cn">活动</a></li>
+        </ul>
+        <div class="float_r" style="padding-top:5px;"><!--{subtemplate common/pubsearchform}--> </div>
+    </div>
+</div>
+
+<!--{if $sns}-->
+<div class="navlist clear">
+	<div class="alyout area">
+    	<dl>
+            <dt class="m_tl0"><img src="template/comeing_yae_05/comeing/sq_nav01.jpg" /></dt>
+            <dd class="w160">
+            	<p><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=863" target="_blank">书记论坛</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=160" target="_blank">惠民在线</a>
+                </p>
+                <p><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=42" target="_blank">今日惠州</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=144" target="_blank">法治在线</a>
+                </p>
+            </dd>
+      
+            <dt><img src="template/comeing_yae_05/comeing/sq_nav02.jpg" /></dt>
+            <dd class="w245">
+            	<p><a href="http://sns.huizhou.cn/forum-864-1.html" target="_blank">网友报料</a>
+					<a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=870" target="_blank">美食吃货</a>
+                	<a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=101" target="_blank">玩转摄影</a>
+                </p>
+                <p><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=76" target="_blank">运动健康</a>
+                	<a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=115" target="_blank">娱乐演出</a>
+                	<a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=86" target="_blank">驴友户外</a>
+                </p>
+            </dd>
+        
+            <dt><img src="template/comeing_yae_05/comeing/sq_nav03.jpg" /></dt>
+            <dd class="w245">
+            	<p><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=122" target="_blank">房产家居</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=2" target="_blank">谈天说地</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=871" target="_blank">时尚生活</a>
+                </p>
+                <p><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=881" target="_blank">汽车之家</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=142" target="_blank">亲子乐园</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=884" target="_blank">惠州公益</a>
+                </p>
+            </dd>
+    	
+            <dt><img src="template/comeing_yae_05/comeing/sq_nav04.jpg" /></dt>
+            <dd class="w160">
+            	<p><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=876" target="_blank">文明论坛</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=885" target="_blank">青葱校园</a>
+                </p>
+                <p><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=95" target="_blank">文学交流</a>
+                   <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=39" target="_blank">版务专区</a>
+                </p>
+            </dd>
+        </dl>                        
+    </div>
+</div>	
+<!--{/if}-->
+
+</div>
+
+<style type="text/css">
+.pic_ad{
+    position:fixed;
+    bottom:0px;
+    left:0px;
+}
+</style>
+<div class="pic_ad">
+ <a href="http://sns.huizhou.cn/thread-670787-1-1.html " target="_blank">
+ <img src="http://www.huizhou.cn/webfile/2017/9/28/images/smrz.jpg"/>
+ </a>
+</div>
+
+<!--{if $comeing_adbanners}-->
+<div class="comeing_banner">
+  <div class="comeing_banner_l comeing_wp">
+    <div class="comeing_banner_r">
+      <div class="wp">
+        <div class="comeing_banner_box cl">
+          <h1>$comeing_lang[13]</h1>
+          <div class="comeing_headerad_slide slidebox" slidenum="1" slidestep="1">
+            <div class="slideshow"> 
+              <!--{loop $comeing_adbanners $ad}-->
+              <div>
+                <div class="comeing_header_ad">$ad['html']</div>
+              </div>
+              <!--{/loop}--> 
+            </div>
+            <a href="javascript:void(0);" class="comeing_adbar slidebarup" mevent="click" ><</a> <a href="javascript:void(0);" class="comeing_adbar slidebardown" mevent="click">></a> </div>
+          <script type="text/javascript">runslideshow();</script> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--{/if}--> 
+<!--{hook/global_header}--> 
+<!--{/if}--> 
+<!--{if !$comeing_channel['nowp']}-->
+<div id="wp" class="wp">
+<!--{/if}-->

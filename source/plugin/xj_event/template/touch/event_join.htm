@@ -1,0 +1,116 @@
+<!--{template common/header}-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#activity').submit(function (e){
+    $('.hd_join_text').each(function(){
+      if ($(this).val()=='') {
+        alert($(this).attr('placeholder')+'未填写');
+        if (e.preventDefault) {
+          e.preventDefault();
+          return false;
+        } else {
+          return false;
+        }
+      }
+    })
+  })
+})
+</script>
+
+<!-- header start -->
+<header class="header">
+  <div class="nav">
+    <a href="javascript:;" onclick="history.go(-1)" class="z iconBack cf" style="margin-top:17px;"  ></a>
+    <span class="name">活动报名</span>
+  </div>
+</header>
+<!-- header end -->
+
+<div class="bgfff">
+<div class="hd_join">
+<form name="activity" id="activity" method="post" autocomplete="off" action="plugin.php?id=xj_event:event_join&tid={$tid}">
+  <input type="hidden" name="formhash" value="{$_G[formhash]}" />
+  <input type="hidden" name="handlekey" value="activityapplies" />
+  <input type="hidden" name="eid" value="{$items[eid]}" />
+  <!--{if $setting[session]}-->
+    <dt>
+      <strong class="rq y">*</strong><!--{lang xj_event:huodongcc}修改6.12--></th>
+      <select name="session">
+        <option value="">{lang choose_please}</option>
+        <!--{loop $setting[session] $key $value}-->
+           <option value="$key">$value</option>
+        <!--{/loop}-->
+      </select>
+    </dt>
+  <!--{/if}-->
+  <!--{if in_array('mobile', $selectuserfield)}-->
+  <!--{eval $value_mobile = !empty($apply['ufielddata']['mobile']) ? $apply['ufielddata']['mobile'] : ''}-->
+  <dt>
+    <input type="text" tabindex="1" name="{$settings['mobile']['fieldid']}" class="hd_join_text" placeholder="{$settings['mobile']['title']}*" value="{$value_mobile}">
+  </dt>
+  <!--{/if}-->
+<script type="text/javascript">
+  var fields = new Array();
+</script>
+  <!--{if !empty($selectuserfield)}-->
+    <!--{loop $selectuserfield $fieldid}-->
+      <!--{if $settings[$fieldid][available] && $fieldid!='mobile'}-->
+        <!--{eval $value = !empty($apply['ufielddata'][$fieldid]) ? $apply['ufielddata'][$fieldid] : ''}-->
+        <script type="text/javascript">fields.push({name:'$fieldid',title:'$settings[$fieldid][title]',value:'$value'})</script>
+        <div id="div_$fieldid">
+          <dt>
+          <!--$settings[$fieldid][title]修改6.12-->
+          <!--Enicn_d modified 2015-06-12 removed <strong class="rq y">*</strong> $htmls[$fieldid] -->
+          <!--{if $settings[$fieldid][formtype] != 'file'}-->
+            <input type="text" tabindex="1" name="{$settings[$fieldid]['fieldid']}" value="" class="hd_join_text" placeholder="{$settings[$fieldid]['title']}*">
+          <!--{else}-->
+            <input id="activitypic_$fieldid" type="text" tabindex="1" name="{$settings[$fieldid]['fieldid']}" value=""  class="hd_join_text"  placeholder="空白提示"   name="$fieldid" onblur="if(!this.value.match(/^https?:\/\/.+\/.+\.(jpg|png|gif|jpeg|bmp)$/i)){ $('showerror_$fieldid').innerHTML='{lang xj_event:tpdzcw}';}else{ $('showerror_$fieldid').innerHTML='&nbsp;';}"><div id="showerror_$fieldid" class="rq mtn">{lang xj_event:qsrtpdz}</div>
+          <!--{/if}-->
+          </dt>
+        </div>
+      <!--{/if}-->
+    <!--{/loop}-->
+  <!--{/if}-->
+  <dt class="bmrs">{lang xj_event:bmrs}
+    <select name="applynumber" id="applynumber" onchange="applynumber_change()">
+      <!--{loop $applynumber $value}-->
+      <option value="$value">$value {lang xj_event:ren}</option>
+        <!--{/loop}-->
+    </select>
+  </dt>
+  <!--{if in_array('bmmessage',$userfield)}-->
+    <dt>
+      <textarea name="message" maxlength="100" cols="38" rows="3" class="bm_ly" tabindex="4" placeholder="报名留言:"></textarea>
+    </dt>
+  <!--{/if}-->
+  <input type="hidden" name="activitysubmit" value="true"><div class="join_btn"><input name="{lang xj_event:tijiao}" type="submit" value="{lang xj_event:tijiao}" class=" float_l"/><label>带*为必填项</label></div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+//Enicn_d modified 2016-07-21 added muti-userfields
+var applynumber_change = function() {
+  var applynumber = document.getElementById('applynumber').value;
+  console.log(applynumber);
+  for(i in fields) {
+    var field = fields[i];
+    if (typeof field == 'object') {
+      var dt = '';
+      var name = field.name;
+      var title = field.title;
+      var field_value = field.value ? field.value.split(',') : [];
+      for (var j=0; j<applynumber; j++) {
+        var value = field_value[j] ? field_value[j] : '';
+        dt+='<dt>'+
+              '<input type="text" tabindex="1" name="'+name+'[]" value="'+value+'" class="hd_join_text" placeholder="'+title+(j+1)+'*">'+
+            '</dt>';
+      }
+      document.getElementById('div_'+name).innerHTML = dt;
+    }
+  }
+}
+applynumber_change();
+
+</script>
+<!--{template common/footer}-->

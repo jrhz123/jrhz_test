@@ -1,0 +1,42 @@
+<!--{if $_G[forum][banner] && !$subforumonly}--><img src="$_G[forum][banner]" alt="$_G['forum'][name]" /><!--{/if}-->
+$comeing_box
+<div class="bm" >
+  
+  <div class="bm_h cl" style="border-bottom:none">
+    $comeing_box_h
+
+    
+    <h1 class="xs2">
+      
+      <!--{if !$subforumonly}--><span class="xs1 xw0 i">{lang index_today}: <strong class="xi1">$_G[forum][todayposts]</strong>
+          <!--{if $_G[forum][todayposts]}--><!--{if $_G[forum][todayposts] < $_G[forum][yesterdayposts]}--><!--<b class="ico_fall">&nbsp;</b>-->
+          <!--{else}--><!--<b class="ico_increase">&nbsp;</b>--><!--{/if}--><!--{/if}--><span class="pipe">|</span>
+          {lang index_threads}: <strong class="xi1">$_G[forum][threads]</strong>
+          <span class="pipe">|</span>
+          {lang index_posts}: <strong class="xi1">$_G[forum][posts]</strong>
+          <!--{if $_G[forum][rank]}-->
+          <!--<span class="pipe">|</span>{lang rank}: <strong class="xi1" title="{lang previous_rank}:$_G[forum][oldrank]">$_G[forum][rank]</strong>-->
+          <!--{if $_G[forum][rank] <= $_G[forum][oldrank]}-->
+          <!--<b class="ico_increase">&nbsp;</b>-->
+          <!--{else}-->
+          <!--<b class="ico_fall">&nbsp;</b>-->
+          <!--{/if}--><!--{/if}--></span><!--{/if}-->
+          <span class="pipe">|</span>
+            <!--{if $moderatedby}-->{lang forum_modedby}: <span class="xi2">$moderatedby</span><!--{/if}-->
+
+    </h1>
+    $comeing_box_2de
+  </div>
+
+  <!--{if !empty($forumarchive)}-->
+    <div id="forumarchive_menu" class="p_pop" style="display:none">
+      <ul>
+        <li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]">{lang threads_all}</a></li>
+        <!--{loop $forumarchive $id $info}-->
+        <li><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&archiveid=$id">{$info['displayname']} ({$info['threads']})</a></li>
+        <!--{/loop}-->
+      </ul>
+    </div>
+  <!--{/if}-->
+</div>
+$comeing_box_1de

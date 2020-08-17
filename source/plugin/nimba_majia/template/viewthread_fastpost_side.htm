@@ -1,0 +1,11 @@
+<!--{block return}-->
+<div class="m_t10" style="text-align:center;">
+	<label style="display:inline;">{lang nimba_majia:useid}</label>
+	<select name="majiauid" style="display:inline;padding-right:7px;">
+		<option value=$_G[uid]>$_G[username]</option>
+	<!--{loop $repeatusers $majia}-->
+		<option value="$majia['useruid']">$majia['username']</option>
+	<!--{/loop}-->
+	</select>
+</div>
+<!--{/block}-->

@@ -1,0 +1,155 @@
+<!--{template common/header}-->
+<style>
+/* tl --> Thread list modify by lushnis */
+	.tl { padding:10px; margin:10px 0px 10px 0px; border:1px solid {COMMONBORDER}}
+	.tl .bm_c { padding-top: 0; }
+	.tl table { width: 100%; table-layout: fixed; border-collapse: separate; }
+		.tl th, .tl td { padding: 5px 0; border-bottom: 1px solid {CONTENTSEPARATE}; }
+			.emptb th, .emptb td { padding: 0; border-bottom: none; }
+			.tl tr:hover th, .tl tr:hover td { background-color: {COMMONBG}; }
+			.tl th { padding-right: 1.5em; zoom: 1; }
+				.tl th a:visited { color: {MIDTEXT}; }
+				.fromg { visibility: hidden; }
+				.ie6 .fromg, tr:hover .fromg { visibility: visible; }
+			.tl .icn { padding-left: 5px; width: 25px; text-align: left; }
+				.tl .icn a:hover { text-decoration: none; }
+			.tl .new {}
+			.tl .comm {}
+			.tl .frm { width: 150px; }
+			.tl .o { width: 20px; }
+			.tl .num { width: 60px; line-height: 14px; }
+			.tl .by { width: 105px; line-height: 14px; }
+				.tl cite, .tl .num em { display: block; }
+				.tl th em { margin-right: 4px; zoom: 1; }
+					.tl th em, .tl th em a { color: #007CD5; }
+				.tl td em { font-size: 11px; font-family: Arial, PMingliu, sans-serif; -webkit-text-size-adjust: none; }
+					.tl td em, .tl td em a { color: {LIGHTTEXT}; }
+			/*.tl .th th, .tl .th td { padding: 8px 0; background: {SPECIALBG}; border-top: 1px solid {SPECIALBORDER}; }*/
+			.tl .ts th, .tl .ts td { padding: 3px 0; border-bottom-color: {COMMONBORDER}; background: {COMMONBG}; }
+	.tl .th { margin-top: 1px; padding: 0 10px; border-bottom: 1px solid {COMMONBORDER}; background: {COMMONBG}; }
+		.tl .th table { border: none; }
+		.tl .th td, .tl .th th { height: 20px; border: none; vertical-align: baseline; }
+	.tl .tf { padding: 3px 0; }
+		.tf .showmenu:hover { border-color: {SPECIALBORDER}; }
+
+	.tl_reply { padding-left: 10px; background: url({IMGDIR}/dot.gif) no-repeat 0 7px; }
+
+	#zytab {
+		float: left;
+		width: 100%;
+		border-style: dashed;
+		border-color: #E5E5E5;
+		border-width: 0 0 1px 0;
+	}
+	.tab-tag {
+		border-width: 0px 1px;
+		border-style: dashed;
+		border-color: #E5E5E5;
+		float: left;
+		width: 70px;
+		text-align: center;
+		line-height: 31px;
+		cursor: pointer;
+	}
+	.tab-current {
+		background-color: white;
+		padding-top: 2px;
+		margin-bottom: -2px;
+		font-weight: bold;
+	}
+	.tab-tag:hover {
+		background-color: #A9EAF3;
+	}
+</style>
+
+<!--Enicn_d modified 2015-05-04 16:48 added blog support-->
+<div id="wp" class="wp">
+	<div class="tl">
+		<div style=" height:40px; border-bottom:1px dashed {COMMONBORDER}; padding-left:10px;">
+			<form action="plugin.php?id=xj_event:event_zymanage&eid={$eid}" method="post" name="searchtitle">
+				<input name="type" type="hidden" value="{$_GET['type']}" />
+				{lang xj_event:chazhao}:<input name="subjectkey" type="text" value="" /> <input name="submit" value="{lang xj_event:chazhao}" type="submit" />
+			</form>
+		</div>
+	<div id="zytab">
+		<a href="xj_event-event_zymanage.html?eid={$eid}&subjectkey=&page=1&type=thread">
+			<!--{if $_GET['type'] != 'blog'}-->
+				<div class="tab-tag tab-current">
+			<!--{else}-->
+				<div class="tab-tag">
+			<!--{/if}-->选择主题</div></a>
+		<a href="xj_event-event_zymanage.html?eid={$eid}&subjectkey=&page=1&type=blog">
+			<!--{if $_GET['type'] == 'blog'}-->
+				<div class="tab-tag tab-current">
+			<!--{else}-->
+				<div class="tab-tag">
+			<!--{/if}-->选择日志</div></a>
+	</div>
+	<!--{if $_GET['type'] != 'blog'}-->
+	<table cellspacing="0" cellpadding="0">
+		<tr class="th">
+			<td class="icn">&nbsp;</td>
+			<th>{lang xj_event:zhuti}</th>
+			<td class="frm">{lang xj_event:fatieren}</td>
+			<td class="num">{lang xj_event:guanlian}</td>
+		</tr>
+		<!--{loop $threadlist $value}-->
+		<tr>
+			<td class="icn">
+				<input onclick="glclick(this,{$value['tid']},{$value['fid']})" type="checkbox" name="moderate[]" value="{$value['tid']}" <!--{if $value[gl]>0}-->checked<!--{/if}-->/>
+			</td>
+			<th>
+				<a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank" >{$value['subject']}</a>
+			</th>
+			<td>
+				{$value['author']}
+			</td>
+			<td class="num">
+				<span id="show{$value['tid']}" style=" color:#FF0000; font-weight:bold;"><!--{if $value[gl]>0}-->{lang xj_event:yiguanlian}<!--{/if}--></span>
+			</td>
+		</tr>
+		<!--{/loop}-->
+	</table>
+	<!--{else}-->
+	<table cellspacing="0" cellpadding="0">
+		<tr class="th">
+			<td class="icn">&nbsp;</td>
+			<th>日志</th>
+			<td class="frm">作者</td>
+			<td class="num">{lang xj_event:guanlian}</td>
+		</tr>
+		<!--{loop $threadlist $value}-->
+		<tr>
+			<td class="icn">
+				<input onclick="glclick(this,{$value['blogid']},0)" type="checkbox" name="moderate[]" value="{$value['blogid']}" <!--{if $value[gl]>0}-->checked<!--{/if}-->/>
+			</td>
+			<th>
+				<a href="home.php?mod=space&uid={$value[uid]}&do=blog&id={$value[blogid]}" target="_blank" >{$value['subject']}</a>
+			</th>
+			<td>
+				{$value['username']}
+			</td>
+			<td class="num">
+				<span id="show{$value['blogid']}" style=" color:#FF0000; font-weight:bold;"><!--{if $value[gl]>0}-->{lang xj_event:yiguanlian}<!--{/if}--></span>
+			</td>
+		</tr>
+		<!--{/loop}-->
+	</table>
+	<!--{/if}-->
+<div style="clear:both; height:34px; margin-top:10px;">
+{$multipage}
+</div>
+<div>
+
+</div>
+<script language="javascript">
+function glclick(a,tid,fid){
+	if(a.checked){
+		ajaxget('plugin.php?id=xj_event:event_zymanage_ajax&eid={$eid}&tid='+tid+'&fid='+fid+'&act=1&formhash={$_G[formhash]}','','','','',function(){document.getElementById('show'+a.value).innerHTML = '{lang xj_event:yiguanlian}';});
+	}else{
+		ajaxget('plugin.php?id=xj_event:event_zymanage_ajax&eid={$eid}&tid='+tid+'&fid='+fid+'&act=2&formhash={$_G[formhash]}','','','','',function(){document.getElementById('show'+a.value).innerHTML = '';});
+	}
+}
+</script>
+
+<!--{template common/footer}-->

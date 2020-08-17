@@ -1,0 +1,54 @@
+<!--{if !empty($srchtype)}--><input type="hidden" name="srchtype" value="$srchtype" /><!--{/if}-->
+<style type="text/css">
+#scform_tb a {
+    margin: 0 25px;
+}
+
+#scform_tb li {
+    float:left;
+    height: 28px;
+    line-height: 28px;
+}
+
+#scform_tb li.active {
+    border: 1px solid #1f5daa;
+    background: #1f5daa;
+    border-radius: 6px;
+    padding: 5px 0px;
+    height: 18px;
+    line-height: 18px;
+}
+
+#scform_tb li.active a {
+    color: white;
+}
+
+</style>
+
+<div class="search">
+        <table width="100%" cellspacing="0" cellpadding="0">
+            <tbody>
+            <tr>
+                <td>
+                    <div id="scform_tb" class="cl">
+                    <ul class="search_nav">
+                        <!--{if $_G['setting']['portalstatus'] && $_G['setting']['search']['portal']['status'] && ($_G['group']['allowsearch'] & 1 || $_G['adminid'] == 1)}--><!--{block slist[portal]}--><li{if CURMODULE == 'portal'} class="active"{/if}><a href="search.php?mod=portal{if $keyword}&srchtxt=$keywordenc&searchsubmit=yes{/if}">{lang portal}</a></li><!--{/block}--><!--{/if}-->
+                        <!--{if $_G['setting']['search']['forum']['status'] && ($_G['group']['allowsearch'] & 2 || $_G['adminid'] == 1)}--><!--{block slist[forum]}--><li{if CURMODULE == 'forum'} class="active"{/if}><a href="search.php?mod=forum{if $keyword}&srchtxt=$keywordenc&searchsubmit=yes{/if}">{lang thread}</a></li><!--{/block}--><!--{/if}-->
+                        <!--{if helper_access::check_module('blog') && $_G['setting']['search']['blog']['status'] && ($_G['group']['allowsearch'] & 4 || $_G['adminid'] == 1)}--><!--{block slist[blog]}--><li{if CURMODULE == 'blog'} class="active"{/if}><a href="search.php?mod=blog{if $keyword}&srchtxt=$keywordenc&searchsubmit=yes{/if}">{lang blog}</a></li><!--{/block}--><!--{/if}-->
+                        <!--{echo implode("", $slist);}-->
+                        <li><a style="color:#000"><input type="checkbox" name="srchtype" id="srchtype" class="pc" value="fulltext"><lable for="srchtype">全文检索</lable></a></li>
+                    </ul>
+                    </div>
+                </td>
+            </tr>
+                <tr>
+                    <td>
+                        <input value="$keyword" autocomplete="off" class="input" name="srchtxt" id="scform_srchtxt" value="" placeholder="<!--{if CURMODULE=='blog'}-->{搜索日志}<!--{else}-->{lang searchthread}<!--{/if}-->">
+                    </td>
+                    <td width="66" align="center" class="scbar_btn_td">
+                        <div><input type="hidden" name="searchsubmit" value="yes"><input type="submit" value="{lang search}" class="button2" id="scform_submit"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</div>

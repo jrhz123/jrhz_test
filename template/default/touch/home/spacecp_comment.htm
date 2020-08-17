@@ -1,0 +1,112 @@
+<!--{template common/header}-->
+
+
+<form method="post">
+	<input type="hidden" name="referer" value="{echo dreferer()}" />
+	<input type="hidden" name="id" value="$comment[id]" />
+	<input type="hidden" name="idtype" value="$comment[idtype]" />
+	<input type="hidden" name="cid" value="$comment[cid]" />
+	<input type="hidden" name="commentsubmit" value="true" />
+	<input type="hidden" name="handlekey" value="$_GET[handlekey]" />
+	<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+<!-- header start -->
+<header class="header">
+    <div class="nav">
+		<span class="y">
+			<button name="postsubmit" id="postsubmit" value="true" class="btn_pn b btn_pn_grey" disable="true"><span>{lang reply}</span></button>
+		</span>
+		<a href="javascript:;" onclick="history.go(-1)"  class="z cf iconBack" style="margin-top:17px;"></a>
+		<span class="name">{lang join_thread}</span>
+    </div>
+</header>
+<!-- header end -->
+
+<!-- main postbox start -->
+<div class="wp">
+	<div class="post_from">
+		<ul class="cl">
+			<li class="bl_line">
+			<div class="grey quote">
+				<blockquote>
+					引用: 
+					<font color="#999999">$comment['author'] 发表于 <!--{date($comment[dateline])}--></font>
+					<br>
+					<font color="#999999">$comment['message']</font>
+				</blockquote>
+			</div>
+			</li>
+
+			<li class="bl_none area">
+			<textarea class="pt" id="needmessage" tabindex="3" autocomplete="off" name="message" cols="80" rows="2"></textarea>
+			</li>
+		</ul>
+		<ul id="imglist" class="post_imglist cl bl_line">
+		</ul>
+
+		<!--{if $secqaacheck || $seccodecheck}-->
+		<!--{subtemplate common/seccheck}-->
+		<!--{/if}-->
+		<!--{hook/post_bottom_mobile}-->
+	</div>
+</div>
+<!-- main postbox end -->
+</form>
+
+<script type="text/javascript">
+	(function() {
+		var needmessage = false;
+
+		$('#needmessage').on('keyup input', function() {
+			var obj = $(this);
+			if(obj.val()) {
+				needmessage = true;
+				$('.btn_pn').removeClass('btn_pn_grey').addClass('btn_pn_blue');
+				$('.btn_pn').attr('disable', 'false');
+			} else {
+				needmessage = false;
+				$('.btn_pn').removeClass('btn_pn_blue').addClass('btn_pn_grey');
+				$('.btn_pn').attr('disable', 'true');
+			}
+		});
+
+		$('#needmessage').on('scroll', function() {
+			var obj = $(this);
+			if(obj.scrollTop() > 0) {
+				obj.attr('rows', parseInt(obj.attr('rows'))+2);
+			}
+		}).scrollTop($(document).height());
+	 })();
+</script>
+
+<script type="text/javascript">
+	$('#postsubmit').on('click', function() {
+		var obj = $(this);
+		if(obj.attr('disable') == 'true') {
+			return false;
+		}
+
+		obj.attr('disable', 'true').removeClass('btn_pn_blue').addClass('btn_pn_grey');
+		popup.open('<img src="' + IMGDIR + '/imageloading.gif">');
+		$.ajax({
+			type:'POST',
+			url:'home.php?mod=spacecp&ac=comment&inajax=1',
+			data:form.serialize(),
+			dataType:'xml'
+		})
+
+		.success(function(s) {
+			popup.open('操作成功', 'alert');
+			setTimeout(function() {
+				location.reload();
+			}, '2000');
+			//popup.open(s.lastChild.firstChild.nodeValue);
+		})
+		.error(function() {
+			popup.open('{lang networkerror}', 'alert');
+		});
+		return false;
+	});
+</script>
+<!--{eval $nofooter = true;}-->
+<!--{template common/footer}-->

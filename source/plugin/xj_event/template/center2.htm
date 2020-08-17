@@ -1,0 +1,213 @@
+<!--{template common/header}-->
+<style id="diy_style" type="text/css"></style>
+<style>
+.robtitle{height:65px;margin:0px 15px 15px 10px;}.robtitle .rodCalendar{float:left;width:75px;height:65px;background:url(source/plugin/xj_event/images/calbg.jpg) no-repeat;}.robtitle .rodCalendar .m{padding-top:3px;text-align:center;}.robtitle .rodCalendar .d{TEXT-ALIGN:center;FONT-FAMILY:Impact,'{lang xj_event:songti}';COLOR:#fff;font-size:36px;line-height:36px;}.robtitle .title{height:55px;line-height:24px;padding-top:10px;}.robtitle .title H1{PADDING-RIGHT:25px;DISPLAY:inline;FONT:bold 18px/25px "Microsoft YaHei","{lang xj_event:heiti}",Verdana,Geneva,sans-serif;_display:inline}.robtitle .title SPAN{FONT:bold 14px/25px "Microsoft YaHei","{lang xj_event:heiti}",Verdana,Geneva,sans-serif;_display:inline;color:#595959;}.lst{WIDTH:238px;HEIGHT:192px}.lst LI{POSITION:relative;MARGIN-BOTTOM:2px;BACKGROUND:#fff;HEIGHT:41px;MARGIN-LEFT:66px;TOP:0px;LEFT:0px}.lst LI P.value .vi{HEIGHT:auto;margin-top:12px;}.lst SPAN.key{POSITION:absolute;TEXT-ALIGN:center;WIDTH:66px;DISPLAY:inline-block;FONT:18px/41px "Microsoft YaHei","{lang xj_event:heiti}",Verdana,Geneva,sans-serif;BACKGROUND:#e2e2e2;COLOR:#545454;VERTICAL-ALIGN:middle;TOP:0px;LEFT:-66px}.lst P.value{PADDING-BOTTOM:0px;PADDING-LEFT:12px;PADDING-RIGHT:12px;DISPLAY:table-cell;VERTICAL-ALIGN:middle;PADDING-TOP:0px}.lst P.value .va{WIDTH:0px;DISPLAY:inline-block;HEIGHT:100%;VERTICAL-ALIGN:middle}.lst P.value .vi{DISPLAY:inline-block;VERTICAL-ALIGN:middle}.lst LI.r2{HEIGHT:60px}.lst LI.r2 .key{LINE-HEIGHT:60px}.lst LI.r2 .value{HEIGHT:60px}.lst LI.r2 P.value .vi{HEIGHT:auto}.robcontent{float:left;width:238px;}.sync1{DISPLAY:inline-block;HEIGHT:16px;MARGIN-RIGHT:9px;line-height:16px;}.sync2{DISPLAY:inline-block;HEIGHT:16px;line-height:16px;}.sync1:hover{TEXT-DECORATION:none}.sync2:hover{TEXT-DECORATION:none}.sync1 SPAN{POSITION:relative;MARGIN:0px 2px 0px 0px;WIDTH:16px;DISPLAY:inline-block;BACKGROUND:url(source/plugin/xj_event/images/sync_v20111118.png) no-repeat;HEIGHT:16px;TOP:0px;_top:3px;BACKGROUND-POSITION:-18px 0px;}.sync2 SPAN{POSITION:relative;MARGIN:0px 2px 0px 0px;WIDTH:16px;DISPLAY:inline-block;BACKGROUND:url(source/plugin/xj_event/images/sync_v20111118.png) no-repeat;HEIGHT:16px;TOP:0px;_top:3px;BACKGROUND-POSITION:0px 0px}
+.ygtitle{height:36px; border-bottom:1px solid #dfdfdf;}
+.ygtitle li{border-top:2px solid #ff7302;border-left:1px solid #dfdfdf;border-right:1px solid #dfdfdf; display:block; height:35px; width:120px; margin-left:20px; background-color:#FFFFFF; font-size:14px; font-weight:bold; line-height:36px; text-align:center; color:#ff7302; float:left;}
+.ygtitle i{ float:right; display:block; width:200px; line-height:35px; text-align:right; padding-right:10px;}
+.ygitem{ width:200px; height:280px; background-color:#f3f3f3; margin-top:20px; padding:15px; overflow:hidden; float:left; margin-right:10px;}
+.ygitem .caltitle{float:left; width:56px; height:51px; background:url(source/plugin/xj_event/images/calbg2.jpg);}
+.ygitem .caltitle .m{ width:56px; padding-left:6px; padding-top:2px; font-family:Helvetica; font-size:11px; color:#333333;}
+.ygitem .caltitle .d{ width:56px; text-align:center; font-family:Impact; font-size:26px; color:#ffffff; line-height:26px;}
+.ygitem .robtitle{float:right; width:140px; height:51px; margin:0px; line-height:25px;overflow:hidden; }
+.ygitem .robtitle a{ color:#136bad; font-size:14px; font-weight:bold;}
+.ygitem .robimg{ margin-top:10px;}
+.ygitem .robcontent{ margin-top:10px; color:#555555; line-height:18px; width:200px;}
+.ygitem .robtime{ margin-top:10px; color:#999999; line-height:18px;}
+.xj_hll{color:$_G[style][highlightlink];}
+.xj_h{color:#858585;}
+a.xj_btn{ display:inline-block; padding-top:4px; text-align:center; height:28px; width:170px;background:url(source/plugin/xj_event/images/btnbg.png) no-repeat; text-decoration:none; font-size:14px; font-weight:bold; font-family: '{lang xj_event:wryh}';}
+a:hover.xj_btn{ display:inline-block; padding-top:4px; text-align:center; height:28px; width:170px;background:url(source/plugin/xj_event/images/btnbg.png) no-repeat; text-decoration:none; font-size:14px; font-weight:bold; font-family: '{lang xj_event:wryh}';}
+a.xj_bmbtn{background:url(source/plugin/xj_event/images/btncj.jpg) no-repeat; display:block; width:238px; height:70px;}
+a.xj_bmbtn-q{background:url(source/plugin/xj_event/images/btncj-q.jpg) no-repeat; display:block; width:238px; height:70px;}
+a:hover.xj_bmbtn{background:url(source/plugin/xj_event/images/btncj.jpg) no-repeat; display:block; width:238px; height:70px; text-decoration:none;}
+a:hover.xj_bmbtn-q{background:url(source/plugin/xj_event/images/btncj-q.jpg) no-repeat; display:block; width:238px; height:70px; text-decoration:none;}
+</style>
+<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+<div style="margin:10px 0px;">
+  <div style=" width:230px; float:right;">
+  	<div style="border:1px #d6d6d6 solid;">
+    	<div style="margin:0px 8px; text-align:center; margin-top:15px;">
+        	<a href="plugin.php?id=xj_event:event_post&postclass=1" class="xj_btn xj_hll">{lang xj_event:fbxxhd}</a>
+            <div style="text-align:left; font-size:12px; margin:8px 8px; color:#858585;">{lang xj_event:qpsqlyqjcqkg}</div>
+
+            <a href="plugin.php?id=xj_event:event_post&postclass=2" class="xj_btn xj_hll">{lang xj_event:fbxshd}</a>
+            <div style="text-align:left; font-size:12px; color:#858585; margin:8px 8px;">{lang xj_event:fqzycydwlht}</div>
+
+        </div>
+    </div>
+    
+    <div style="border:1px #d6d6d6 solid; margin-top:10px;">
+        <div style=" line-height:32px; border-bottom:1px dashed #d7d7d7; margin:10px 20px 10px 20px; "><a href="plugin.php?id=xj_event:event_list&pc=1" style="font-weight:bold; font-size:14px; font-family: '{lang xj_event:wryh}';" class="xj_hll">{lang xj_event:xxhd}[{$xxnum}]</a></div>
+        <!--{loop $offlineclass $key $value}-->
+        <div style="line-height:24px; margin:0px 20px; background:url(source/plugin/xj_event/images/xuxian.png) repeat-x 0px 23px; padding-left:5px;"><a href="plugin.php?id=xj_event:event_list&pc=1&offlineclass={$value[0]}" class="xj_h">{$value[1]}<span class="xj_hll">[{$value[2]}]</span></a></div>
+        <!--{/loop}-->
+        <div style=" line-height:32px; border-bottom:1px dashed #d7d7d7; margin:10px 20px 10px 20px; "><a href="plugin.php?id=xj_event:event_list&pc=2" style="font-weight:bold; font-size:14px; font-family: '{lang xj_event:wryh}';" class="xj_hll">{lang xj_event:xshd}[{$xsnum}]</a></div>
+        <!--{loop $onlineclass $key $value}-->
+        <div style="line-height:24px; margin:0px 20px; background:url(source/plugin/xj_event/images/xuxian.png) repeat-x 0px 23px; padding-left:5px;"><a href="plugin.php?id=xj_event:event_list&pc=2&onlineclass={$value[0]}" class="xj_h">{$value[1]}<span class="xj_hll">[{$value[2]}]</span></a></div>
+        <!--{/loop}-->
+        
+        
+        <!--{if !$_G['cache']['plugin']['xj_event']['event_city']}-->
+        <div style=" line-height:32px; border-bottom:1px dashed #d7d7d7; margin:10px 20px 10px 20px; font-weight:bold; font-size:14px; font-family: '{lang xj_event:wryh}';color:$_G[style][highlightlink];">{lang xj_event:hddq}</div>
+        <!--{loop $cityclass $key $value}-->
+        <div style="line-height:24px; margin:0px 20px; background:url(source/plugin/xj_event/images/xuxian.png) repeat-x 0px 23px; padding-left:5px;"><a href="plugin.php?id=xj_event:event_list&city={$value[1]}" class="xj_h">{$value[1]}<span class="xj_hll">[{$value[2]}]</span></a></div>
+        <!--{/loop}-->
+        <!--{else}-->
+        <div style=" line-height:32px; margin:10px 20px 10px 20px; font-weight:bold; font-size:14px; font-family: '{lang xj_event:wryh}';color:$_G[style][highlightlink];"><a href="javascript:" style="font-weight:bold; font-size:14px; font-family: '{lang xj_event:wryh}';" class="xj_hll" onclick="showWindow('city', 'plugin.php?id=xj_event:city')">{lang xj_event:hddq} +</a></div>
+<script language="javascript">
+document.onclick = function() {//µã»÷¿Õ°×ÎÄµµÒþ²Ø
+hideWindow('city');
+};
+</script>
+        
+        <!--{/if}--> 
+        
+        
+        
+        <div style="clear:both; margin-top:20px;"></div>
+    </div>
+    
+    <div style="border:1px #d6d6d6 solid; margin-top:10px;">
+      <div style="line-height:40px; font-size:14px; font-weight:bold; color:#ff4600; margin:0px 15px; border-bottom:1px solid #dedede;">{lang xj_event:hdgg}</div>
+      <div style="margin:10px 15px;">
+      	
+        <div class="module cl slidebox">
+        <ul class="slideshow">
+        <!--{loop $wqlist $value}-->
+        <li style="width: 197px; height: 230px;">
+        <a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank"><img src="$value[pic]" width="197" height="150" /></a>
+        <div class="con">
+                  <div style="font-size:14px; margin-top:10px;"><a href="forum.php?mod=viewthread&tid={$value[tid]}" style="color:#136bad;" target="_blank">$value[subject]</a></div>
+                  <div style="font-size:12px; color:#9a9899">$value[message]</div>
+                </div>
+        </li>
+        <!--{/loop}-->
+        </ul>
+        </div>
+        <script type="text/javascript">
+        runslideshow();
+        </script>
+      </div>
+      
+      
+
+    </div>
+  </div>
+  <div style=" width: auto; float: none; margin:0px 240px 0px 0px; background-color:#f3f3f3;padding-bottom:15px; padding-top:15px;">
+    <!--{loop $eventlist $value}-->
+    <div style="margin-bottom:20px;">
+      <div class="robtitle">
+        <div class="rodCalendar">
+          <div class="m">{$value[m]}</div>
+          <div class="d">{$value[d]}</div>
+        </div>
+        <div class="title">
+          <h1><a href="forum.php?mod=viewthread&tid={$value[tid]}" class="title_link" target="_blank">{$value[subject]}</a></h1>
+          <span><a href="forum.php?mod=viewthread&tid={$value[tid]}" class="desc_link" target="_blank">{$value[message]}</a></span> </a> </div>
+      </div>
+      <div style="height:270px; margin-left:15px; margin-right:15px;">
+        <div style="float:right;"><a href="forum.php?mod=viewthread&tid={$value[tid]}" class="pic_link" target="_blank"><img src="{$value[activityaid_url]}" width="444" height="261" /></a></div>
+        <div class="robcontent">
+          <ul class="lst">
+            <li class="r1"> <span class="key">{lang xj_event:feiyong}</span>
+              <p class="value"> <!--{if $value[use_cost]==0}--><span class="vi"><b style="color:#FF3300; font-size:14px;">{lang xj_event:mianfei}</b></span><!--{else}--><span class="vi"><b style="color:#FF3300;">{$value[use_cost]}</b> {lang xj_event:yuanren}</span><!--{/if}--> </p>
+            </li>
+            <li class="r3"> <span class="key">{lang xj_event:dizhi}</span>
+              <!--{if strlen($value[event_address]) > 20}-->	
+              <p style=" padding-left:10px;vertical-align:middle; height:30px;"> <span class="vi">$value[event_address]</span> </p>
+              <!--{else}-->
+              <p class="value"><span class="vi">$value[event_address]<span></span></p>
+              <!--{/if}-->
+            </li>
+            <li class="r3"> <span class="key">{lang xj_event:shijian}</span>
+              <p class="value"> <span class="va"></span> <span class="vi">{$value[starttime]}</span> </p>
+            </li>
+            <li class="r4"> <span class="key">{lang xj_event:fenxiang}</span>
+              <p class="value"> <span class="va"></span> <span class="vi"> <a class="sync1" href="javascript:;" onclick="window.open('http://v.t.qq.com/share/share.php?title=' + encodeURIComponent('{$value[subject]}') + '&url='+encodeURIComponent('{$_G[siteurl]}forum.php?mod=viewthread&tid={$value[tid]}') + '&pic='+encodeURIComponent('{$_G[siteurl]}{$value[pic]}') + '&source=');return false;" title="{lang xj_event:fxdtxwb}"><span>&nbsp;</span>{lang xj_event:tenxunweibo}</a><a class="sync2" href="javascript:;" onclick="window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+encodeURIComponent('{$_G[siteurl]}forum.php?mod=viewthread&tid={$value[tid]}'));return false;" title="{lang xj_event:fxdqqkj}"><span>&nbsp;</span>{lang xj_event:qqkongjian}</a> </span> </p>
+            </li>
+          </ul>
+          <!--{if $value[activityexpiration]<$nowtime}-->
+          <a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank" class="xj_bmbtn-q">
+          <!--{else}-->
+          <a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank" class="xj_bmbtn">
+          <!--{/if}-->
+          <div style=" font-family:Helvetica; font-size:22px; color:#FFFFFF; width:68px; text-align:center; line-height:32px; padding-top:10px;">{$value[applynumber]}</div>
+          <div style=" color:#FFFFFF; width:68px; text-align:center;">{lang xj_event:yibaoming}</div></a>
+          </div>
+      </div>
+    </div>
+    <!--{/loop}-->
+  </div>
+  
+  <!--{if $ygeventlist}-->
+    <div style="width: auto; float: none; margin:15px 240px 0px 0px;">
+        <div class="ygtitle">
+            <li>{lang xj_event:huogongyg}</li>
+            <i> <b style="color:#FF3300;">{$ygeventcount}</b> {lang xj_event:ghdjjks}</i>
+        </div>
+        <div>
+        <!--{loop $ygeventlist $value}-->
+        	<div class="ygitem">
+            	<div style="margin:0px;">
+                	<div class="caltitle">
+                      <div class="m">{$value[m]}</div>
+                      <div class="d">{$value[d]}</div>
+                    </div>
+                    <div class="robtitle">
+                    	<a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank">$value[subject]</a>
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+                <div class="robimg">
+                    <a href="forum.php?mod=viewthread&tid={$value[tid]}" class="pic_link" target="_blank"><img src="{$value[activityaid_url]}" width="200" height="150" /></a>
+                </div>
+                <div class="robcontent">
+                	$value[message]
+                </div>
+                <div style="clear:both;"></div>
+                <div class="robtime">
+                	{lang xj_event:bmsj}:$value[activitybegin]
+                </div>
+            </div>
+        <!--{/loop}-->
+        </div>
+    </div>
+   <!--{/if}-->
+</div>
+<div style="clear:both; margin-bottom:10px;"></div>
+<!--{if $syseventlist}-->
+<div style="margin-top:15px;">
+    <div class="ygtitle">
+        <li>{lang xj_event:yqdhd}</li>
+    </div>
+    <div>
+    <!--{loop $syseventlist $value}-->
+        <div class="ygitem">
+            <div style="margin:0px;">
+                <div class="caltitle">
+                  <div class="m">{$value[m]}</div>
+                  <div class="d">{$value[d]}</div>
+                </div>
+                <div class="robtitle">
+                    <a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank">$value[subject]</a>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+            <div class="robimg">
+                <a href="forum.php?mod=viewthread&tid={$value[tid]}" class="pic_link" target="_blank"><img src="{$value[pic]}" width="200" height="150" /></a>
+            </div>
+            <div class="robcontent">
+                $value[message]
+            </div>
+            <div style="clear:both;"></div>
+            <div class="robtime">
+                {lang xj_event:bmjz}:$value[expiration]
+            </div>
+        </div>
+    <!--{/loop}-->
+    </div>
+</div>
+<div style="clear:both; margin-bottom:10px;"></div>
+<!--{/if}-->
+<!--{template common/footer}-->

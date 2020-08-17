@@ -1,0 +1,63 @@
+<!--{template common/header}-->
+<div id="wp" class="wp" style="padding:10px;">
+<div style="margin:50px;">
+	<form name="joinmodify" id="joinmodify" method="post" autocomplete="off" action="plugin.php?id=xj_event:event_joinmodify&action=save&tid={$tid}&applyid={$applyid}">
+    <input type="hidden" name="formhash" value="{$_G[formhash]}" />
+    <input type="hidden" name="joinmodifysubmit" value="true" />
+    <table summary="{lang xj_event:wycj}" cellpadding="0" cellspacing="0" class="actl" style="width:400px;">
+                <!--{if $setting[session]}-->
+                <tr>
+                    <th><strong class="rq y">*</strong>{lang xj_event:huodongcc}</th>
+                    <td>
+                        <select name="session">
+                            <!--{loop $setting[session] $key $value}-->
+                            <option value="$key">$value</option>
+                            <!--{/loop}-->
+                        </select>
+                    </td>
+                </tr>
+                <!--{/if}-->
+                
+                
+            <!--{if !empty($selectuserfield)}-->
+                <!--{loop $selectuserfield $fieldid}-->
+                <!--{if $settings[$fieldid][available]}-->
+                    <tr>
+                        <th id="th_$fieldid"><strong class="rq y">*</strong>$settings[$fieldid][title]</th>
+                        <td id="td_$fieldid">
+                    <!--{if $settings[$fieldid][formtype] != 'file'}-->
+                            $htmls[$fieldid]
+                    <!--{else}-->
+                         <input id="activitypic_$fieldid" type="text" tabindex="1" value="" class="px" name="$fieldid" onblur="if(!this.value.match(/^https?:\/\/.+\/.+\.(jpg|png|gif|jpeg|bmp)$/i)){ $('showerror_$fieldid').innerHTML='{lang xj_event:tpdzcw}';}else{ $('showerror_$fieldid').innerHTML='&nbsp;';}"><div id="showerror_$fieldid" class="rq mtn">{lang xj_event:qsrtpdz}</div>
+                    <!--{/if}-->
+                        </td>
+                    </tr>
+                <!--{/if}-->
+                <!--{/loop}-->
+            <!--{/if}-->
+          <tr>
+            <th>{lang xj_event:bmrs}</th>
+            <td>
+            <select name="applynumber">
+            	<!--{loop $applynumber $value}-->
+            	<option value="$value" <!--{if $value == $apply[applynumber]}--> selected <!--{/if}-->>$value {lang xj_event:ren}</option>
+                <!--{/if}-->
+            </select>
+            </td>
+          </tr>
+          <!--{if in_array('bmmessage',$userfield)}-->
+          <tr>
+            <th>{lang xj_event:liuyan}</th>
+            <td><textarea name="message" maxlength="100" cols="38" rows="3" class="pt" tabindex="4">{$apply[bmmessage]}</textarea></td>
+          </tr>
+          <!--{/if}-->
+          <tr>
+          	<th style="height:50px;"></th>
+            <td><button type="submit" class="pn pnc"><span>{lang xj_event:tijiao}</span></button></td>
+          </tr>  
+	</table>
+	</form>
+</div>
+</div>
+
+<!--{template common/footer}-->

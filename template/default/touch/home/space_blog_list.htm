@@ -1,0 +1,33 @@
+<!--{template common/header}-->
+
+<!-- header start -->
+<header>
+    <div class="nav">
+       <a href="javascript:history.go(-1)"  class="z cf iconBack" style="margin-top:17px;"></a>
+       <!--{if $_GET['uid']==$_G['uid']}-->
+	   	<span class="name">我的日志</span>
+	   <!--{else}-->
+	   	<span class="name">相关日志</span>
+	   <!--{/if}-->
+   </div>
+</header>
+<!-- header end -->
+<!-- main bloglist start -->
+<div class="threadlist">
+	<ul>
+	<!--{if $list}-->
+		<!--{loop $list $blog}-->
+			<li>
+			<a href="home.php?mod=space&uid={$_G[uid]}&do=blog&id=$blog[blogid]">$blog[subject]</a>
+			<span class="num">{$blog[replynum]} </span>
+			</li>
+		<!--{/loop}-->
+	<!--{else}-->
+		<li>{lang no_related_posts}</li>
+	<!--{/if}-->
+	</ul>
+	$multi
+</div>
+<!-- main bloglist end -->
+<!--{eval $nofooter = true;}-->
+<!--{template common/footer}-->

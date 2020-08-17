@@ -1,0 +1,71 @@
+$(document).ready(function(){
+
+$("#zhairu").html("<!--{if $_G['uid']}--> "+
+		"<span style='padding-left:16px;background:url({$base_url}/static/image/common/user_online.gif) no-repeat 0 2px' class='tablink'></span> "+
+		"<b><a href='{$base_url}/home.php?mod=space' class='tablink'>{$_G[member][username]}</a></b> "+
+	"<!--{elseif !empty($_G['cookie']['loginuser'])}--> "+
+		"<a>$_G['cookie']['loginuser']</a> <a href='{$base_url}/member.php?mod=logging&action=login'>{lang activation}</a> "+
+	"<!--{else}--> "+
+		"<a href='{$base_url}/member.php?mod=logging&action=login' target='_blank'><img src='{$base_url}/template/comeing_yae_05/comeing/sq_login.jpg'></a>&nbsp;&nbsp; "+
+		"<a href='{$base_url}/member.php?mod=register' target='_blank' id='reg'><img src='{$base_url}/template/comeing_yae_05/comeing/sq_reguit.jpg'></a> "+
+	"<!--{/if}-->");
+
+<!--{if $_G['uid']}-->
+$("#zhairu").after("<ul id='user_menu' class='cl' style='display:none;'>"+
+  	"<li><a href='{$base_url}/home.php?mod=space&uid=$_G[uid]' target='_blank' title='{lang visit_my_space}'>我的空间</a></li>"+
+
+  	"<li><a href='{$base_url}/home.php?mod=space&do=pm' id='pm_ntc'>{lang pm_center}</a>{if $_G[member][newpm]}<span class='new'>new</span>{/if}</li>"+
+  	"<li><a href='{$base_url}/home.php?mod=space&do=notice' id='myprompt' >{lang remind}<!--{if $_G[member][newprompt]}--><span class='new'>($_G[member][newprompt])</span><!--{/if}--></a><span id='myprompt_check'></span></li>"+
+  	"<!--{if $_G['setting']['taskon'] && !empty($_G['cookie']['taskdoing_'.$_G['uid']])}-->"+
+		"<li><a href='{$base_url}/home.php?mod=task&item=doing' id='task_ntc'>{lang task_doing}<span class='new'>new</span></a></li>"+
+    "<!--{/if}--> "+
+    "<!--{if $_G['uid'] && $_G['adminid'] == 1 && $_G['setting']['cloud_status']}-->"+
+    	"<li><a href='admin.php?frames=yes&action=cloud&operation=applist' target='_blank'>{lang cloudcp}</a></li>"+
+    "<!--{/if}-->"+
+    "<li><a href='{$base_url}/home.php?mod=spacecp'>{lang setup}</a></li>"+
+    "<!--{if ($_G['group']['allowmanagearticle'] || $_G['group']['allowpostarticle'] || $_G['group']['allowdiy'] || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 6) || getstatus($_G['member']['allowadmincp'], 2) || getstatus($_G['member']['allowadmincp'], 3))}-->"+
+    	"<li><a href='{$base_url}/portal.php?mod=portalcp'><!--{if $_G['setting']['portalstatus'] }-->{lang portal_manage}<!--{else}-->{lang portal_block_manage}<!--{/if}--></a></li>"+
+    "<!--{/if}--> "+
+    "<!--{if $_G['uid'] && $_G['group']['radminid'] > 1}-->"+
+    	"<li><a href='{$base_url}/forum.php?mod=modcp&fid=$_G[fid]' target='_blank'>{lang forum_manager}</a></li>"+
+    "<!--{/if}--> "+
+    "<!--{if $_G['uid'] && getstatus($_G['member']['allowadmincp'], 1)}-->"+
+    	"<li><a href='{$base_url}/admin.php' target='_blank'>{lang admincp}</a></li>"+
+    "<!--{/if}-->"+
+	"<li><a href='{$base_url}/member.php?mod=logging&action=logout&formhash={FORMHASH}'>{lang logout}</a></li>"+
+    "</ul>");
+$("#zhairu").before("<style>"+
+		"#user_menu{width:90px;padding:5px;border:1px solid #cacaca;background:#fff;}"+
+		"#user_menu li{height:24px;line-height:24px;overflow:hidden;text-align: left;}"+
+		"#user_menu li:hover{background:#e0e0e0}#user_menu li span.pipe{display:none;}"+
+		"#user_menu li a{padding:0px 5px;font-size:12px;font-weight:100;color:#626262;}"+
+		"#user_menu .new{padding-left:5px;background:none;font-weight:700;color:#b70000;}"+
+	"</script>");
+$("#zhairu").css('margin-top','4px');
+base_top = $("#zhairu").offset().top;
+base_left = $("#zhairu").offset().left;
+$("#user_menu").css({'position':'absolute','top':base_top+20,'left':base_left+170})
+
+var um_show;
+var um_hide;
+$("#zhairu").mouseover(function(){
+	clearTimeout(um_show);
+	um_show = setTimeout(function(){$("#user_menu").show()},500);
+});
+
+$("#zhairu").mouseout(function(){
+	clearTimeout(um_hide);
+	um_hide = setTimeout(function(){$("#user_menu").hide()},500);
+});
+
+$("#user_menu").mouseover(function(){
+	clearTimeout(um_hide);
+})
+
+$("#user_menu").mouseout(function(){
+	clearTimeout(um_hide);
+	um_hide = setTimeout(function(){$("#user_menu").hide()},500);
+});
+<!--{/if}-->
+
+})

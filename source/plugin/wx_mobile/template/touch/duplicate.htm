@@ -1,0 +1,75 @@
+<!--{template common/header}-->
+<link rel="stylesheet" href="static/image/mobile/style.css" type="text/css" media="all">
+<!-- header start -->
+<header class="header">
+  <div class="nav">
+    <a href="javascript:;" onclick="history.go(-1)" class="z iconBack cf" style="margin-top:17px;"></a>
+  	<span class="name">用户名重复</span>
+  </div>
+</header>
+<!-- header end -->
+<!--{eval $loginhash = 'L'.random(4);}-->
+<div class="alyout">
+
+	<form method="post" autocomplete="off" name="login" id="loginform_$loginhash" class="cl"{if $_G['setting']['regconnect']} style="display:none"{/if} onsubmit="ajaxpost('loginform_$loginhash', 'returnmessage4', 'returnmessage4', 'onerror');return false;" action="wx_mobile-quick.html">
+		<div class="login_from m_t">
+			<div class="dsf">
+				<span>{$error_message}</span>
+				<input type="hidden" name="sex" value="{$sex}" />
+				<input type="hidden" name="city" value="{$city}" />
+				<input type="hidden" name="province" value="{$province}" />
+				<input type="hidden" name="unionid" value="{$unionid}" />
+				<input type="hidden" name="openId" value="{$openId}" />
+				<input type="hidden" name="headimgurl" value="{$headimgurl}" />
+				<ul class="dsf_login_xg">
+					<li>
+						<span>QQ昵称&nbsp;{$defaultusername}</span>
+					</li>
+					<li>
+						<span class="cf iconName float_l incon"></span><input type="text" value="" tabindex="1" class=" login_input" size="30" autocomplete="off" name="username" id="username_$loginhash" placeholder="{lang inputyourname}" fwin="login">
+					</li>
+				</ul>
+			</div>
+		</div>
+    <div class="btn_login">
+      <button tabindex="3" value="true" name="registersubmit" type="submit" class="formdialog pn pnc"><span>立刻登陆</span></button>
+    </div>
+	</form>
+</div>
+<script type="text/javascript">
+	jq = jQuery.noConflict();
+	var regable = false;
+	jq(document).ready(function(){
+		jq("#username").change(function(){
+			username = jq(this).val();
+			url = "qqconnect-chkusername.html";
+			jq.post(url,
+				{username: username},
+				function(data){
+					if (data == '1') {
+						jq("#chkusername").attr('class','p_right');
+						jq("#chkusername").html('');
+						regable = true;
+					} else {
+						jq("#chkusername").attr('class','p_chk');
+						jq("#chkusername").html('该用户名已被注册。')
+						regable = false;
+					}
+				}
+			)
+		})
+
+		jq("#quick_form").submit(function(event){
+			if (!regable) {
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+				alert('该用户名已被注册。');
+			}
+		})
+	})
+</script>
+<!--{eval updatesession();}-->
+<!--{template common/footer}-->

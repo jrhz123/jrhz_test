@@ -1,0 +1,30 @@
+.comeing_threadstation {
+	padding:10px; margin-bottom:10px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+}
+.comeing_threadstation table{ width:100%;}
+
+.comeing_threadstation_pics{}
+.comeing_threadstation_picsslide{ position:relative; padding:0 35px;}
+
+.comeing_threadstation_pics_item{ padding:0 5px; float:left; overflow:hidden; text-align:center}
+.comeing_threadstation_pics_item h3{ height:30px; overflow:hidden; line-height:40px; font-weight:400; }
+
+.slidebarbtn{ position:absolute; width:28px;height:80px; line-height:80px; text-align:center;display:block; font-family:Geneva, sans-serif;font-size:36px;}
+.slidebarbtn{
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;	
+}
+.slidebarbtn:hover{ text-decoration:none;}
+.slidebarup{ left:0px; top:30px;}
+.slidebardown{ right:0px; top:30px;}
+
+
+.comeing_threadstation_subs { line-height:28px; padding-left:10px;}
+.comeing_threadstation_subs li{ font-size:14px; height:28px; overflow:hidden; background:url(subs.gif) no-repeat 0 50%; padding-left:10px; }
+.comeing_threadstation_subs li span{ float:right; font-size:12px;}
+
+

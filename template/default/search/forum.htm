@@ -1,0 +1,42 @@
+<!--{subtemplate search/header}-->
+<div id="ct" class="cl w">
+	<div class="mw">
+		<form class="searchform" id="searchform" method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="scFormSubmit(event);">
+			<input type="hidden" name="formhash" value="{FORMHASH}" />
+
+			<!--{subtemplate search/pubsearch}-->
+			<!--{hook/forum_top}-->
+
+			<!--{eval $policymsgs = $p = '';}-->
+			<!--{loop $_G['setting']['creditspolicy']['search'] $id $policy}-->
+			<!--{block policymsg}--><!--{if $_G['setting']['extcredits'][$id][img]}-->$_G['setting']['extcredits'][$id][img] <!--{/if}-->$_G['setting']['extcredits'][$id][title] $policy $_G['setting']['extcredits'][$id][unit]<!--{/block}-->
+			<!--{eval $policymsgs .= $p.$policymsg;$p = ', ';}-->
+			<!--{/loop}-->
+			<!--{if $policymsgs}--><p>{lang search_credit_msg}</p><!--{/if}-->
+		</form>
+
+		<!--{if !empty($searchid) && submitcheck('searchsubmit', 1)}-->
+			<!--{subtemplate search/thread_list}-->
+		<!--{/if}-->
+
+	</div>
+</div>
+<!--{hook/forum_bottom}-->
+<!--Enicn_d modified 2015-03-30 17:12-->
+<script type="text/javascript">
+function scFormSubmit(event){
+	if ($('scform_srchtxt')) {
+		searchFocus($('scform_srchtxt'));
+	}
+	if ($('scform_srchtxt').value=='') {
+		url = 'search.php?mod=forum&srchfrom=604800&searchsubmit=yes';
+		window.location.href =url;
+		if (event.preventDefault) {
+			event.preventDefault();
+		} else {
+			event.returnValue = false;
+		}
+	}
+}
+</script>
+<!--{subtemplate search/footer}-->

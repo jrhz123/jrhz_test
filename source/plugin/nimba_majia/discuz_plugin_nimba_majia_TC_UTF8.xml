@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+	<item id="Time"><![CDATA[2014-06-19 15:38]]></item>
+	<item id="From"><![CDATA[人工智能實驗室 (http://www.ailab.cn/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[自由馬甲]]></item>
+			<item id="identifier"><![CDATA[nimba_majia]]></item>
+			<item id="description"><![CDATA[自由馬甲 for Discuz! 作者 土著人寧巴 人工智能實驗室 出品（Made By Nimba, Team From AiLab.cn) 功能介紹︰設置常用馬甲號，在發帖、回帖中自由切換，適用于論壇管理團隊！]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[nimba_majia/]]></item>
+			<item id="copyright"><![CDATA[nimba]]></item>
+			<item id="version"><![CDATA[v3.3.1]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[majia]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[-1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[admincp]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[自由馬甲]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[7]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[data]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[馬甲統計]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="3">
+					<item id="name"><![CDATA[add]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[批量添加]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="4">
+					<item id="name"><![CDATA[posts]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[發帖統計]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[3]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="5">
+					<item id="name"><![CDATA[tongji]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[批量統計]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[4]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="6">
+					<item id="name"><![CDATA[addon]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[應用中心]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[99]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[0]]></item>
+				<item id="title"><![CDATA[允許使用]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[groups]]></item>
+				<item id="type"><![CDATA[groups]]></item>
+				<item id="extra"><![CDATA[]]></item>
+				<item id="__value">
+					<item id="0"><![CDATA[10]]></item>
+					<item id="1"><![CDATA[11]]></item>
+					<item id="2"><![CDATA[1]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="appname"><![CDATA[自由馬甲]]></item>
+				<item id="switch"><![CDATA[切換]]></item>
+				<item id="memcp"><![CDATA[設置馬甲]]></item>
+				<item id="usergroup_disabled"><![CDATA[您所在用戶組無法使用本功\能]]></item>
+				<item id="userdisabled"><![CDATA[對不起，您沒有用此帳號發帖的權限！]]></item>
+				<item id="normal"><![CDATA[正常]]></item>
+				<item id="lock"><![CDATA[鎖定]]></item>
+				<item id="username"><![CDATA[用戶名]]></item>
+				<item id="repeat"><![CDATA[馬甲]]></item>
+				<item id="mainuser"><![CDATA[主賬號]]></item>
+				<item id="lastswitch"><![CDATA[最後切換時間]]></item>
+				<item id="status"><![CDATA[狀態]]></item>
+				<item id="search"><![CDATA[搜索]]></item>
+				<item id="repeats"><![CDATA[被哪些賬號馬甲]]></item>
+				<item id="repeatusers"><![CDATA[的馬甲]]></item>
+				<item id="statuss"><![CDATA[狀態的記錄]]></item>
+				<item id="viewall"><![CDATA[查看全部]]></item>
+				<item id="deleted"><![CDATA[- 已刪除 -]]></item>
+				<item id="adduser_succeed"><![CDATA[馬甲賬號 {usernamenew} 已成功\添加。]]></item>
+				<item id="adduser_fail"><![CDATA[身份驗證失敗，請檢查用戶名、密碼和安全問題。]]></item>
+				<item id="updateuser_succeed"><![CDATA[馬甲帳號信息已成功\更新。]]></item>
+				<item id="updateuser_error"><![CDATA[馬甲信息更新失敗，請檢查您的輸入！]]></item>
+				<item id="addcontent"><![CDATA[批量添加馬甲]]></item>
+				<item id="uidlist"><![CDATA[馬甲UID]]></item>
+				<item id="uidlistinfo"><![CDATA[多個uid之間用英文逗號分隔，如︰123,124,125,126,999]]></item>
+				<item id="mainuid"><![CDATA[主號UID]]></item>
+				<item id="mainuidinfo"><![CDATA[填寫您本次要添加馬甲主號UID，即給誰添加的就填寫誰的UID]]></item>
+				<item id="mainuidinfo_2"><![CDATA[填寫您本次要查詢馬甲主號UID]]></item>
+				<item id="mainuidinfo_3"><![CDATA[填寫您本次要查詢馬甲主號UID,多個主要uid之間請用英文逗號分隔！]]></item>
+				<item id="posts_title"><![CDATA[按時間段查詢馬甲發帖數]]></item>
+				<item id="posts_title_2"><![CDATA[馬甲發帖統計]]></item>
+				<item id="posts_start"><![CDATA[開始時間]]></item>
+				<item id="posts_end"><![CDATA[結束時間]]></item>
+				<item id="posts_uid"><![CDATA[主號UID]]></item>
+				<item id="posts_main"><![CDATA[主號]]></item>
+				<item id="posts_majia"><![CDATA[馬甲用戶名]]></item>
+				<item id="posts_thread"><![CDATA[主題數量]]></item>
+				<item id="posts_post"><![CDATA[回帖數量]]></item>
+				<item id="posts_time"><![CDATA[統計日期]]></item>
+				<item id="posts_majia_num"><![CDATA[發帖馬甲數]]></item>
+				<item id="posts_majia_total"><![CDATA[總馬甲數]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="appname"><![CDATA[自由馬甲]]></item>
+				<item id="myrepeats"><![CDATA[我的馬甲]]></item>
+				<item id="adduser"><![CDATA[添加馬甲賬號]]></item>
+				<item id="add"><![CDATA[添加]]></item>
+				<item id="locked"><![CDATA[被管理員鎖定]]></item>
+				<item id="username"><![CDATA[用戶名]]></item>
+				<item id="password"><![CDATA[密碼]]></item>
+				<item id="security_question"><![CDATA[安全提問]]></item>
+				<item id="security_question_1"><![CDATA[母親的名字]]></item>
+				<item id="security_question_2"><![CDATA[爺爺的名字]]></item>
+				<item id="security_question_3"><![CDATA[父親出生的城市]]></item>
+				<item id="security_question_4"><![CDATA[您其中一位老師的名字]]></item>
+				<item id="security_question_5"><![CDATA[您個人計算機的型號]]></item>
+				<item id="security_question_6"><![CDATA[您最喜歡的餐\館名稱]]></item>
+				<item id="security_question_7"><![CDATA[駕駛執照的最後四位數字]]></item>
+				<item id="security_answer"><![CDATA[回答]]></item>
+				<item id="delete_check"><![CDATA[刪?]]></item>
+				<item id="useid"><![CDATA[選擇馬甲發帖︰]]></item>
+			</item>
+			<item id="installlang">
+				<item id="info"><![CDATA[安裝、升級、卸載腳本用的語言包]]></item>
+				<item id="appname"><![CDATA[自由馬甲]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+		<item id="license"><![CDATA[[list]
+[*]本插件版權歸屬插件作者所有.
+[*]未經插件作者許可,任何人不得以任何形式在任何地方發布/轉發原版以及其衍生的修改版.
+[*][b]插件作者:[/b]土著人寧巴 Team from [url=http://www.ailab.cn/]人工智能實驗室[/url]
+[*][b]功能簡介:[/b]設置常用馬甲號，在發帖、回帖中自由切換，適用于論壇管理團隊！
+[*][b]技術支持:[/b][url=http://www.ailab.cn/]人工智能實驗室[/url]
+[*]如有任何關于使用上的疑問,請至Discuz站長社區[url]http://dz.open.ailab.cn/[/url]提出.
+[*][color=Red]請您在安裝前認真閱讀插件的詳細說明[/color]，地址︰[url]http://addon.discuz.com/?@nimba_majia.plugin[/url].
+[*][color=Red]如果您願意資助我們,請至[url]http://me.alipay.com/lih062624[/url]對我們進行贊助.[/color]
+[*]最後,感謝您使用我們的插件,也希望您能夠給我們提供更好的意見([url=http://www.ailab.cn/]請點擊這里進入人工智能實驗室[/url]).
+[/list]]]></item>
+	</item>
+</root>

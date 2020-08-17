@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3,X3.1]]></item>
+	<item id="Time"><![CDATA[2013-12-01 07:59]]></item>
+	<item id="From"><![CDATA[comeings (http://www.comeings.com/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[Cis模板设置台]]></item>
+			<item id="identifier"><![CDATA[comeing_skin]]></item>
+			<item id="description"><![CDATA[Comeings模板专用，本插件只针对comeings的模板]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[comeing_skin/]]></item>
+			<item id="copyright"><![CDATA[www.comeings.com]]></item>
+			<item id="modules"><![CDATA[a:0:{}]]></item>
+			<item id="version"><![CDATA[1.3]]></item>
+		</item>
+		<item id="version"><![CDATA[X3,X3.1]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[二级导航]]></item>
+				<item id="description"><![CDATA[按照模板的说明去设置二级导航，没有则留空]]></item>
+				<item id="variable"><![CDATA[mu]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[底部导航]]></item>
+				<item id="description"><![CDATA[按照模板的说明去设置底部导航，没有则留空]]></item>
+				<item id="variable"><![CDATA[footer]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[模板变量]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[var]]></item>
+				<item id="type"><![CDATA[textarea]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="templatelang">
+				<item id="0"><![CDATA[选择风格配色]]></item>
+				<item id="1"><![CDATA[选择您喜欢的风格吧]]></item>
+				<item id="2"><![CDATA[登录]]></item>
+				<item id="3"><![CDATA[之后才能保存选择的风格]]></item>
+				<item id="4"><![CDATA[获取更多配色]]></item>
+				<item id="5"><![CDATA[更多模板]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+	</item>
+</root>

@@ -1,0 +1,50 @@
+<!--{subtemplate mebsite:header}-->
+<script>
+      jq(document).ready(function($) {
+  jq('#full-width-slider').royalSlider({
+    arrowsNav: true,
+    loop: false,
+    keyboardNavEnabled: true,
+    controlsInside: false,
+    imageScaleMode: 'fill',
+    arrowsNavAutoHide: false,
+    autoScaleSlider: true, 
+    autoScaleSliderWidth: 960,     
+    autoScaleSliderHeight: 360,
+    controlNavigation: 'bullets',
+    thumbsFitInViewport: false,
+    navigateByClick: true,
+    startSlideId: 0,
+    autoPlay: false,
+    transitionType:'move',
+    globalCaption: true,
+    deeplinking: {
+      enabled: true,
+      change: false
+    },
+
+    imgWidth: 1400,
+    imgHeight: 680
+  });
+});
+</script>
+
+
+<!--效果html开始-->
+<!--[diy=hotpics]-->
+    <div id="hotpics" class="area"></div>
+<!--[/diy]-->
+<!--效果html结束-->
+<div class="clear"></div>
+
+<!--[diy=headline]-->
+    <div id="headline" class="area"></div>
+<!--[/diy]-->
+   <div class="area  foot">
+        <div class="w95p">
+            <span class="float_l"><a href="#">今日惠州网首页</a></span>
+            <span class="float_r"><a href="#">PC端</a></span>
+        </div>
+   </div>
+</div>
+<!--{subtemplate mebsite:footer}-->

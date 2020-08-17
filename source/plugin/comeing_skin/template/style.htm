@@ -1,0 +1,36 @@
+<!--{template common/header}-->
+<!--{if empty($_GET['infloat'])}-->
+<div id="pt" class="bm cl">
+	<div class="z"><a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> <em>&rsaquo;</em> $comeing_skin['0']</div>
+</div>
+<div id="ct" class="wp cl">
+	<div class="mn">
+		<div class="bm bw0">
+<!--{/if}-->
+<h3 class="flb comeing_skin_h3">
+  <em>{if $_G['uid']}{lang comeing_skin:1}{else}<a href="member.php?mod=logging&action=login&referer={echo rawurlencode($dreferer)}" onClick="showWindow('login', this.href);return false;">{lang comeing_skin:2}</a>{lang comeing_skin:3}{/if}</em>
+	<!--{if !empty($_GET['infloat'])}-->
+		<span>
+			<a href="javascript:;" class="flbc" onclick="hideWindow('style')" title="{lang close}">{lang close}</a>
+		</span>
+	<!--{/if}-->
+</h3>
+<div class="comeing_skins">
+  <ul class="cl">
+  <!--{if !$_G[style][defaultextstyle]}--><li class="cs_btn" onClick="extstyle('')" title="{lang default}"><i></i></li><!--{/if}-->
+  <!--{loop $_G['style']['extstyle'] $extstyle}-->
+  <li class="cs_btn" onClick="extstyle('$extstyle[0]')" title="$extstyle[1]"><i style='background:$extstyle[2]'></i></li>
+  <!--{/loop}-->          
+  </ul>
+  <!--{if getstatus($_G['member']['allowadmincp'], 1)}-->
+  <p>
+  <a href="http://addon.discuz.com/?@{$Cis[style]['var']['skin']}.template" target="_blank">{lang comeing_skin:4}</a><span class="pipe">|</span><a href="http://addon.discuz.com/?@16475.developer" target="_blank">{lang comeing_skin:5}</a>
+  </p>
+  <!--{/if}-->
+</div>
+<!--{if empty($_GET['infloat'])}-->
+		</div>
+	</div>
+</div>
+<!--{/if}-->
+<!--{template common/footer}-->

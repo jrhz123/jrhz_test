@@ -1,0 +1,25 @@
+<!--{template common/header}-->
+<div id="citycontent">
+<div style="padding:15px; width:500px;">
+<ul>
+
+<!--{if $upid}-->
+    <!--{loop $city $value}-->
+    	<!--{if $_G['cache']['plugin']['xj_event']['event_centerstyle'] == 3}-->
+        	<li style="width:120px; line-height:20px; float:left;"><a href="plugin.php?id=xj_event:event_center&city={$value[name]}">{$value[name]}</a></li>
+        <!--{else}-->
+    		<li style="width:120px; line-height:20px; float:left;"><a href="plugin.php?id=xj_event:event_list&city={$value[name]}">{$value[name]}</a></li>
+        <!--{/if}-->
+    <!--{/loop}-->
+    <br /><li style="width:120px; line-height:20px; float:left;"><a href="javascript:" onclick="ajaxget('plugin.php?id=xj_event:city','citycontent');" style="color:#999999;">[返回上一级]</a></li>
+<!--{else}-->
+    <!--{loop $province $value}-->
+    <li style="width:120px; line-height:20px; float:left;"><a href="javascript:" onclick="ajaxget('plugin.php?id=xj_event:city&upid={$value[id]}','citycontent');">{$value[name]}</a></li>
+    <!--{/loop}-->
+<!--{/if}-->
+
+</ul>
+<div style=" clear:both;"></div>
+</div>
+</div>
+<!--{template common/footer}-->

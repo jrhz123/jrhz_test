@@ -1,0 +1,103 @@
+<!--{template common/header}-->
+<div id="wp" class="wp" style="padding:10px;">
+<div style="margin:50px;">
+  <form name="joinmodify" id="joinmodify" method="post" autocomplete="off" action="plugin.php?id=xj_event:event_joinmodify&action=save&tid={$tid}&applyid={$applyid}">
+    <input type="hidden" name="formhash" value="{$_G[formhash]}" />
+    <input type="hidden" name="joinmodifysubmit" value="true" />
+    <table summary="{lang xj_event:wycj}" cellpadding="0" cellspacing="0" class="actl" style="width:400px;">
+    <!--{if $setting[session]}-->
+    <tr>
+        <th><strong class="rq y">*</strong>{lang xj_event:huodongcc}</th>
+        <td>
+            <select name="session">
+                <!--{loop $setting[session] $key $value}-->
+                <option value="$key">$value</option>
+                <!--{/loop}-->
+            </select>
+        </td>
+    </tr>
+    <!--{/if}-->
+    <!--{if in_array('mobile', $selectuserfield)}-->
+    <tr id="tr_mobile">
+        <th id="th_mobile"><strong class="rq y">*</strong>$settings['mobile'][title]</th>
+        <td id="td_mobile">
+            $htmls['mobile']
+        </td>
+    </tr>
+    <!--{/if}-->
+<script type="text/javascript">
+  var fields = new Array();
+</script>
+    <!--{if !empty($selectuserfield)}-->
+      <!--{loop $selectuserfield $fieldid}-->
+        <!--{if $settings[$fieldid][available] && $fieldid!='mobile'}-->
+        <!--{eval $value = !empty($apply['ufielddata'][$fieldid]) ? $apply['ufielddata'][$fieldid] : ''}-->
+        <script type="text/javascript">fields.push({name:'$fieldid',title:'$settings[$fieldid][title]',value:'$value'})</script>
+        <tbody id="tb_$fieldid">
+          <tr id="tr_$fieldid">
+            <th id="th_$fieldid"><strong class="rq y">*</strong>$settings[$fieldid][title]</th>
+            <td id="td_$fieldid">
+          <!--{if $settings[$fieldid][formtype] != 'file'}-->
+              $htmls[$fieldid]
+          <!--{else}-->
+              <input id="activitypic_$fieldid" type="text" tabindex="1" value="" class="px" name="$fieldid" onblur="if(!this.value.match(/^https?:\/\/.+\/.+\.(jpg|png|gif|jpeg|bmp)$/i)){ $('showerror_$fieldid').innerHTML='{lang xj_event:tpdzcw}';}else{ $('showerror_$fieldid').innerHTML='&nbsp;';}"><div id="showerror_$fieldid" class="rq mtn">{lang xj_event:qsrtpdz}</div>
+          <!--{/if}-->
+            </td>
+          </tr>
+        </tbody>
+        <!--{/if}-->
+      <!--{/loop}-->
+    <!--{/if}-->
+    <tr>
+      <th>{lang xj_event:bmrs}</th>
+      <td>
+      <select name="applynumber" id="applynumber" onchange="applynumber_change()">
+        <!--{loop $applynumber $value}-->
+        <option value="$value" <!--{if $value == $apply[applynumber]}--> selected <!--{/if}-->>$value {lang xj_event:ren}</option>
+          <!--{/if}-->
+      </select>
+      </td>
+    </tr>
+    <!--{if in_array('bmmessage',$userfield)}-->
+    <tr>
+      <th>{lang xj_event:liuyan}</th>
+      <td><textarea name="message" maxlength="100" cols="38" rows="3" class="pt" tabindex="4">{$apply[bmmessage]}</textarea></td>
+    </tr>
+    <!--{/if}-->
+    <tr>
+      <th style="height:50px;"></th>
+      <td><button type="submit" class="pn pnc"><span>{lang xj_event:tijiao}</span></button></td>
+    </tr>
+  </table>
+  </form>
+</div>
+</div>
+<script type="text/javascript">
+//Enicn_d modified 2016-07-21 added muti-userfields
+var applynumber_change = function() {
+  var applynumber = document.getElementById('applynumber').value;
+  for(i in fields) {
+    var field = fields[i];
+    if (typeof field == 'object') {
+      var tr = '';
+      var name = field.name;
+      var title = field.title;
+      var field_value = field.value ? field.value.split(',') : [];
+      for (var j=0; j<applynumber; j++) {
+        var value = field_value[j] ? field_value[j] : '';
+        tr+='<tr>'+
+                '<th><strong class="rq y">*</strong>'+title+(j+1)+'</th>'+
+                '<td class="apply_field">'+
+                    '<input type="text" name="'+name+'[]" class="px" tabindex="1" value="'+value+'">'+
+                    '<div class="rq mtn" id="showerror_'+name+'"></div>'+
+                '</td>'+
+            '</tr>';
+      }
+      document.getElementById('tb_'+name).innerHTML = tr;
+    }
+  }
+}
+applynumber_change();
+
+</script>
+<!--{template common/footer}-->

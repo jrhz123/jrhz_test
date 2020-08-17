@@ -1,0 +1,34 @@
+{eval $pw=$_G[forum][modrecommend][imagewidth]-20;}
+
+<!--{if $_G['forum']['recommendlist']['images'] && $_G['forum']['modrecommend']['imagenum']}-->
+<div class="module cl slidebox" style="width: {$_G[forum][modrecommend][imagewidth]}px; height:{$_G['forum'][modrecommend][imageheight]}px; margin: 0 auto; float:left;">
+  <ul class="slideshow">
+  <!--{loop $_G['forum']['recommendlist']['images'] $k $imginfo}-->
+  <li style="width: {$_G[forum][modrecommend][imagewidth]}px; height: {$_G['forum'][modrecommend][imageheight]}px;">
+  <div style="width: {$_G[forum][modrecommend][imagewidth]}px; height: {$_G['forum'][modrecommend][imageheight]}px;"><a href="forum.php?mod=viewthread&tid=$imginfo[tid]" target="_blank"><img src="$imginfo[filename]" width="{$_G[forum][modrecommend][imagewidth]}" height="{$_G['forum'][modrecommend][imageheight]}" /></a></div>
+  <p style="width:{$pw}px">$imginfo[subject]</p>
+  </li>
+  <!--{/loop}-->
+  </ul>
+  <div class="slidebar cl" mevent="mouseover" style="width:{$pw}px">
+    <!--{loop $_G['forum']['recommendlist']['images'] $k $imginfo}-->
+    <em></em>
+    <!--{/loop}-->
+  </div>
+</div>
+<script type="text/javascript">
+runslideshow();
+</script>
+<!--{/if}-->
+<div class="cl" {if $_G['forum']['recommendlist']['images'] && $_G['forum']['modrecommend']['imagenum']} style="margin-left: {$_G[forum][modrecommend][imagewidth]}px; padding-left: 10px;"{/if}>
+	<!--{eval unset($_G['forum']['recommendlist']['images']);}-->
+	<ul class="comeing_twosublist cl">
+  {eval $i=1}
+	<!--{loop $_G['forum']['recommendlist'] $rtid $recommend}-->
+		<li {if is_int($i/2)}class="y"{/if}>
+			<a href="forum.php?mod=viewthread&tid=$rtid" $recommend[subjectstyles] target="_blank">$recommend[subject]</a>
+		</li>
+  {eval $i++}
+	<!--{/loop}-->
+	</ul>
+</div>

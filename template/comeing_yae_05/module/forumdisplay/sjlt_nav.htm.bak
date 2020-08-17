@@ -1,0 +1,336 @@
+<!--{eval $custom_filter = array('zhuti', 'shuji', 'bumen', 'duban', 'paotui', 'unreply')}-->
+<!--{eval $ttp_all = !in_array($_GET['filter'], $custom_filter) ? TRUE : FALSE}-->
+<style>
+.style_16_nav {
+    margin-top: 18px;
+    margin-bottom: -1px;
+}
+
+.style_16_nav li {
+    float: left;
+    display: block;
+    border: 1px solid #e4e4e4;
+    border-bottom: none;
+    margin-right: 8px;
+    color: #057299;
+    line-height: 32px;
+    height: 32px;
+    padding: 0 24px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.style_16_nav li a, .style_16_ttn li a {
+    font-family: 'Microsoft YaHei', 微软雅黑, SimHei, 宋体;
+    text-decoration: none;
+    color: #057299;
+}
+
+.style_16_nav li a {
+    font-size: 18px;
+}
+
+.style_16_nav li.a {
+    position: relative;
+    border-top: 2px solid #057299;
+    border-bottom: #e4e4e4;
+    border-left: 1px solid #b8d8e0;
+    border-right: 1px solid #b8d8e0;
+    background-color: #d3f8ff;
+    color: #057299;
+    font-weight: bolder;
+    z-index: 2;
+}
+
+.ttp_all {
+  margin-right: 2px;
+}
+
+.style_16_ttn {
+    background-color: #d3f8ff;
+    border: 1px solid #b8d8e0;
+}
+
+.style_16_ttn li {
+    float: left;
+    display: block;
+    line-height: 32px;
+    height: 32px;
+    font-size: 14px;
+    color: #057299;
+    padding-left: 16px;
+    position: relative;
+}
+
+.style_16_ttn li.delimeter {
+    color: #b8d8e0;
+}
+
+.style_16_ttn li span {
+    margin-left: 12px;
+}
+
+#div_ntarget {
+    line-height: 33px;
+    font-size: 14px;
+}
+
+#div_ntarget input[type="checkbox"] {
+    height: 33px;
+    width: 16px;
+}
+
+#div_ntarget label {
+    width: 48px;
+    color: #057299;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.banner img {
+    width: 100%;
+}
+
+#banner_pic, #banner_flash {
+    overflow: hidden;
+    display: block;
+    transition: all 1s ease;
+    background-color: #BF2111;
+}
+
+
+
+.post_box {
+    min-height: 100px;
+    border-color: #8f140a;
+    border-width: 0 3px 3px 3px;
+    border-style: solid;
+    padding: 15px;
+}
+.post_box h4 {
+    border-bottom: 2px solid #ececec;
+    overflow: hidden;
+    zoom: 1;
+    color: #d02214;
+    font-size: 18px;
+}
+.post_box h4 span {
+    padding: 2px 0px;
+    border-radius: 5px 5px 0px 0px;
+    background: #ececec;
+    display: block;
+    width: 240px;
+    text-align: center;
+}
+.post_box h4 .more {
+    float: right;
+    font-family: 宋体;
+    font-size: 12px;
+    margin-top: 12px;
+    margin-right: 10px;
+    color: rgb(152, 152, 152);
+    font-weight: normal;
+}
+
+.post_pic li{
+    width: 45%;
+    float: left;
+    margin: 15px 5px 0px;
+    display: inline;
+}
+
+
+*{ margin:0px; padding:0px;}
+img{ border:0; }
+html { overflow-x: hidden; overflow-y: auto; }
+body{ font-family:"宋体"; font-size:12px; }
+h1,h2,h3,h4,h5,h6{ font-family:"宋体"}
+li{ list-style:none; list-style-type:none;}
+a{ text-decoration:none; color:#424242}
+a:hover{ text-decoration:underline;color:#ea4420;}
+.area{ height:auto; overflow:hidden; zoom:1;}
+.float_l{ float:left; display:inline;}
+.float_r{ float:right; display:inline;}
+.clear{clear:both;overflow:hidden}
+.m_t5{ margin-top:5px;}
+.m_t15{ margin-top:15px;}
+.m_t10{ margin-top:10px;}
+.w306{width: 306px;}
+.w316{width: 316px;}
+.sj{ width:1000px; overflow:hidden; zoom:1;clear:both;margin:0 auto;background: url(http://www.huizhou.cn/webfile/2018/5/3/images/18sjlt_banner.jpg) no-repeat;}
+.content{height: 270px;}
+.content h3{border-bottom: 2px solid #fce574;}
+.content h3 span{float: right;display: inline; line-height: 35px;}
+.content h3 span a{font-size:12px; color: #7f7f7f; }
+
+
+#diysjlt {
+    display: none;
+}
+
+#stickthread_656161 td,
+#stickthread_656161 th,
+#stickthread_656161 a,
+#stickthread_656161 em,
+#stickthread_656161 span {
+   /* background-color:#c02011;史漫漫修改*/
+   /* color:#fff !important;史漫漫修改*/
+}
+</style>
+
+<!--修改<div class="banner">
+    <a id="banner_pic" style="height: 260px;" href="http://www.huizhou.cn/zt2017/17sjxlh/">
+        <img src="http://sns.huizhou.cn/data/attachment/forum/201705/4th%20960-250.jpg">
+    </a>
+    <div id="banner_flash" style="height: 0px;">
+        <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="1000" height="45"><param name="movie" value="http://sns.huizhou.cn/data/attachment/forum/201705/4th%201000-45.swf"><param name="quality" value="high"><param value="false" name="menu"> <param value="opaque" name="wmode"><param name="wmode" value="transparent"><embed src="http://sns.huizhou.cn/data/attachment/forum/201705/4th%201000-45.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="1000" height="45" related="1" wmode="opaque"></object>
+    </div>
+</div>
+<div class="area post_box">
+<div id="frame55hPj3_left" class="column frame-1-1-1-l">
+  <div id="frame55hPj3_left_temp" class="move-span temp"></div>
+  <div id="portal_block_65" class="block move-span">
+    <div id="portal_block_65_content" class="dxb_bc">
+      <div>
+        <h4><span><a style="color:#d02214;" href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&amp;fid=863&amp;filter=paotui" target="_blank">论坛“双十佳”风云榜</a></span></h4>
+        <div class="post_pic">
+            <ul>
+                <li>
+                    <a href="thread-656130-1-1.html" target="_blank">
+                        <img src="data/attachment/forum/201705/02/190432dre6g366tigkjygw.png" style="margin-bottom:7px; width: 100%;"/>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.huizhou.cn/zt2017/17sjxlh/#ssj" target="_blank">
+                        <img src="data/attachment/forum/201705/02/190428yoo6ozwn6m4vv56o.png" style="margin-bottom:7px; width: 100%;"/>
+                    </a>
+                </li>
+            </ul>        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="frame55hPj3_center" class="column frame-1-1-1-c">
+  <div id="frame55hPj3_center_temp" class="move-span temp"></div>
+  <div id="portal_block_66" class="block move-span">
+    <div id="portal_block_66_content" class="dxb_bc">
+      <div style="width:96%; float:right;">
+        <h4>
+            <a href="thread-656136-1-1.html" target="_blank" class="more">更多>></a>
+            <span><a style="color:#d02214;" href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&amp;fid=863&amp;filter=heat&amp;orderby=heats" target="_blank">年度“民生金点子”案例</a></span>
+        </h4>
+        <div class="font14 m_t">
+          <ul>
+            <li><a href="thread-570400-1-1.html" target="_blank">抗击台风“妮妲”，惠州在行动！</a></li>
+            <li><a href="thread-643362-1-1.html" target="_blank">实拍公庄环卫部门在河边倾倒垃圾 严重污…</a></li>
+            <li><a href="thread-569191-1-1.html" target="_blank">建议惠州尽快引入新疫苗 预防小童感染手…</a></li>
+            <li><a href="thread-646613-1-1.html" target="_blank">建议惠州给5A级景区配“第三卫生间”</a></li>
+            <li><a href="thread-571408-1-1.html" target="_blank">建议我市公交公司举办“公交车安全逃生…</a></li>
+            <li><a href="thread-566158-1-1.html" target="_blank">南站专线车超载严重已“变味” 请政府规…</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="frame55hPj3_center" class="column frame-1-1-1-r">
+  <div id="frame55hPj3_center_temp" class="move-span temp"></div>
+  <div id="portal_block_66" class="block move-span">
+    <div id="portal_block_66_content" class="dxb_bc">
+      <div style="width:96%; float:right;">
+        <h4>
+            <a href="thread-656136-1-1.html" target="_blank" class="more">更多>></a>
+            <span><a style="color:#d02214;" href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&amp;fid=863&amp;filter=heat&amp;orderby=heats" target="_blank">年度“智惠”精华榜</a></span>
+        </h4>
+        <div class="font14 m_t">
+          <ul>
+            <li><a href="thread-647265-1-1.html" target="_blank">盘活红色资源 建议大力发展高潭革命老区</a></li>
+            <li><a href="thread-642004-1-1.html" target="_blank">大力发展“绿色建筑” 提升绿色跨越发展…</a></li>
+            <li><a href="thread-566458-1-1.html" target="_blank">“建设海绵城市”缓解内涝带来的影响</a></li>
+            <li><a href="thread-572963-1-1.html" target="_blank">弘扬青蒿素精神 推动惠州中医药健康养生…</a></li>
+            <li><a href="thread-642410-1-1.html" target="_blank">建议“惠州交警”微信开通“智能随手拍我…</a></li>
+            <li><a href="thread-645303-1-1.html" target="_blank">蓝田瑶族乡应以生态农业创业为主线 成为…</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>-->
+
+
+<!--史漫漫修改2018年5月3日-->
+<div class="sj">
+		<div class="content">
+			<div class="float_l w306" style="margin-left: 11px;">
+				<h3><span><a href="http://www.huizhou.cn/zt2018/sjlt/index.htm#lt" target="_blank">更多>></a></span><img src="http://www.huizhou.cn/webfile/2018/5/3/images/18sjlt_nav_01.jpg"></h3>
+				<a href="http://www.huizhou.cn/zt2018/sjlt/index.htm#lt" target="_blank"><img src="http://www.huizhou.cn/webfile/2018/5/3/images/18sjlt_phb.jpg"></a>
+			</div>
+			<div class="float_l w316" style="margin-left: 18px;">
+				<h3><img src="http://www.huizhou.cn/webfile/2018/5/3/images/18sjlt_nav_02.jpg"></h3>
+				<iframe src="http://www.huizhou.cn/zt2018/sjlt/bmjdal/index_4456.htm" width="316" height="150" scrolling="no" frameborder="0"></iframe>
+			</div>
+			<div class="float_l w316" style="margin-left: 18px;">
+				<h3><img src="http://www.huizhou.cn/webfile/2018/5/3/images/18sjlt_nav_03.jpg"></h3>
+				<iframe src="http://www.huizhou.cn/zt2018/sjlt/jdzal/index_4456.htm" width="316" height="150" scrolling="no" frameborder="0"></iframe>
+				
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+setTimeout(function () {
+    $('banner_pic').style.height = '0px'
+    $('banner_flash').style.height = '45px'
+}, 5000)
+</script>
+
+<div class="style_16_nav">
+  <ul class="overflow-hidden">
+    <li class="ttp_all {if $ttp_all}a{/if}"><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_G['forum']['threadsorts']['defaultshow']}&filter=sortall&sortall=1{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">{lang forum_viewall}</a></li>
+    <!--{hook/forumdisplay_filter_extra}-->
+  </ul>
+</div>
+
+<div style="position:relative;">
+<ul id="thread_types" class="cl style_16_ttn overflow-hidden">
+<!--{hook/forumdisplay_threadtype_inner}-->
+    <!--{if $ttp_all}-->
+        <li {if (empty($_GET['filter']) && $_GET['orderby'] == 'lastpost') || ($_GET['filter'] == 'lastpost' && $_GET['orderby'] == 'lastpost') }class="xw1 a"{/if}>
+            <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=lastpost&orderby=lastpost">最新回复</a>
+        </li>
+        <li {if $_GET['filter'] == 'author' && $_GET['orderby'] == 'dateline'}class="xw1 a"{/if}>
+            <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=author&orderby=dateline$forumdisplayadd[author]">最新发帖</a>
+        </li>
+        <!--{if ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || count($_G['forum']['threadsorts']['types']) > 0}-->
+            <!--{if $_G['forum']['threadtypes']}-->
+              <!--{loop $_G['forum']['threadtypes']['types'] $id $name}-->
+                <li class="delimeter">|</li><li {if $_GET['typeid'] == $id}class="xw1 a"{/if}><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['sortid']}&filter=sortid&sortid=$_GET['sortid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}"><!--{if $_G[forum][threadtypes][icons][$id] && $_G['forum']['threadtypes']['prefix'] == 2}--><img class="vm" src="$_G[forum][threadtypes][icons][$id]" alt="" /> <!--{/if}-->$name<!--{if $showthreadclasscount[typeid][$id]}--><span class="xg1 num">$showthreadclasscount[typeid][$id]</span><!--{/if}--></a></li>
+              <!--{/loop}-->
+            <!--{/if}-->
+
+            <!--{if $_G['forum']['threadsorts']}-->
+              <!--{if $_G['forum']['threadtypes']}--><li><span class="pipe">|</span></li><!--{/if}-->
+              <!--{loop $_G['forum']['threadsorts']['types'] $id $name}-->
+                <li>|</li><li {if $_GET['sortid'] == $id}class="xw1 a"{/if}><a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['typeid']}&filter=typeid&typeid=$_GET['typeid']{/if}{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}">$name<!--{if $showthreadclasscount[sortid][$id]}--><span class="xg1 num">$showthreadclasscount[sortid][$id]</span><!--{/if}--></a></li>
+              <!--{/loop}-->
+            <!--{/if}-->
+        <!--{/if}-->
+    <!--{else}-->
+        <li {if $_GET['orderby'] == 'lastpost'}class="xw1 a"{/if}>
+            <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=$_GET['filter']&orderby=lastpost">最新回复</a>
+        </li>
+        <li {if $_GET['orderby'] == 'dateline'}class="xw1 a"{/if}>
+            <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=$_GET['filter']&orderby=dateline">最新发帖</a>
+        </li>
+    <!--{/if}-->
+    <li style="float: right; padding-right: 16px;">
+        <input id="new_target" type="checkbox" {if $_G['cookie']['atarget'] > 0} onclick="setatarget(-1)" checked="checked" {else} onclick="setatarget(1)" {/if} title="{lang new_window_thread}" />
+        <label for="new_target">新窗口</label>
+    </li>
+  </ul>
+  <script type="text/javascript">showTypes('thread_types');</script>
+</div>
+

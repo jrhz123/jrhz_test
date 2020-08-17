@@ -1,0 +1,98 @@
+<!--{template common/header}-->
+<!-- header start -->
+<header class="header">
+    <div class="nav">
+		<div class="icon_edit y"></div>
+        <a href="forum.php?forumlist=1" class="z"><img src="{STATICURL}image/mobile/images/icon_back.png" /></a>
+		<span class="category">
+			<span class="name">
+				 {lang xj_event:eventcenter}
+			</span>
+		</span>
+    </div>
+</header>
+<!-- header end -->
+<style>
+.smenu{ padding:5px; background-color:#999; color:#FFF;}
+.smenu-s{  padding:5px; background-color:#F30; color:#FFF;}
+
+</style>
+
+
+<div style="padding:5px;">
+    <div style="border-bottom:1px dashed #cccccc; padding-bottom:8px; padding-left:8px; margin-bottom:10px; height:30px;">
+    	<div style="float:left; line-height:30px;">
+        	<a href="plugin.php?id=xj_event:event_center&pc={$_GET[pc]}&choose=today&offlineclass={$_GET[offlineclass]}&onlineclass={$_GET[onlineclass]}" class="<!--{if $_GET[choose]=='today'}-->smenu-s<!--{else}-->smenu<!--{/if}-->">{lang xj_event:yizhou}</a>
+            <a href="plugin.php?id=xj_event:event_center&pc={$_GET[pc]}&choose=soon&offlineclass={$_GET[offlineclass]}&onlineclass={$_GET[onlineclass]}" class="<!--{if $_GET[choose]=='soon'}-->smenu-s<!--{else}-->smenu<!--{/if}-->">{lang xj_event:weilai}</a>
+            <a href="plugin.php?id=xj_event:event_center&pc={$_GET[pc]}&choose=wq&offlineclass={$_GET[offlineclass]}&onlineclass={$_GET[onlineclass]}" class="<!--{if $_GET[choose]=='wq'}-->smenu-s<!--{else}-->smenu<!--{/if}-->">{lang xj_event:wangqi}</a>
+            <a href="plugin.php?id=xj_event:event_center&pc={$_GET[pc]}&choose=new&offlineclass={$_GET[offlineclass]}&onlineclass={$_GET[onlineclass]}" class="<!--{if $_GET[choose]=='new'}-->smenu-s<!--{else}-->smenu<!--{/if}-->">{lang xj_event:zuixin}</a>
+            <a href="plugin.php?id=xj_event:event_center" class="<!--{if !$_GET[choose]}-->smenu-s<!--{else}-->smenu<!--{/if}-->">{lang xj_event:quanbu}</a>
+        
+        </div>
+    </div>
+    
+    <div id="dqqh" style="font-size:14px; padding-left:10px;">
+        <a href="plugin.php?id=xj_event:event_center&pc=1" <!--{if $_GET[pc]==1}-->style="background-color:#333; color:#FFF; padding:2px 5px;"<!--{/if}-->>{lang xj_event:offline}</a>
+        <a href="plugin.php?id=xj_event:event_center&pc=2" <!--{if $_GET[pc]==2}-->style="background-color:#333; color:#FFF; padding:2px 5px;"<!--{/if}-->>{lang xj_event:online}</a>
+        |
+        <!--{loop $cityclass $value}-->
+            <a href="plugin.php?id=xj_event:event_center&city={$value[3]}" <!--{if $_GET[city]==$value[1]}-->style="background-color:#333; color:#FFF; padding:2px 5px;"<!--{/if}-->>$value[1]</a>
+        <!--{/if}-->
+    </div>
+    <div style="clear:both;"></div>    
+            
+            
+            
+	<!--{loop $toplist $key $value}-->
+    <div class="xjevent">
+        <div style="height:100px; margin-top:8px;">
+            <a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank"><img src="<!--{if $value[activityaid_url]}-->{$value[activityaid_url]}<!--{else}-->source/plugin/xj_event/images/nopic.jpg<!--{/if}-->" width="120" height="80" style="float:left; margin-right:8px;" border="0"/></a>
+            <div style="line-height:24px; margin-left:130px;">
+            <span style="font-size:16px;">{$value[starttime]}</span>
+            <!--{if $value[verify]==1}-->
+            	<i style="display:inline-block; height:21px; width:40px; background-color:#00a7ff; color:#FFFFFF; font-size:14px; text-align:center;font-family: '{lang xj_event:wryh}';">{lang xj_event:guanfang}</i>
+            <!--{/if}-->
+           	<span style="float:right;"><b style="color:#009900; font-size:18px;">{$value[applynumber]}</b>/<!--{if $value[event_number]>0}-->{$value[event_number]}{lang xj_event:ren}<!--{else}-->{lang xj_event:buxian}<!--{/if}--></span>
+            <br />
+            <b class="xj_hll" style="margin-right:5px;"><a href="forum.php?mod=viewthread&tid={$value[tid]}" target="_blank" style="font-size:14px;">$value[subject]</a></b>
+            
+
+            <!--{if $value[starttime]<$nowtime && $value[endtime]>$nowtime}-->
+            	<img src="source/plugin/xj_event/images/hd_ico1.png" />
+            <!--{elseif $value[starttime]>$nowtime}-->
+                <img src="source/plugin/xj_event/images/hd_ico2.png"/>
+            <!--{elseif $value[endtime]<$nowtime}-->
+                <img src="source/plugin/xj_event/images/hd_ico3.png" />
+            <!--{/if}-->
+
+            <br />
+			<!--{if $value[setting][eventaa]}-->
+            AA
+            <!--{else}-->
+                <!--{if $value[use_cost]>0}-->
+                    {$value[use_cost]}{lang xj_event:yuanren}
+                <!--{else}--> 
+                    <span style="color:#FF6600; font-weight:bold;">{lang xj_event:mianfei}</span>
+                <!--{/if}-->
+            <!--{/if}--> 
+            <span style="float:right;">{$value[author]}</span>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+    <!--{/loop}-->   
+            
+            
+            
+            
+            
+    
+</div>
+<!--{if $multipage}-->
+<div style=" clear:both; height:30px; padding-top:5px; font-size:18px; text-align:center;">$multipage</div>
+<!--{/if}-->
+
+
+<div style="clear:both;"></div>
+
+<!--{template common/footer}-->

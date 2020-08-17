@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wb="http://open.weibo.com/wb">
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" />
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="{if !empty($metakeywords)}{echo dhtmlspecialchars($metakeywords)}{/if}" />
+    <meta name="description" content="{if !empty($metadescription)}{echo dhtmlspecialchars($metadescription)} {/if},$_G['setting']['bbname']" />
+    <!--{if $_G['config']['output']['iecompatible']}--><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE{$_G['config']['output']['iecompatible']}" /><!--{/if}-->
+    <title><!--{if !empty($navtitle)}-->$navtitle - <!--{/if}--><!--{if empty($nobbname)}--> $_G['setting']['bbname']<!--{/if}--></title>
+    $_G['setting']['seohead']
+
+    <meta name="generator" content="Discuz! $_G['setting']['version']" />
+    <meta name="author" content="Discuz! Team and Comsenz UI Team" />
+    <meta name="copyright" content="2001-2013 Comsenz Inc." />
+    <meta name="MSSmartTagsPreventParsing" content="True" />
+    <meta http-equiv="MSThemeCompatible" content="Yes" />
+    <base href="http://sns.huizhou.cn/" />
+    <script type="text/javascript">var STYLEID = '{STYLEID}', STATICURL = '{STATICURL}', IMGDIR = '{IMGDIR}', VERHASH = '{VERHASH}', charset = '{CHARSET}', discuz_uid = '$_G[uid]', cookiepre = '{$_G[config][cookie][cookiepre]}', cookiedomain = '{$_G[config][cookie][cookiedomain]}', cookiepath = '{$_G[config][cookie][cookiepath]}', showusercard = '{$_G[setting][showusercard]}', attackevasive = '{$_G[config][security][attackevasive]}', disallowfloat = '{$_G[setting][disallowfloat]}', creditnotice = '<!--{if $_G['setting']['creditnotice']}-->$_G['setting']['creditnames']<!--{/if}-->', defaultstyle = '$_G[style][defaultextstyle]', REPORTURL = '$_G[currenturl_encode]', SITEURL = '$_G[siteurl]', JSPATH = '$_G[setting][jspath]', CSSPATH = '$_G[setting][csspath]', DYNAMICURL = '$_G[dynamicurl]';</script>
+    <script type="text/javascript" src="{$_G[setting][jspath]}common.js?{VERHASH}"></script>
+    <script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+    <!--{if empty($_GET['diy'])}--><!--{eval $_GET['diy'] = '';}--><!--{/if}-->
+    <!--{if !isset($topic)}--><!--{eval $topic = array();}--><!--{/if}-->
+
+    <meta name="application-name" content="$_G['setting']['bbname']" />
+    <meta name="msapplication-tooltip" content="$_G['setting']['bbname']" />
+    <!--{if $_G['setting']['portalstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][1]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['portal']) ? 'http://'.$_G['setting']['domain']['app']['portal'] : $_G[siteurl].'portal.php'};icon-uri={$_G[siteurl]}{IMGDIR}/portal.ico" /><!--{/if}-->
+    <meta name="msapplication-task" content="name=$_G['setting']['navs'][2]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['forum']) ? 'http://'.$_G['setting']['domain']['app']['forum'] : $_G[siteurl].'forum.php'};icon-uri={$_G[siteurl]}{IMGDIR}/bbs.ico" />
+    <!--{if $_G['setting']['groupstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][3]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['group']) ? 'http://'.$_G['setting']['domain']['app']['group'] : $_G[siteurl].'group.php'};icon-uri={$_G[siteurl]}{IMGDIR}/group.ico" /><!--{/if}-->
+    <!--{if helper_access::check_module('feed')}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][4]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['home']) ? 'http://'.$_G['setting']['domain']['app']['home'] : $_G[siteurl].'home.php'};icon-uri={$_G[siteurl]}{IMGDIR}/home.ico" /><!--{/if}-->
+    <!--{if $_G['basescript'] == 'forum' && $_G['setting']['archiver']}-->
+        <link rel="archives" title="$_G['setting']['bbname']" href="{$_G[siteurl]}archiver/" />
+    <!--{/if}-->
+    <!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+        <link rel="stylesheet" type="text/css" id="diy_common" href="{$_G['setting']['csspath']}{STYLEID}_css_diy.css?{VERHASH}" />
+    <!--{/if}-->
+<!--Custom part-->
+<link rel="stylesheet" href="{STATICURL}image/mobile/css/comm.css" type="text/css" media="all">
+<link rel="stylesheet" href="{STATICURL}image/mobile/css/zt.css" type="text/css" media="all">
+<link rel="stylesheet" href="{$plugin_static}css/discuz.css" type="text/css">
+<link rel="stylesheet" href="{STATICURL}image/mobile/css/common.css" type="text/css">
+<link rel="stylesheet" href="{STATICURL}image/mobile/css/royalslider.css" type="text/css">
+<link rel="stylesheet" href="{STATICURL}image/mobile/css/rs-minimal-white.css" type="text/css">
+
+<script src="{STATICURL}image/mobile/js/jquery-1.8.3.min.js?{VERHASH}"></script>
+<script src="{STATICURL}image/mobile/js/jquery.royalslider.min.js"></script>
+
+<script>
+
+jq = jQuery.noConflict();
+
+(function () {
+    var showMoreNChildren = function (children, n) {
+        //显示某jquery元素下的前n个隐藏的子元素
+        var hiddenChildren = children.filter(":hidden");
+        var cnt = hiddenChildren.length;
+        for (var i = 0; i < n && i < cnt ; i++) {
+            hiddenChildren.eq(i).show();
+        }
+        return cnt - n;//返回还剩余的隐藏子元素的数量
+    }
+
+    jQuery.showMore = function (selector) {
+        if (selector == undefined) { selector = ".showMoreNChildren" }
+        //对页中现有的class=showMorehandle的元素，在之后添加显示更多条，并绑定点击行为
+        jq(selector).each(function () {
+            var pagesize = jq(this).attr("pagesize") || 10;
+            var children = jq(this).children();
+            if (children.length > pagesize) {
+                for (var i = pagesize; i < children.length; i++) {
+                    children.eq(i).hide();
+                }
+
+                jq("<div class='wap_more m_t'><div class='showMorehandle center' >点击加载更多</div></div>").insertAfter(jq(this)).click(function () {
+                    if (showMoreNChildren(children, pagesize) <= 0) {
+                        //如果目标元素已经没有隐藏的子元素了，就隐藏“点击更多的按钮条”
+                        jq(this).hide();
+                    };
+                });
+            }
+        });
+    }
+})();
+
+jq(document).ready(function(){
+    //调用显示更多插件。参数是标准的 jquery 选择符
+    jq.showMore(".showMoreNChildren,.mynews");
+})
+</script>
+<!--End of custom part-->
+<style>
+.sinaHead{ background:#c9e7ff; height: 50px; display: block;}
+.hIcon {
+    background: url(http://www.huizhou.cn/images/wap_gl_logo.png) no-repeat center 48%;
+    background-size: 90%;
+    float: left;
+    position: relative;
+    width: 50%;
+    height: 50px;
+    display: inline-block;
+    overflow: hidden;
+    text-indent: -99999em;
+    border-right: 1px solid #a8d9ff;
+}
+.h_nav_items {
+    overflow: hidden;
+    height: 50px;
+    border-left: 1px solid #e7f5ff;
+    color: #1f5daa;
+    padding-left: .5rem;
+}
+.h_nav_items li {
+    font-size: 2rem;
+    font-family: 'Microsoft YaHei',arial,helvetica,sans-serif;
+    line-height: 22px;
+    padding-top: 18px;
+}
+</style>
+</head>
+
+<body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
+    <div id="append_parent"></div><div id="ajaxwaitid"></div>
+    <!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+        <!--{subtemplate common/header_diy}-->
+    <!--{/if}-->
+    <!--{if $_G['member']['adminid']>0}-->
+        <!--{subtemplate common/header_diynav}-->
+        $diynav
+    <!--{/if}-->
+    <style id="diy_style" type="text/css"></style>
+
+<div class="layout">
+<!--     <div class="area bg" style="height:60px;">
+        <div class=" float_l center" ><img src="{STATICURL}image/mobile/images/sqwap_logo.png" style="margin-left:10px;" /></div>
+        <div class="w20p float_r center" >
+        <!--{if $_G['uid']}-->
+            <a href="/home.php?mod=space&uid={$_G['uid']}&do=profile&mycenter=1"><img src="{$_G['setting']['ucenterurl']}/avatar.php?uid={$_G['uid']}&size=small" class='cirm' width="35" height="35" style="margin-top:10px;"></a>
+        <!--{else}-->
+            <a href="/member.php?mod=logging&action=login"  class="cf iconName m_t15 float_r " style="font-size:25px; color:#999; margin-right:15px;"></a>
+        <!--{/if}-->
+        </div>
+    </div> -->
+
+    <div class="sinaHead">
+        <h2><a class="hIcon h_logo" href="http://www.huizhou.cn">今日惠州网</a></h2>
+        <div class="w20p float_r center" >
+        <!--{if $_G['uid']}-->
+            <a href="/home.php?mod=space&uid={$_G['uid']}&do=profile&mycenter=1"><img src="{$_G['setting']['ucenterurl']}/avatar.php?uid={$_G['uid']}&size=small" class='cirm' width="35" height="35" style="margin-top:7px;"></a>
+        <!--{else}-->
+            <a href="/member.php?mod=logging&action=login"  class="cf iconName m_t15 float_r " style="font-size:25px; color:#999; margin-right:15px;"></a>
+        <!--{/if}-->
+        </div>
+        <ul class="h_nav_items">
+            <li> 东江社区 </li>
+        </ul>
+    </div>
+
+    <div class="nav">
+        <ul>
+            <li<!--{eval echo $_GET['m']=='sns' || $_GET['m'] == null ? ' class="active"' : ''}-->><a href="plugin.php?id={$identifier}&m=sns">首页</a></li>
+            <li<!--{eval echo $_GET['m']=='bbs' ? ' class="active"' : ''}-->><a href="plugin.php?id={$identifier}&m=bbs">论坛</a></li>
+            <li<!--{eval echo $_GET['m']=='blog' ? ' class="active"' : ''}-->><a href="plugin.php?id={$identifier}&m=blog">博客</a></li>
+            <li<!--{eval echo $_GET['m']=='hd' ? ' class="active"' : ''}-->><a href="plugin.php?id={$identifier}&m=hd">活动</a></li>
+        </ul>
+    </div>

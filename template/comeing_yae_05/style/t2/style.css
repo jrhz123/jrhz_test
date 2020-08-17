@@ -1,0 +1,63 @@
+/*
+[name]t2[/name]
+[iconbgcolor]url(template/comeing_yae_05/comeing/style/t2.gif) #336666[/iconbgcolor]
+Powered by Discuz! X
+*/
+
+/*comeing_toptb*/
+#comeing_toptb .tb_l{ background:url(toptb.gif) repeat-x 0 0!important;}
+#comeing_toptb .tb_c{ height:70px; background:url(toptb.gif) repeat-x 0 0!important;}
+
+/*主导航*/
+#comeing_nv li a{ color:#C2D1D1!important;}
+#comeing_nv li.a,#comeing_nv li.first_a{ background:url(nv.gif) no-repeat 50% 0!important;}
+#comeing_nv li.a a,#comeing_nv li.first_a a{ color:#FFF!important;}
+#comeing_nv li.hover a,#comeing_nv li.hover a:hover{ color:#FFF!important; background:#FF9EB5!important;}
+
+/*二级导航*/
+.h_pop{ background:#FF9EB5!important;}
+.h_pop li a{ border-bottom:1px solid #FC9CB3!important;}
+
+/*comeing_um*/
+.comeing_um{ background:url(um.gif) no-repeat 0 0!important;}
+.comeing_umarea{ background:url(um.gif) no-repeat 100% -70px!important;}
+.comeing_um span{ color:#FFCFDA!important;}
+
+/*user_menu*/
+#user_menu{ background:#FF9EB5!important;}
+#user_menu li{ border-bottom:1px solid #FC9CB3!important;}
+
+/*comeing_login*/
+.comeing_login a.login_qq{ background:url(login.gif) no-repeat 0 0!important;}
+.comeing_login a.login_xwb{ background:url(login.gif) no-repeat -60px 0!important;}
+.comeing_login a.login_qq:hover{ background-position: 0px -40px!important;}
+.comeing_login a.login_xwb:hover{ background-position: -60px -40px!important;}
+
+/*搜索*/
+#scbar{ background:url(scbar.gif) no-repeat 0 100%!important;}
+
+/*顶部广告*/
+.comeing_banner_box h1{ background:url(adv/h1.gif) no-repeat 0 0!important;}
+
+/*fl*/
+.fl .comeing_box .bm .bm_h h2 a{ background-color:#336666!important;}
+
+/*按钮*/
+.pgs #newspecial, .pgs #newspecialtmp { float: left; background: url(forum/pn_post.png) no-repeat 0 0; }
+#post_reply, #post_replytmp { float: left; background: url(forum/pn_reply.png) no-repeat 0 0; }
+#newspecial img, #newspecialtmp img, #post_reply img, #post_replytmp img { opacity: 0; filter: alpha(opacity=0); }
+
+.pg a:hover, .pgb a:hover,.pg strong { border-color:#336666; background-color: #336666;  }
+.pnc, a.pnc { border: 1px solid #336666; background: #336666; -moz-box-shadow: 0 3px 0px 0px #2F5E5E; -webkit-box-shadow: 0 3px 0px 0px #2F5E5E; box-shadow: 0 3px 0px 0px #2F5E5E ;}
+
+/*预览*/
+.comeing_tdpre{  background: #336666; -moz-box-shadow: inset 0 -3px 0px 0px #2F5E5E; -webkit-box-shadow: inset 0 -3px 0px 0px #2F5E5E; box-shadow: inset 0 -3px 0px 0px #2F5E5E;}
+#vfastpost #vf_b button{ background: url(forum/v.png) no-repeat 0 0!important;}
+
+/* ----------------------------------
+
+底部样式
+
+----------------------------------*/
+.comeing_ft{ background:#336666!important;}
+.comeing_ft p.copy,.comeing_ft p.copy a{ color:#C2D1D1!important;}

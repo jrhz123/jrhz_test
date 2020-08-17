@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X3.2]]></item>
+	<item id="Time"><![CDATA[2015-07-29 16:39]]></item>
+	<item id="From"><![CDATA[东江社区 (http://sns.huizhou.cn/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[0]]></item>
+			<item id="adminid"><![CDATA[0]]></item>
+			<item id="name"><![CDATA[手机版微信]]></item>
+			<item id="identifier"><![CDATA[wx_mobile]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[wx_mobile/]]></item>
+			<item id="copyright"><![CDATA[惠州报业传媒集团]]></item>
+			<item id="version"><![CDATA[v1.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[mobile]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[bind]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[微信绑定]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[7]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="2">
+					<item id="name"><![CDATA[bind_data]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[绑定记录]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[2]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X3.2]]></item>
+		<item id="var">
+			<item id="0">
+				<item id="displayorder"><![CDATA[1]]></item>
+				<item id="title"><![CDATA[是否开启手机版]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[wx_start]]></item>
+				<item id="type"><![CDATA[radio]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="1">
+				<item id="displayorder"><![CDATA[2]]></item>
+				<item id="title"><![CDATA[App Key]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[wx_app_key]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[wx5b7d0bc187e5d157]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="2">
+				<item id="displayorder"><![CDATA[3]]></item>
+				<item id="title"><![CDATA[App Secret]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[wx_app_secret]]></item>
+				<item id="type"><![CDATA[text]]></item>
+				<item id="value"><![CDATA[1de73e198036cf9c6ccb55aefb766bf8 ]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+			<item id="3">
+				<item id="displayorder"><![CDATA[4]]></item>
+				<item id="title"><![CDATA[微信注册用户默认用户组]]></item>
+				<item id="description"><![CDATA[]]></item>
+				<item id="variable"><![CDATA[wx_group]]></item>
+				<item id="type"><![CDATA[group]]></item>
+				<item id="value"><![CDATA[]]></item>
+				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="wx_mobile_member_auth_fail"><![CDATA[安全校验失败，请重新扫描登录]]></item>
+				<item id="wx_mobile_member_access_token_fail"><![CDATA[安全校验密码失效，请重新打开，并扫描二维码]]></item>
+				<item id="wx_mobile_member_login_fail"><![CDATA[登录失败，请重新打开，并扫描二维码]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="wx_mobile_share"><![CDATA[微信]]></item>
+				<item id="wx_mobile_sharetitle"><![CDATA[分享到微信]]></item>
+				<item id="wsq_threadqr"><![CDATA[用微信扫一扫，互动赢积分]]></item>
+				<item id="wsq_indexqr"><![CDATA[用微信扫一扫<br />互动赢积分]]></item>
+				<item id="config_bindinfo"><![CDATA[您已将本站帐号 <strong>{$_G[username]}</strong> 与微信绑定]]></item>
+				<item id="bind_weixin"><![CDATA[已绑定微信]]></item>
+				<item id="bind_dateline"><![CDATA[绑定时间]]></item>
+				<item id="config_unbind"><![CDATA[解除已绑定帐号？]]></item>
+				<item id="config_unbind_desc"><![CDATA[您确认要解除与本站帐号的绑定关系？]]></item>
+				<item id="config_unbind_confirm"><![CDATA[确认解除]]></item>
+				<item id="config_bind"><![CDATA[点击按钮，立刻绑定微信]]></item>
+				<item id="config_title"><![CDATA[使用微信账号绑定本站，您可以...]]></item>
+				<item id="config_title1"><![CDATA[用微信帐号轻松登录]]></item>
+				<item id="config_desc_content1"><![CDATA[无需记住本站的帐号和密码，随时使用微信轻松登录]]></item>
+				<item id="config_title2"><![CDATA[发表主题分享到微信朋友圈]]></item>
+				<item id="config_desc_content2"><![CDATA[将您的论坛主题分享到微信朋友圈，让大家全方面了解您]]></item>
+				<item id="config_title3"><![CDATA[把本站精彩内容分享到微信]]></item>
+				<item id="config_desc_content3"><![CDATA[每一个精彩内容绝不放过，简单快捷的将论坛主题分享给好友]]></item>
+				<item id="unbind_succeed"><![CDATA[微信解绑成功]]></item>
+				<item id="sync_succeed"><![CDATA[同步设置更新成功]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+	</item>
+</root>

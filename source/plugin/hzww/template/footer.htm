@@ -1,0 +1,27 @@
+   <div class="area  foot">
+   		
+       
+            <span class="float_l"><a href="http://sns.huizhou.cn">社区首页</a> | <a href="http://www.huizhou.cn">今日惠州网PC端</a></span>
+            <img src="{eval echo _cnzzTrackPageView(950994)}" width="0" height="0"/>
+			<span class="float_r">
+            <!--{if $_G['uid']}-->
+				<a href="home.php?mod=space&uid=1&do=profile&mycenter=1">{$_G['username']}</a> , <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}" title="退出" class="dialog">退出</a>
+			<!--{else}-->
+				<a href="member.php?mod=logging&action=login&refer={eval echo urlencode($_G['setting']['mobile']['simpletypeurl'][2])}" title="登录">登录</a> | <a href="member.php?mod=register" title="立即注册">注册</a>
+			<!--{/if}--></span>
+       
+   </div>
+</div>
+
+<!--{if $_GET['diy'] == 'yes'}-->
+	<!--{if check_diy_perm($topic) && (empty($do) || $do != 'index')}-->
+		<script type="text/javascript" src="{$_G[setting][jspath]}common_diy.js?{VERHASH}"></script>
+		<script type="text/javascript" src="{$_G[setting][jspath]}portal_diy{if !check_diy_perm($topic, 'layout')}_data{/if}.js?{VERHASH}"></script>
+	<!--{/if}-->
+	<!--{if $space['self'] && CURMODULE == 'space' && $do == 'index'}-->
+		<script type="text/javascript" src="{$_G[setting][jspath]}common_diy.js?{VERHASH}"></script>
+		<script type="text/javascript" src="{$_G[setting][jspath]}space_diy.js?{VERHASH}"></script>
+	<!--{/if}-->
+<!--{/if}-->
+</body>
+</html>

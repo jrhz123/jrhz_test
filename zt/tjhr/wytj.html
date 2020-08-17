@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>我要推荐</title>
+        <style>
+            *{margin:0px; padding:0px;}
+            img{border:0;}
+            a{text-decoration:none;}
+            a:hover{text-decoration:underline;}
+            .welp{width:100%; clear:both; overflow:hidden;}
+            li{list-style:none; list-style-image:none; list-style-type:none;} 
+            .wytj{width:253px; background-color:#FFEA89; border:1px solid #DED9C0;}
+            .wytj label{font:bold 12px/22px "宋体"; color:#2C2C2C; float:left; display:inline; margin-left:8px;}
+            .tj{width:68px; height:22px; background:url(images/tj.jpg) no-repeat; cursor:pointer; border:0;}
+            .tel{width:115px; height:16px;float:left; display:inline;}
+            .lb{width:115px; height:20px;float:left; display:inline;}
+            .js{width:234px; height:120px; margin-left:8px; color:#B9B9B9; text-indent:2em; padding-top:5px;}
+            .tips{font:normal 12px/14px "宋体"; color:#6B6B6B; margin-left:12px; margin-top:3px;}
+            .pad4{padding-top:4px;}
+            .pad8{padding-top:8px;}
+        </style>
+    </head>
+
+    <body>
+        <script>
+            function checklogin()
+            {
+                
+                
+                if (form1.tel.value == "") 
+                {
+                    alert("请填写电话号码")
+                    return false;
+                }
+
+                else{
+				var $tel = document.form1.tel.value;
+				var $pattern = /^((13[0-9])|145|147|(15[0-9])|170|(18[0-9]))[0-9]{8}$/;
+				$flag = $pattern.test($tel);
+				if ($flag == 0){
+					alert('请输入正确的手机号码！\n本活动限定惠州本地移动、联通或电信手机号码参加。');
+					return false;
+				}
+    
+                }
+                if(form1.category.value == "")
+                    {
+                    alert("请选择事迹类别")
+                    return false;
+                }
+                if(form1.content.value == "请按顺序填写：姓名，所属地区（精确到村镇）或单位，事迹简述（突出亮点，字数不限）。")
+                    {
+                    alert("请填写事迹")
+                    return false;
+                }
+            }
+        </script>
+
+        <div class="wytj">
+            <div class="welp"><img src="images/wytj.jpg" width="253" height="36" /></div>
+            <form  name="form1" action="wytj.php" onSubmit="return checklogin()" method="post">
+                <div class="welp pad8"><label>推荐人联系电话：</label><input type="text" name="tel" class="tel" /></div>
+                <div class="welp pad4">
+                    <label>事迹类别：</label>
+                    <select name="category" onchange="MM_jumpMenu('parent', this, 0)" class="lb">
+                        <option>请选择</option>
+                        <option value='助人为乐'>助人为乐</option>
+                        <option value='见义勇为'>见义勇为</option>
+                        <option value='诚实守信'>诚实守信</option>
+                        <option value='敬业奉献'>敬业奉献</option>
+                        <option value='孝老爱亲'>孝老爱亲</option>
+                    </select>
+                </div>
+                <div class="welp pad4"><label>事迹简述：</label></div>
+                <div class="welp pad4"><textarea name="content" cols="" rows="" class="js" onfocus="if (value == '请按顺序填写：姓名，所属地区（精确到村镇）或单位，事迹简述（突出亮点，字数不限）。') {
+                                value = ''
+                            }"
+                                                 onblur="if (value == ''){value = '请按顺序填写：姓名，所属地区（精确到村镇）或单位，事迹简述（突出亮点，字数不限）。'}">请按顺序填写：姓名，所属地区（精确到村镇）或单位，事迹简述（突出亮点，字数不限）。</textarea></div>
+                <div class="tips">注：身边好人被东江时报报道的，推荐人和被推荐人各奖励200元，本人自荐则奖励200元。</div>
+                <div style="text-align:center; padding:5px 0 8px;"><input name="" type="submit" class="tj" value=""/></div>
+            </form>
+        </div>
+
+    </body>
+</html>

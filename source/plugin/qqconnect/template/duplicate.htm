@@ -1,0 +1,114 @@
+<!--{template common/header}-->
+<script src="http://www.huizhou.cn/images/jquery2014.js" type="text/javascript"></script>
+<script lang="javascript">
+var jq = jQuery.noConflict();
+</script>
+<style type="text/css">
+	.connect_btn{
+		border-style: solid;
+		border-color: #E0E0E0 #848484 #848484 #E0E0E0;
+		background-color: #0099c0;
+		color:white;
+		font-size: 24px;
+		width: 250px;
+		height: 150px;
+	}
+</style>
+<div id="ct" class="ptm wp cl">
+	<div class="nfl" id="main_succeed" style="display: none">
+		<div class="f_c altw">
+			<div class="alert_right">
+				<p id="succeedmessage"></p>
+				<p id="succeedlocation" class="alert_btnleft"></p>
+				<p class="alert_btnleft"><a id="succeedmessage_href">{lang message_forward}</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="mn">
+		<div class="bm" id="main_message">
+			<div class="bm_h bbs" id="main_hnav">
+				<span class="y"><a href="member.php?mod=connect">返回上一页</a></span>
+				<h3 id="layer_reginfo_t" class="xs2">
+					用户名重复
+				</h3>
+			</div>
+			<p id="returnmessage4"></p>
+			<div class="b1lr">
+				<form action="qqconnect-quick.html" method="POST" id="quick_form">
+					<div class="c cl bm_c">
+						<div class="rfm">
+							<table>
+								<tr>
+									<th><img src="static/image/common/connect_qq.gif" alt="QQ" class="mtn"></th>
+									<td>{$error_message}</td>
+								</tr>
+							</table>
+						</div>
+						<div class="rfm">
+							<table>
+								<tr>
+									<th>QQ昵称&nbsp;</th>
+									<td>{$_G['cookie']['connect_qq_nick']}</td>
+								</tr>
+							</table>
+						</div>
+						<div class="rfm">
+							<table>
+								<tr>
+									<th>用户名:</th>
+									<td><input id="username" name="username" type="text" /></td>
+									<td id="chkusername"></td>
+								</tr>
+							</table>
+						</div>
+						<div class="rfm mbw bw0">
+							<table>
+								<tr>
+									<th>&nbsp;</th>
+									<td><button class="pn pnc" type="submit" name="registersubmit" value="true" tabindex="1"><strong>提交注册</strong></button></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var regable = false;
+	jq(document).ready(function(){
+		jq("#username").change(function(){
+			username = jq(this).val();
+			url = "qqconnect-chkusername.html";
+			jq.post(url,
+				{username: username},
+				function(data){
+					if (data == '1') {
+						//jq("#chkusername").html('√');
+						jq("#chkusername").attr('class','p_right');
+						jq("#chkusername").html('');
+						regable = true;
+					} else {
+						jq("#chkusername").attr('class','p_chk');
+						jq("#chkusername").html('该用户名已被注册。')
+						regable = false;
+					}
+				}
+			)
+		})
+
+		jq("#quick_form").submit(function(event){
+			if (!regable) {
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+				alert('该用户名已被注册。');
+			}
+		})
+	})
+</script>
+<!--{eval updatesession();}-->
+<!--{template common/footer}-->

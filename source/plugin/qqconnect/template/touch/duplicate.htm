@@ -1,0 +1,74 @@
+<!--{template common/header}-->
+<link rel="stylesheet" href="static/image/mobile/style.css" type="text/css" media="all">
+<!-- header start -->
+<header>
+    <div class="nav">
+        <a href="javascript:history.go(-1);" class="z iconBack cf"></a>
+    	<span class="name">用户名重复</span>
+    </div>
+</header>
+<!-- header end -->
+<!--{eval $loginhash = 'L'.random(4);}-->
+<div class="alyout">
+	<form method="post" autocomplete="off" name="login" id="loginform_$loginhash" class="cl"{if $_G['setting']['regconnect']} style="display:none"{/if} onsubmit="ajaxpost('loginform_$loginhash', 'returnmessage4', 'returnmessage4', 'onerror');return false;" action="plugin.php?id=qqconnect:quick">
+		<div class="login_from m_t">
+			<div class="dsf">
+				<span>{$error_message}</span>
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <input type="hidden" name="referer" value="{$_G['qc']['dreferer']}" />
+        <input type="hidden" id="auth_hash" name="auth_hash" value="{$_G['qc']['connect_auth_hash']}" />
+        <input type="hidden" id="is_notify" name="is_notify" value="{$_G['qc']['connect_is_notify']}" />
+        <input type="hidden" id="is_feed" name="is_feed" value="{$_G['qc']['connect_is_feed']}" />
+				<ul>
+					<li>
+						<span>QQ昵称：{$_G['cookie']['connect_qq_nick']}</span>
+					</li>
+					<li>
+			            <span class="cf iconName float_l incon"></span><input type="text" value="" tabindex="1" class=" login_input" size="30" autocomplete="off" name="username" id="username_$loginhash" placeholder="{lang inputyourname}" fwin="login">
+					</li>
+				</ul>
+			</div>
+		</div>
+    <div class="btn_login">
+      <button tabindex="3" value="true" name="registersubmit" type="submit" class="formdialog pn pnc"><span>立刻登陆</span></button>
+    </div>
+	</form>
+</div>
+<script type="text/javascript">
+	jq = jQuery.noConflict();
+	var regable = false;
+	jq(document).ready(function(){
+		jq("#username").change(function(){
+			username = jq(this).val();
+			url = "qqconnect-chkusername.html";
+			jq.post(url,
+				{username: username},
+				function(data){
+					if (data == '1') {
+						//jq("#chkusername").html('√');
+						jq("#chkusername").attr('class','p_right');
+						jq("#chkusername").html('');
+						regable = true;
+					} else {
+						jq("#chkusername").attr('class','p_chk');
+						jq("#chkusername").html('该用户名已被注册。')
+						regable = false;
+					}
+				}
+			)
+		})
+
+		jq("#quick_form").submit(function(event){
+			if (!regable) {
+				if (event.preventDefault) {
+					event.preventDefault();
+				} else {
+					event.returnValue = false;
+				}
+				alert('该用户名已被注册。');
+			}
+		})
+	})
+</script>
+<!--{eval updatesession();}-->
+<!--{template common/footer}-->

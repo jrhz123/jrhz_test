@@ -1,0 +1,295 @@
+<!--[name]论坛首页频道模板[/name]-->
+<!--{subtemplate common/header}-->
+
+<style id="diy_style" type="text/css"></style>
+<!--<link rel="stylesheet" type="text/css" href="template/default/portal/bbs/style/bootstrap.min.css" />-->
+<!--<link rel="stylesheet" type="text/css" href="template/default/portal/bbs/style/bbs_style.css"  />-->
+<!--<script src="http://www.huizhou.cn/images/jquery2014.js"></script>
+<script src="template/default/portal/bbs/js/bootstrap.min.js"></script>
+<script src="template/default/portal/bbs/js/imghove.js"></script>
+<script type="text/javascript" src="template/default/portal/bbs/js/slider2014.js"></script>
+-->
+<script type="text/javascript" src="http://www.huizhou.cn/images/jquery2014.js"></script>
+<script type="text/javascript" src="template/default/portal/bbs/js/jquery.SuperSlide.2.1.1.js"></script>
+<script lang="javascript">
+var jq = jQuery.noConflict();
+</script>
+<body onLoad="MM_preloadImages('template/comeing_yae_05/comeing/sq_reguit_h.jpg','template/comeing_yae_05/comeing/sq_login_h.jpg')">
+
+<div style="position:relative; z-index:97;">
+<script language="JavaScript">
+function setTab(name,cursel,n){
+ for(i=1;i<=n;i++){
+  var menu=document.getElementById(name+i);
+  var con=document.getElementById("con_"+name+"_"+i);
+  menu.className=i==cursel?"hover":"";
+  con.style.display=i==cursel?"block":"none";
+ }
+}
+
+</script>
+
+
+</div>
+
+
+
+<div class="alyout">
+	<div class="area m_t">
+        <div class="float_l w320">
+         <div class="index_focus">
+              <!--[diy=bbs_jdtt]--><div id="bbs_jdtt" class="area"></div><!--[/diy]-->    
+            </div>      			
+            <div class="picMarquee-top m_t15">
+			<div class="hd">
+				<h3 class="float_l"><span>网友活动</span></h3>
+				<div class="hd_p">
+				<a class="next"></a>
+				<a class="prev"></a>
+			</div>
+				
+			
+			</div>
+            <div class="left_subnav center">
+			   <a href="http://sns.huizhou.cn/xj_event-event_center.html?pc=1&offlineclass=2" target="_blank">美食</a> | 
+			   <a href="http://sns.huizhou.cn/xj_event-event_center.html?pc=1&offlineclass=1" target="_blank">文娱</a> | 
+			   <a href="http://sns.huizhou.cn/xj_event-event_center.html?pc=1&offlineclass=5" target="_blank">驴友</a> | 
+			   <a href="http://sns.huizhou.cn/xj_event-event_center.html?pc=2" target="_blank">线上</a> | 
+			   <a href="http://sns.huizhou.cn/xj_event-event_center.html" target="_blank">全部</a> </div>
+			<div class="bd">
+				  <!--[diy=bbs_wyhd]--><div id="bbs_wyhd" class="area"></div><!--[/diy]-->      
+			</div>
+		</div>
+
+		<script id="jsID" type="text/javascript">
+(function(d,D,v){d.fn.responsiveSlides=function(h){var b=d.extend({auto:!0,speed:1E3,timeout:7E3,pager:!1,nav:!1,random:!1,pause:!1,pauseControls:!1,prevText:"Previous",nextText:"Next",maxwidth:"",controls:"",namespace:"rslides",before:function(){},after:function(){}},h);return this.each(function(){v++;var e=d(this),n,p,i,k,l,m=0,f=e.children(),w=f.size(),q=parseFloat(b.speed),x=parseFloat(b.timeout),r=parseFloat(b.maxwidth),c=b.namespace,g=c+v,y=c+"_nav "+g+"_nav",s=c+"_here",j=g+"_on",z=g+"_s",o=d("<ul class='"+c+"_tabs "+g+"_tabs' />"),A={"float":"left",position:"relative"},E={"float":"none",position:"absolute"},t=function(a){b.before();f.stop().fadeOut(q,function(){d(this).removeClass(j).css(E)}).eq(a).fadeIn(q,function(){d(this).addClass(j).css(A);b.after();m=a})};b.random&&(f.sort(function(){return Math.round(Math.random())-0.5}),e.empty().append(f));f.each(function(a){this.id=z+a});e.addClass(c+" "+g);h&&h.maxwidth&&e.css("max-width",r);f.hide().eq(0).addClass(j).css(A).show();if(1<f.size()){if(x<q+100)return;if(b.pager){var u=[];f.each(function(a){a=a+1;u=u+("<li><a href='#' class='"+z+a+"'>"+a+"</a></li>")});o.append(u);l=o.find("a");h.controls?d(b.controls).append(o):e.after(o);n=function(a){l.closest("li").removeClass(s).eq(a).addClass(s)}}b.auto&&(p=function(){k=setInterval(function(){var a=m+1<w?m+1:0;b.pager&&n(a);t(a)},x)},p());i=function(){if(b.auto){clearInterval(k);p()}};b.pause&&e.hover(function(){clearInterval(k)},function(){i()});b.pager&&(l.bind("click",function(a){a.preventDefault();b.pauseControls||i();a=l.index(this);if(!(m===a||d("."+j+":animated").length)){n(a);t(a)}}).eq(0).closest("li").addClass(s),b.pauseControls&&l.hover(function(){clearInterval(k)},function(){i()}));if(b.nav){c="<a href='#' class='"+y+" prev'>"+b.prevText+"</a><a href='#' class='"+y+" next'>"+b.nextText+"</a>";h.controls?d(b.controls).append(c):e.after(c);var c=d("."+g+"_nav"),B=d("."+g+"_nav.prev");c.bind("click",function(a){a.preventDefault();if(!d("."+j+":animated").length){var c=f.index(d("."+j)),a=c-1,c=c+1<w?m+1:0;t(d(this)[0]===B[0]?a:c);b.pager&&n(d(this)[0]===B[0]?a:c);b.pauseControls||i()}});b.pauseControls&&c.hover(function(){clearInterval(k)},function(){i()})}}if("undefined"===typeof document.body.style.maxWidth&&h.maxwidth){var C=function(){e.css("width","100%");e.width()>r&&e.css("width",r)};C();d(D).bind("resize",function(){C()})}})}})(jQuery,this,0);
+
+
+          jq(document).ready(function(){
+			  jq(".f426x240").responsiveSlides({
+                  auto: true,
+                  pager: true,
+                  nav: true,
+                  speed: 700,
+                  maxwidth: 320
+               });
+			   
+			  
+		
+			   
+              
+          })
+
+           jQuery(".picMarquee-top").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",vis:3,interTime:50,trigger:"click"});
+		</script>
+
+		
+		
+         	<div class="area m_t10 titlebar">
+            	<h3><span>精彩回顾</span></h3>
+                <!--[diy=bbs_jchg]--><div id="bbs_jchg" class="area"></div><!--[/diy]-->  
+            </div>
+      </div>
+        <div class="float_l w380 news">
+            
+             <!--[diy=bbs_sytt]--><div id="bbs_sytt" class="area"></div><!--[/diy]-->  
+    		<!--[diy=bbs_sytt2]--><div id="bbs_sytt2" class="area"></div><!--[/diy]-->  
+            <h4 class="area m_t15"><img src="template/comeing_yae_05/comeing/sq_info01.jpg" />论坛热点</h4>
+            <!--[diy=bbs_ltrd]--><div id="bbs_ltrd" class="area"></div><!--[/diy]--> 
+            <h4 class="area m_t15"><img src="template/comeing_yae_05/comeing/sq_info02.jpg" />博文推荐</h4>
+               <!--[diy=bbs_bwtj]--><div id="bbs_bwtj" class="area"></div><!--[/diy]-->      
+        </div>
+        <div class="float_r w260 titlebar">
+        	<h3><span>公告提醒</span></h3>
+             <!--[diy=bbs_ggtx]--><div id="bbs_ggtx" class="area"></div><!--[/diy]-->      
+            <div class="area m_t10"><a href="http://www.huizhou.cn/jrhz_hmlt/hd/" target="_blank"><img src="template/comeing_yae_05/comeing/sq_pic.jpg" /></a></div>
+             <!--[diy=bbs_xlh]--><div id="bbs_xlh" class="area"></div><!--[/diy]-->   
+            <div class="area m_t15"><span class="float_l"><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=863&filter=paotui" target="_blank"><img src="template/comeing_yae_05/comeing/sq_pic02.jpg" /></a></span><span class="float_r"><a href="http://sns.huizhou.cn/forum-863-1.html" target="_blank"><img src="template/comeing_yae_05/comeing/sq_pic03.jpg" /></a></span></div>
+            <div class="area m_t15"><!--{ad/custom_1}--></div>
+            <div class="area m_t15"><!--{ad/custom_4}--></div>
+        </div>
+    </div>
+	
+	<div class="area m_t"><!--{ad/custom_3}--></div>
+    <div class="area m_t titlebar">
+    	<h3 class="clear"><span>精彩图贴</span><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=134" target="_blank">人像摄影</a> <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=133" target="_blank">风光纪实</a> <a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=865" target="_blank">自拍秀</a></h3>
+        <div class="area m_t10">
+        	<div class="float_l w424 ">
+                       <div class="pic01 picshow">
+                	   <!--{block/53}-->
+					     </div>     
+                    <div class="clearfix m_t9">
+					      <div class="pic02 w136  picshow float_l">
+                    	   <!--{block/54}-->
+							   </div>    
+						<div class="pic02 w280  picshow float_r ">
+                    	    <!--{block/55}-->
+							 </div>    
+                    </div>
+              
+            </div>
+            
+            <div class="float_r w576">
+            	<div class="area piccos">
+              <!--{block/56}-->	
+                </div>
+                <div class="area clearfix m_t9">
+                	<div class="w290 float_l">
+                    	<div class="area piccos">
+                	<!--{block/57}-->
+                </div>
+				
+				<div class="pic02  picshow m_t9 m_left8  ">
+                      <!--{block/58}-->
+					    </div>
+                    </div>
+					
+					<div class="w280 float_r">
+                    	<div class="pic03   picshow  ">
+                    <!--{block/59}-->
+					</div>
+	           </div>
+                </div>
+				
+            </div>
+        </div>
+    </div>
+    <div class="area m_t">
+    	<div class="float_l w320 titlebar">
+        	<h3><span>你报料我采访</span><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=864&page=1" target="_blank" class="titlelink">网上报料>></a></h3>
+             <!--[diy=bbs_wsbl]--><div id="bbs_wsbl" class="area"></div><!--[/diy]--> 
+            <div class="area m_t5"><img src="template/comeing_yae_05/comeing/sq_pic06.jpg" /></div>
+
+            <h3 class="m_t15"><span><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=122" target="_blank">房产家居</a></span></h3>  
+            <!--[diy=bbs_fcjj]--><div id="bbs_fcjj" class="area"></div><!--[/diy]--> 
+            <h3 class="m_t10"><span><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=881" target="_blank">汽车</a></span></h3>  
+            <!--[diy=bbs_qc]--><div id="bbs_qc" class="area"></div><!--[/diy]-->  
+            <h3 class="m_t10"><span><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=76" target="_blank">运动</a></span></h3>  
+            <!--[diy=bbs_yd]--><div id="bbs_yd" class="area"></div><!--[/diy]--> 
+            <h3 class="m_t10"><span><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=884" target="_blank">公益</a></span></h3>  
+            <!--[diy=bbs_gy]--><div id="bbs_gy" class="area"></div><!--[/diy]-->                         
+            <h3 class="m_t10"><span><a href="http://sns.huizhou.cn/forum.php?gid=104" target="_blank">生活向导</a></span></h3>
+            <div class="area m_t10"><!--{ad/custom_2}--></div>  
+               <!--[diy=bbs_shxd]--><div id="bbs_shxd" class="area"></div><!--[/diy]-->                           
+        </div>
+    
+        <div class="float_l w380 titleC">
+       	  <h3><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=115" target="_blank">更多>></a><img src="template/comeing_yae_05/comeing/sq_info03.jpg" />娱乐</h3>
+		  
+          <div class="area m_t15 fign">
+            	 <!--[diy=bbs_yltt]--><div id="bbs_yltt" class="area"></div><!--[/diy]-->   
+            </div>
+			
+			
+          <div class="newscoslist clearfix m_t10">
+            	<dl class="clearfix">
+                	<dt class="cos01">资讯</dt>
+                    <dd>
+                    	<!--[diy=bbs_dy]--><div id="bbs_dy" class="area"></div><!--[/diy]-->   
+                    </dd>
+                </dl>
+                <dl  class="m_t10 clearfix">
+                	<dt class="cos02">电影</dt>
+                    <dd>
+                    	<!--[diy=bbs_yc]--><div id="bbs_yc" class="area"></div><!--[/diy]-->   
+                    </dd>
+                </dl>
+                <dl class="m_t10 clearfix">
+                	<dt class="cos03">演出</dt>
+                    <dd>
+                    	<!--[diy=bbs_zx]--><div id="bbs_zx" class="area"></div><!--[/diy]-->   
+                    </dd>
+                </dl>
+            </div>
+            
+           <h3 class="m_t"><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=870" target="_blank">更多>></a><img src="template/comeing_yae_05/comeing/sq_info04.jpg" />美食</h3>
+          <div class="area m_t15 fign">
+            	 <!--[diy=bbs_ms]--><div id="bbs_ms" class="area"></div><!--[/diy]-->   
+            </div>
+          <div class="newscoslist clearfix m_t10">
+            	<dl class="clearfix">
+                	<dt class="cos04">分享</dt>
+                    <dd>
+                    	<!--[diy=bbs_td]--><div id="bbs_td" class="area"></div><!--[/diy]-->   
+                    </dd>
+                </dl>
+                <dl  class="m_t10 clearfix">
+                	<dt class="cos05">活动</dt>
+                    <dd>
+                    	<!--[diy=bbs_hd]--><div id="bbs_hd" class="area"></div><!--[/diy]-->   
+                    </dd>
+                </dl>
+                <dl class="m_t10 clearfix">
+                	<dt class="cos06">探店</dt>
+                    <dd>
+                    	<!--[diy=bbs_fx]--><div id="bbs_fx" class="area"></div><!--[/diy]-->   
+                    </dd>
+                </dl>
+            </div> 
+            <h3 class="m_t"><a href="http://sns.huizhou.cn/forum.php?mod=forumdisplay&fid=86" target="_blank">更多>></a><img src="template/comeing_yae_05/comeing/sq_info05.jpg" />驴友</h3>
+          <div class="area m_t15 fign">
+            	<!--[diy=bbs_lytt]--><div id="bbs_lytt" class="area"></div><!--[/diy]-->   
+            </div>
+               	<!--[diy=bbs_ly]--><div id="bbs_ly" class="area"></div><!--[/diy]-->   	
+      </div>
+        <div class="float_r w260">
+        <div class="tab">
+        	<ul>
+   <li id="tab1" onMouseOver="setTab('tab',1,2)"  class="hover">热帖排行
+   </li>
+   <li  id="tab2" onMouseOver="setTab('tab',2,2)">热博排行</li>
+
+</ul>
+</div>
+        <div   id="con_tab_1"  class="sq_ph m_t5">
+             	<!--[diy=bbs_rtph]--><div id="bbs_rtph" class="area"></div><!--[/diy]-->                                          
+        </div>
+        <div id="con_tab_2" class="sq_ph m_t5" style="display:none">
+              
+			  <!--[diy=bbs_rbph]--><div id="bbs_rbph" class="area"></div><!--[/diy]-->   
+           </div>
+ 
+		<div class="titlebar clearfix m_t15">
+        	<h3><span>精华帖</span></h3>
+             	<!--[diy=bbs_jht]--><div id="bbs_jht" class="area"></div><!--[/diy]-->  
+        </div>
+        <div class="tab m_t15">
+        	<ul>
+   <li id="mytab1" onMouseOver="setTab('mytab',1,2)"  class="hover" >名博推荐</li>
+   <li  id="mytab2" onMouseOver="setTab('mytab',2,2)">社区达人</li>
+
+</ul>
+</div>
+       
+           <div  id="con_mytab_1">
+              <!--[diy=bbs_mbtj]--><div id="bbs_mbtj" class="area"></div><!--[/diy]-->     
+              <div class="area center peolist_more"><a href="http://sns.huizhou.cn/blog/" target="_blank">+更多</a></div>
+           </div>
+           <div  id="con_mytab_2" style="display:none">
+              
+			  
+			<!--[diy=bbs_sqdr]--><div id="bbs_sqdr" class="area"></div><!--[/diy]-->         
+           </div>
+      
+     
+
+        <div class="titlebar clearfix m_t10">
+        	<h3><span><a href="#" target="_blank">社区帮助</a></span></h3>
+           <!--[diy=bbs_sqbz]--><div id="bbs_sqbz" class="area"></div><!--[/diy]-->  
+        </div>
+
+        
+        </div>
+    </div>
+	
+	<!--{block/321}-->
+    <div class="rel m_t15" style="display:none">
+    	<h3><img src="template/comeing_yae_05/comeing/sq_rel.jpg" /></h3>
+        <p class="m_t15"><a href="#" target="_blank">奥一东江网</a>   <a href="#" target="_blank">惠大论坛</a>   <a href="#" target="_blank">惠声惠色</a>   <a href="#" target="_blank">乐乐网</a>   <a href="#" target="_blank">惠东论坛</a>   <a href="#" target="_blank">博罗论坛</a>   <a href="#" target="_blank">新惠阳社区</a>   <a href="#" target="_blank">惠州地带</a>   <a href="#" target="_blank">搜房论坛</a>   <a href="#" target="_blank">阳光公益联盟</a>   <a href="#" target="_blank">万方设计</a>   <a href="#" target="_blank">香山life</a>   <a href="#" target="_blank">湖北论坛</a>   <a href="#" target="_blank">80后社区</a>  <a href="#" target="_blank">惠州经济学院</a>   <a href="#" target="_blank">湖北论坛</a>   <a href="#" target="_blank">奥一东江网</a>   <a href="#" target="_blank">惠大论坛</a>   <a href="#" target="_blank">惠声惠色</a>   <a href="#" target="_blank">乐乐网</a>   <a href="#" target="_blank">惠东论坛</a>   <a href="#" target="_blank">博罗论坛</a>   <a href="#" target="_blank">新惠阳社区</a>   <a href="#" target="_blank">惠州地带</a>   <a href="#" target="_blank">搜房论坛</a>   <a href="#" target="_blank">阳光公益联盟</a>   <a href="#" target="_blank">万方设计</a>   <a href="#" target="_blank">香山life</a>   <a href="#" target="_blank">湖北论坛</a>   <a href="#" target="_blank">80后社区</a>  <a href="#" target="_blank">惠州经济学院</a>   <a href="#" target="_blank">湖北论坛</a></p>
+    </div>
+</div>
+ <div style="display:none">
+ {$_G['basefilename']}
+ </div>
+</body>
+<!--{subtemplate common/footer}-->

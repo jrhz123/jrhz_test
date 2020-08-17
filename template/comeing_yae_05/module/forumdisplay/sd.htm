@@ -1,0 +1,85 @@
+<!--{hook/forumdisplay_side_top}-->
+<!--{if !$subforumonly}-->
+  $comeing_box_d
+  <div class="bm">
+    <div class="bm_h">
+      $comeing_box_h
+      <h3>{lang their}: <!--{eval echo cutstr($_G['cache']['forums'][$_G['forum']['fup']]['name'], 22, '')}--></h3>
+      $comeing_box_2de
+    </div>
+    $comeing_box_c
+    <div class="bm_c">
+      <ul class="xl xl2 cl">
+      <!--{loop $_G['cache']['forums'] $bforum}-->
+        <!--{if $bforum['fup'] == $_G['forum']['fup'] && $bforum['status']}-->
+          <li><a href="forum.php?mod=forumdisplay&fid=$bforum[fid]">$bforum['name']</a></li>
+        <!--{/if}-->
+      <!--{/loop}-->
+      </ul>
+    </div>
+    $comeing_box_2de
+  </div>
+  $comeing_box_1de
+  <!--{if $recommendgroups}-->
+  $comeing_box_d
+  <div class="bm">
+    <div class="bm_h cl">
+      $comeing_box_h
+      <h3>{lang recommended_groups}</h3>
+      $comeing_box_2de
+    </div>
+    $comeing_box_c
+    <div class="bm_c cl">
+      <ul class="ml mls cl">
+      <!--{loop $recommendgroups $key $group}-->
+        <li>
+        <a href="forum.php?mod=group&fid=$group[fid]" title="$group[name]" target="_blank" class="avt"><img src="$group[icon]" alt="$group[name]"></a>
+        <p><a href="forum.php?mod=group&fid=$group[fid]" target="_blank">$group[name]</a></p>
+        </li>
+      <!--{/loop}-->
+      </ul>
+    </div>
+    $comeing_box_2de
+  </div>
+  $comeing_box_1de
+  <!--{/if}-->
+
+  <!--{if !($_G['forum']['simple'] & 1) && $_G[setting][whosonlinestatus]}-->
+    $comeing_box_d
+    <div class="bm">
+      <!--{if $detailstatus}-->
+      <div class="bm_h cl">
+        $comeing_box_h
+        <span class="o y"><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&page=$page&showoldetails=no#online"><img src="{STYLEIMGDIR}/forum/collapsed_no.gif" alt="" /></a></span>
+        <h3>$comeing_lang[1] ($onlinenum)</h3>
+        $comeing_box_2de
+      </div>
+      $comeing_box_c
+      <div class="bm_c">
+        <ul class="ml mls cl">
+        <!--{loop $whosonline $key $online}-->
+          <li>
+          <a href="home.php?mod=space&uid=$online[uid]" class="avt"><!--{avatar($online[uid],small)}--></a>
+          <!--{if $online['uid']}-->
+            <p><a href="home.php?mod=space&uid=$online[uid]">$online[username]</a></p>
+          <!--{else}-->
+            <p>$online[username]</p>
+          <!--{/if}-->
+          <span>$online[lastactivity]{LF}</span>
+          </li>
+        <!--{/loop}-->
+        </ul>
+      </div>
+      $comeing_box_2de
+      <!--{else}-->
+      <div class="bm_h cl">
+        $comeing_box_h
+        <span class="o y"><a href="forum.php?mod=forumdisplay&fid=$_G[fid]&page=$page&showoldetails=yes#online" class="nobdr"><img src="{IMGDIR}/collapsed_yes.gif" alt="" /></a></span>
+        <h3>$comeing_lang[1] ($onlinenum)</h3>
+        $comeing_box_2de
+      </div>
+      <!--{/if}-->
+    </div>
+    $comeing_box_1de
+  <!--{/if}-->
+<!--{/if}-->

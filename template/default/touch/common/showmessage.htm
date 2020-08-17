@@ -1,0 +1,79 @@
+<!--{if $param['login']}-->
+	<!--{if $_G['inajax']}-->
+	<!--{eval dheader('Location:member.php?mod=logging&action=login&inajax=1&infloat=1');exit;}-->
+	<!--{else}-->
+	<!--{eval dheader('Location:member.php?mod=logging&action=login');exit;}-->
+	<!--{/if}-->
+<!--{/if}-->
+<!--{template common/header}-->
+<!--{if $_G['inajax']}-->
+<div class="tip" style="height:150px;">
+	<dt id="messagetext">
+		<p>$show_message</p>
+        <!--{if $_G['forcemobilemessage']}-->
+        	<p >
+            	<a href="{$_G['setting']['mobile']['pageurl']}" class="mtn">{lang continue}</a><br />
+                <a href="javascript:history.back();">{lang goback}</a>
+            </p>
+        <!--{/if}-->
+		<!--{if $url_forward && !$_GET['loc']}-->
+			<!--<p><a class="grey" href="$url_forward">{lang message_forward_mobile}</a></p>-->
+			<script type="text/javascript">
+				setTimeout(function() {
+					window.location.href = '$url_forward';
+				}, '3000');
+			</script>
+		<!--{elseif $allowreturn}-->
+			<p><input type="button" class="button" onclick="popup.close();" value="{lang close}"></p>
+		<!--{/if}-->
+	</dt>
+</div>
+<!--{else}-->
+
+<!-- header start -->
+<header class="header">
+	<div style="height:60px;">
+
+        <div style="float:left; text-align:center;"><img src="{STATICURL}image/mobile/images/sqwap_logo.png" style="margin-left:10px;" /></div>
+        <div style="width:20%; float:right; text-align:center">
+        <!--{if $_G['uid']}-->
+            <a href="/home.php?mod=space&uid={$_G['uid']}&do=profile&mycenter=1"><img src="{$_G['setting']['ucenterurl']}/avatar.php?uid={$_G['uid']}&size=small" class='cirm' width="35" height="35" style="margin-top:10px;"></a>
+        <!--{else}-->
+            <a href="/member.php?mod=logging&action=login"  class="cf iconName m_t15 float_r " style="font-size:25px; color:#999; margin-right:15px;"></a>
+        <!--{/if}-->
+        </div>
+		</ul>
+	</div>
+</header>
+<!-- header end -->
+
+<!-- main jump start -->
+<div class="jump_c" style="font-size:18px; line-height:26px;">
+	<p>$show_message</p>
+    <!--{if $_G['forcemobilemessage']}-->
+		<p>
+            <a href="{$_G['setting']['mobile']['pageurl']}" class="mtn">{lang continue}</a><br />
+            <a href="javascript:history.back();">{lang goback}</a>
+        </p>
+    <!--{/if}-->
+	<!--{if $url_forward}-->
+		<p><a class="grey" href="$url_forward">{lang message_forward_mobile}</a></p>
+		<script type="text/javascript">
+			setTimeout(function() {
+				window.location.href = '$url_forward';
+			}, '3000');
+		</script>
+	<!--{elseif $allowreturn}-->
+		<p><a class="grey" href="javascript:history.back();">{lang message_go_back}</a></p>
+		<script type="text/javascript">
+			setTimeout(function() {
+				history.back();
+			}, '3000');
+		</script>
+	<!--{/if}-->
+</div>
+</div>
+<!-- main jump end -->
+
+<!--{/if}-->
+<!--{template common/footer}-->

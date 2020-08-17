@@ -1,0 +1,53 @@
+<!--{block return}-->
+<link rel="stylesheet" type="text/css" id="diy_common" href="source/plugin/comeing_threadstation/template/style.css" />
+<style type="text/css">
+.comeing_threadstation{ background:$_G['style']['wrapbg']; border:1px solid $_G['style']['wrapbordercolor'];}
+.slidebarbtn{ background:$_G['style']['commonbg'];border:1px solid $_G['style']['commonborder']; color:$_G['style']['link']}
+.slidebarbtn:hover{ background:$_G['style']['highlightlink'];border:1px solid $_G['style']['highlightlink']; color:$_G['style']['lightlink']}
+.comeing_threadstation_subs li span{ color:$_G['style']['lighttext']}
+.comeing_threadstation_subs li a{ color:$_G['style']['highlightlink']}
+.comeing_threadstation_subs li a:hover{ color:$_G['style']['noticetext']} 
+</style>
+<div class="comeing_threadstation">
+<table cellpadding="0" cellspacing="0">
+  <tr>
+    <td class="comeing_threadstation_pics" style="width:{$picwidth}px">
+      <div class="comeing_threadstation_picsslide slidebox" slidenum="3" slidestep="1" style="width:{$width}px" >
+        <div class="slideshow">
+          <!--{loop $comeing_threadstation[pics] $key $thread}-->
+          <div class="comeing_threadstation_pics_item" style="width:{$comeing_setting['width']}px">
+          <div style="width:{$comeing_setting['width']}px; height:{$comeing_setting['height']}px"><a href="forum.php?mod=viewthread&tid={$thread['tid']}"><img src="$thread['pic']" alt="$thread['subject']"/></a></div>
+          <h3 style="width:{$comeing_setting['width']}px"><a href="forum.php?mod=viewthread&tid={$thread['tid']}" title="$thread['subject']">$thread['subject']</a></h3>
+          </div>
+          <!--{/loop}-->
+          <!--{loop $comeing_threadstation[extendpics] $key $thread}-->
+          <div class="comeing_threadstation_pics_item" style="width:{$comeing_setting['width']}px">
+          <div style="width:{$comeing_setting['width']}px; height:{$comeing_setting['height']}px"><a href="forum.php?mod=viewthread&tid={$thread['tid']}"><img src="$thread['pic']" alt="$thread['subject']"/></a></div>
+          <h3 style="width:{$comeing_setting['width']}px"><a href="forum.php?mod=viewthread&tid={$thread['tid']}" title="$thread['subject']">$thread['subject']</a></h3>
+          </div>
+          <!--{/loop}-->
+        </div>
+        <a href="javascript:void(0);" class="slidebarbtn slidebarup" mevent="click" >&lt;</a>
+        <a href="javascript:void(0);" class="slidebarbtn slidebardown" mevent="click">&gt;</a>
+      </div>
+      <script type="text/javascript">
+      runslideshow();
+      </script>    
+    </td>
+    <td class="comeing_threadstation_subs">
+    <ul class="cl">
+      <!--{loop $comeing_threadstation[subs] $key $thread}-->
+      <li><span>$thread['dateline']</span><a href="forum.php?mod=viewthread&tid={$thread['tid']}"$thread[highlight]>$thread['subject']</a></li>
+      <!--{/loop}-->
+      <!--{loop $comeing_threadstation[extendsubs] $key $thread}-->
+      <li><span>$thread['dateline']</span><a href="forum.php?mod=viewthread&tid={$thread['tid']}"$thread[highlight]>$thread['subject']</a></li>
+      <!--{/loop}-->
+    </ul>
+    </td>
+  </tr>
+</table>
+</div>
+
+<!--{/block}-->
+
+

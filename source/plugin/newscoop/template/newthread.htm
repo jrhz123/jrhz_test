@@ -1,0 +1,23 @@
+<!--{block return}-->
+<div class="exfm cl">
+	<div class="sinf sppoll z">
+		<dl>
+			<dt><span class="rq">*</span>日期：</dt>
+			<dd>
+				<div id="certainstarttime">
+					<input type="text" name="datetime" id="datetime" class="px" onclick="showcalendar(event, this, true)" autocomplete="off" value="$datetime" tabindex="1">
+				</div>
+			</dd>
+			<dt><span class="rq">*</span><label for="location">地点：</label></dt>
+			<dd>
+				<input type="text" name="location" id="location" class="px oinf" value="$location" tabindex="1">
+			</dd>
+			<dt><span class="rq">*</span><label for="contact">联系方式：</label></dt>
+			<dd class="hasd cl">
+				<span><input type="text" id="contact" name="contact" class="px" value="$contact" tabindex="1"></span>
+			</dd>
+		</dl>
+	</div>
+</div>
+<!--{/block}-->
+<!--{eval return $return;}-->

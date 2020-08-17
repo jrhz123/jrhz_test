@@ -1,0 +1,103 @@
+<!--{if $_GET['mycenter'] && !$_G['uid']}-->
+	<!--{eval dheader('Location:member.php?mod=logging&action=login');exit;}-->
+<!--{/if}-->
+<!--{template common/header}-->
+<style type="text/css">
+.m_nav {
+  background: #f1f1f1;
+  overflow: hidden;
+  padding: 15px 0px 15px 87px;
+}
+.m_nav li {
+  float: left;
+  text-align: center;
+  width: 100px;
+  margin-left: 14px;
+  display: inline;
+  padding: 5px 0px;
+}
+.m_nav li a {
+  font-size: 30px;
+  color: #057299;
+}
+</style>
+<!--{if !$_GET['mycenter']}-->
+
+<!-- header start -->
+<header>
+    <div class="nav">
+       <a href="javascript:history.go(-1)" class="z cf iconBack" style="margin-top:17px;"></a>
+   	<!--{if $_GET['uid']==$_G['uid']}-->
+     	<span class="name">我的空间</span>
+     <!--{else}-->
+     	<span class="name">{$space[username]}的个人空间</span>
+     <!--{/if}-->
+   </div>
+</header>
+<!-- header end -->
+<!-- userinfo start -->
+<div class="userinfo">
+	<div class="user_avatar">
+		<div class="avatar_m"><span><img src="<!--{avatar($space[uid], small, true)}-->" /></span></div>
+		<h2 class="name">$space[username]</h2>
+	</div>
+	<!--Enicn_d 修改 2015-08-03 修改个人资料内容-->
+	<!--{if $_GET['uid']==$_G['uid']}-->
+		<div class="user_box">
+			<ul>
+				<li><span>$space[credits]</span>{lang credits}</li>
+				<!--{loop $_G[setting][extcredits] $key $value}-->
+				<!--{if $value[title]}-->
+				<li><span>{$space["extcredits$key"]} $value[unit]</span>$value[title]</li>
+				<!--{/if}-->
+				<!--{/loop}-->
+			</ul>
+		</div>
+	<!--{else}-->
+		<div class="myinfo_list cl">
+			<ul>
+				<a href="home.php?mod=space&uid={$space[uid]}&do=thread"><li><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon02.png" /></p>相关帖子</li></a>
+				<a href="home.php?mod=space&uid={$space[uid]}&do=blog"><li><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon03.png" /></p>相关日志</li></a>
+				<a href="plugin.php?id=xj_event:event_my&act=cj&uid={$space[uid]}"><li><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon04.png" /></p>相关活动</li></a>
+			</ul>
+		</div>
+	<!--{/if}-->
+
+	<!--{if $space['uid'] == $_G['uid']}-->
+	<div class="btn_exit"><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout_mobile}</a></div>
+	<!--{/if}-->
+</div>
+<!-- userinfo end -->
+
+<!--{else}-->
+
+<!-- header start -->
+<header>
+    <div class="nav">
+	 <a href="{$_G['siteurl']}" class="z cf iconBack" style="margin-top:17px;"></a>
+     <span class="name">我的空间</span>
+   </div>
+</header>
+<!-- header end -->
+<!-- userinfo start -->
+<div class="userinfo">
+	<div class="user_avatar">
+		<div class="avatar_m"><span><img src="<!--{avatar($_G[uid], small, true)}-->" /></span></div>
+		<h2 class="name">$_G[username]</h2>
+	</div>
+	<div class="myinfo_list cl">
+		<ul>
+			<a href="home.php?mod=space&do=pm"><li class="tit_msg last"><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon01.png" /></p>{lang mypm}<!--{if $_G[member][newpm]}--><img src="{STATICURL}image/mobile/images/icon_msg.png" /><!--{/if}--></li></a>
+			<a href="home.php?mod=space&uid={$_G[uid]}&do=thread&view=me"><li><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon02.png" /></p>{lang mythread}</li></a>
+			<a href="home.php?mod=space&uid={$_G[uid]}&do=blog&view=me"><li><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon03.png" /></p>我的日志</li></a>
+			<a href="plugin.php?id=xj_event:event_my&act=cj"><li><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon04.png" /></p>我的活动</li></a>
+            <a href="home.php?mod=space&uid={$_G[uid]}&do=favorite&view=me&type=thread"><li><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon05.png" /></p>{lang myfavorite}</li></a>
+            <a href="home.php?mod=space&uid={$_G[uid]}&do=profile"><li class="last"><p><img src="{STATICURL}image/mobile/images/sqgrzx_icon06.png" /></p>{lang myprofile}</li></a>   
+		</ul>
+	</div>
+</div>
+<!-- userinfo end -->
+
+<!--{/if}-->
+<!--{eval $nofooter = true;}-->
+<!--{template common/footer}-->

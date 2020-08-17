@@ -1,0 +1,40 @@
+<!--{if $bind[uid]}-->
+<p class="pbm bbda xi1">{lang wx_mobile:config_bindinfo}</p>
+<table cellspacing="0" cellpadding="0" class="tfm mbw bbda">
+	<tr>
+		<th>{lang wx_mobile:bind_weixin}</th>
+		<td><a href="http://weibo.com/u/$bind[sina_uid]" class="xw1" target="_blank">$bind[nickname]</a><td>
+	</tr>
+	<tr>
+		<th>{lang wx_mobile:bind_dateline}</th>
+		<td>$bind[dateline]<td>
+	</tr>
+</table>
+<h2><a href="javascript:;" onclick="display('unbind');" class="xi2">{lang wx_mobile:config_unbind}</a></h2>
+<div id="unbind" style="display:none;">
+	<form action="home.php?mod=spacecp&ac=plugin&id=wx_mobile:bind" method="post" autocomplete="off">
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<input type="hidden" name="unbindsubmit" value="true" />
+		<p class="mtm mbm">{lang wx_mobile:config_unbind_desc}</p>
+		<p><button type="submit" class="pn pnc"><strong>{lang wx_mobile:config_unbind_confirm}</strong></button></p>
+	</form>
+</div>
+<!--{else}-->
+<div class="mtw bm2 cl">
+	<div class="bm2_b bw0 hm" style="padding-top: 70px;">
+		<a href="wx_mobile-login.html?ac=bind"><img src="source/plugin/wx_mobile/image/wechat_bind.png"></a>
+		<p class="mtn xg1">{lang wx_mobile:config_bind}</p>
+	</div>
+	<div class="bm2_b bm2_b_y bw0">
+		<dl class="xld">
+			<h2 class="xi1 xs2">{lang wx_mobile:config_title}</h2>
+			<dt>{lang wx_mobile:config_title1}</dt>
+			<dd class="xg1">{lang wx_mobile:config_desc_content1}</dd>
+			<dt>{lang wx_mobile:config_title2}</dt>
+			<dd class="xg1">{lang wx_mobile:config_desc_content2}</dd>
+			<dt>{lang wx_mobile:config_title3}</dt>
+			<dd class="xg1">{lang wx_mobile:config_desc_content3}</dd>
+		</dl>
+	</div>
+</div>
+<!--{/if}-->

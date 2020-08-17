@@ -1,0 +1,63 @@
+<!--{template common/header}-->
+
+<div style="padding:10px; font-size:14px; text-align:center;">
+$thread['subject']
+</div>
+
+<!-- userinfo start -->
+<div class="loginbox">
+<form name="activity" id="activity" method="post" autocomplete="off" action="plugin.php?id=xj_event:wsq_join_save&tid={$tid}">
+<input type="hidden" name="formhash" value="$_G[formhash]" />
+<input type="hidden" name="eid" value="$items[eid]" />
+<div class="login_from">
+<ul>
+<!--{if $setting[session]}-->
+<li>{lang xj_event:huodongcc}:
+    <select name="session">
+        <option value="">{lang choose_please}</option>
+        <!--{loop $setting[session] $key $value}-->
+        <option value="$key">$value</option>
+        <!--{/loop}-->
+    </select>
+</li>
+<!--{/if}-->
+
+<!--{if !empty($selectuserfield)}-->
+    <!--{loop $selectuserfield $fieldid}-->
+    <!--{if $settings[$fieldid][available]}-->
+        <!--{if $settings[$fieldid][formtype] != 'file'}-->
+        <!--{eval 
+            $htmls[$fieldid] = str_replace('class="px"','class="px p_fre" size="30" placeholder="'.$settings[$fieldid]['title'].'"',$htmls[$fieldid]);
+            $htmls[$fieldid] = preg_replace("/<div.+<\/div>/is", "", $htmls[$fieldid]);
+        }-->
+        	<!--{if strpos($htmls[$fieldid],'select')>0}-->
+                <li>$settings[$fieldid][title]: $htmls[$fieldid]</li>
+            <!--{else}-->
+            	<li>$htmls[$fieldid]</li>
+            <!--{/if}-->
+        <!--{else}-->
+
+        <!--{/if}-->
+    <!--{/if}-->
+    <!--{/loop}-->
+<!--{/if}-->
+<li>{lang xj_event:bmrs}:
+<select name="applynumber">
+            	<!--{loop $applynumber $value}-->
+            	<option value="$value">$value {lang xj_event:ren}</option>
+                <!--{/loop}-->
+</select>
+</li>
+<li>
+{lang xj_event:liuyan}:<br />
+<textarea name="message" cols="" rows="" style="width:100%; height:100px;"></textarea>
+</li>
+</ul>
+</div>
+<div class="btn_login"><button tabindex="3" value="true" name="submit" type="submit" class="formdialog pn pnc"><span>{lang xj_event:baomin}</span></button></div>
+</form>
+</div>
+
+
+
+<!--{template common/footer}-->

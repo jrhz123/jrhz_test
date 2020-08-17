@@ -1,0 +1,423 @@
+<!--{block return}-->
+<style>
+a.bm_btn {
+	display:inline-block;
+	width:50%;
+	 margin:5px 0px 10px;
+	border-radius: 5px;
+	height:28px;
+	text-align:center;
+	background: #ee5816;
+	padding-top:2px;
+	color:#FFFFFF;
+	border:#c03b00 solid 1px;
+	font-size:14px; line-height:28px;
+	font-weight:bold;
+	text-decoration:none;
+}
+a:hover.bm_btn {
+	background-color:#c03b00;
+}
+a.bm_btn2 {
+	display:inline-block;
+	width:50%;
+	border-radius: 5px;
+	height:28px;
+	text-align:center;
+	background: #d0d0d0;
+	padding-top:2px;
+	color:#666666;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;line-height:28px;
+	 margin:5px 0px 10px;
+}
+a.bm_btn3 {
+	display:inline-block;
+	width:50%;
+	border-radius: 5px;
+	height:28px;
+	text-align:center;
+	background: #008f00;
+	padding-top:2px;
+	color:#ffffff;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;line-height:28px;
+	 margin:5px 0px 10px;
+}
+a.pay_btn{
+	display:inline-block;
+	width:50%;
+	border-radius: 5px;
+	height:28px;
+	text-align:center;
+	background: #ee5816;
+	padding-top:2px;
+	color:#FFFFFF;
+	border:#c03b00 solid 1px;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+	margin-top:10px;line-height:28px;
+	 margin:5px 0px 10px;
+}
+a:hover.pay_btn {
+	margin-top:5px;
+	background-color:#c03b00;
+}
+
+</style>
+<script type="text/javascript">
+
+/*function Ajax(recvType, waitId) {
+    var aj = new Object();
+    aj.loading = '请稍候...';
+    aj.recvType = recvType ? recvType : 'XML';
+    aj.waitId = waitId ? $(waitId) : null;
+    aj.resultHandle = null;
+    aj.sendString = '';
+    aj.targetUrl = '';
+    aj.setLoading = function(loading) {
+        if(typeof loading !== 'undefined' && loading !== null) aj.loading = loading;
+    };
+    aj.setRecvType = function(recvtype) {
+        aj.recvType = recvtype;
+    };
+    aj.setWaitId = function(waitid) {
+        aj.waitId = typeof waitid == 'object' ? waitid : $(waitid);
+    };
+    aj.createXMLHttpRequest = function() {
+        var request = false;
+        if(window.XMLHttpRequest) {
+            request = new XMLHttpRequest();
+            if(request.overrideMimeType) {
+                request.overrideMimeType('text/xml');
+            }
+        } else if(window.ActiveXObject) {
+            var versions = ['Microsoft.XMLHTTP', 'MSXML.XMLHTTP', 'Microsoft.XMLHTTP', 'Msxml2.XMLHTTP.7.0', 'Msxml2.XMLHTTP.6.0', 'Msxml2.XMLHTTP.5.0', 'Msxml2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP'];
+            for(var i=0; i<versions.length; i++) {
+                try {
+                    request = new ActiveXObject(versions[i]);
+                    if(request) {
+                        return request;
+                    }
+                } catch(e) {}
+            }
+        }
+        return request;
+    };
+    aj.XMLHttpRequest = aj.createXMLHttpRequest();
+    aj.showLoading = function() {
+        if(aj.waitId && (aj.XMLHttpRequest.readyState != 4 || aj.XMLHttpRequest.status != 200)) {
+            aj.waitId.style.display = '';
+            aj.waitId.innerHTML = '<span><img src="' + IMGDIR + '/loading.gif" class="vm"> ' + aj.loading + '</span>';
+        }
+    };
+    aj.processHandle = function() {
+        if(aj.XMLHttpRequest.readyState == 4 && aj.XMLHttpRequest.status == 200) {
+            if(aj.waitId) {
+                aj.waitId.style.display = 'none';
+            }
+            if(aj.recvType == 'HTML') {
+                aj.resultHandle(aj.XMLHttpRequest.responseText, aj);
+            } else if(aj.recvType == 'XML') {
+                if(!aj.XMLHttpRequest.responseXML || !aj.XMLHttpRequest.responseXML.lastChild || aj.XMLHttpRequest.responseXML.lastChild.localName == 'parsererror') {
+                    aj.resultHandle('' , aj);
+                } else {
+                    aj.resultHandle(aj.XMLHttpRequest.responseXML.lastChild.firstChild.nodeValue, aj);
+                }
+            } else if(aj.recvType == 'JSON') {
+                var s = null;
+                try {
+                    s = (new Function("return ("+aj.XMLHttpRequest.responseText+")"))();
+                } catch (e) {
+                    s = null;
+                }
+                aj.resultHandle(s, aj);
+            }
+        }
+    };
+    aj.get = function(targetUrl, resultHandle) {
+        targetUrl = hostconvert(targetUrl);
+        setTimeout(function(){aj.showLoading()}, 250);
+        aj.targetUrl = targetUrl;
+        aj.XMLHttpRequest.onreadystatechange = aj.processHandle;
+        aj.resultHandle = resultHandle;
+        var attackevasive = isUndefined(attackevasive) ? 0 : attackevasive;
+        if(window.XMLHttpRequest) {
+            aj.XMLHttpRequest.open('GET', aj.targetUrl);
+            aj.XMLHttpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            aj.XMLHttpRequest.send(null);
+        } else {
+            aj.XMLHttpRequest.open("GET", targetUrl, true);
+            aj.XMLHttpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            aj.XMLHttpRequest.send();
+        }
+    };
+    aj.post = function(targetUrl, sendString, resultHandle) {
+        targetUrl = hostconvert(targetUrl);
+        setTimeout(function(){aj.showLoading()}, 250);
+        aj.targetUrl = targetUrl;
+        aj.sendString = sendString;
+        aj.XMLHttpRequest.onreadystatechange = aj.processHandle;
+        aj.resultHandle = resultHandle;
+        aj.XMLHttpRequest.open('POST', targetUrl);
+        aj.XMLHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        aj.XMLHttpRequest.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        aj.XMLHttpRequest.send(aj.sendString);
+    };
+    aj.getJSON = function(targetUrl, resultHandle) {
+        aj.setRecvType('JSON');
+        aj.get(targetUrl+'&ajaxdata=json', resultHandle);
+    };
+    aj.getHTML = function(targetUrl, resultHandle) {
+        aj.setRecvType('HTML');
+        aj.get(targetUrl+'&ajaxdata=html', resultHandle);
+    };
+    return aj;
+}
+
+function strlen(str) {
+    return str.length;
+}
+
+function hostconvert(url) {
+    if(!url.match(/^https?:\/\//)) url = SITEURL + url;
+    var url_host = getHost(url);
+    var cur_host = getHost().toLowerCase();
+    if(url_host && cur_host != url_host) {
+        url = url.replace(url_host, cur_host);
+    }
+    return url;
+}
+
+function getHost(url) {
+    var host = "null";
+    if(typeof url == "undefined"|| null == url) {
+        url = window.location.href;
+    }
+    var regex = /^\w+\:\/\/([^\/]*).*//*;
+    var match = url.match(regex);
+    if(typeof match != "undefined" && null != match) {
+        host = match[1];
+    }
+    return host;
+}*/
+
+</script>
+<!--<script type="text/javascript" src="static/js/common.js?{VERHASH}"></script>-->
+<script type="text/javascript">
+    function toggle_userlist() {
+        var jlc = $('#joinlist_content');
+        if (jlc.html()=='') {
+            ajaxget('plugin.php?id=xj_event:event_userlist&tid={$_GET[tid]}','joinlist_content');
+        } else {
+            jlc.html('');
+        }
+    }
+
+    function ajaxget(url, target_id) {
+        var get_url = url + '&inajax=1&ajaxtarget=' + target_id;
+        var target = $("#"+target_id);
+        var offset_top = target.offset().top;
+        $.get(get_url,
+            function(data) {
+                $(document).scrollTop(offset_top);
+                if(!data || !data.lastChild || data.lastChild.localName == 'parsererror') {
+                    target.html('');
+                } else {
+                    target.html(data.lastChild.firstChild.nodeValue);
+                }
+            }, 'xml'
+        );
+    }
+</script>
+<!--{if $setting[statements]}-->
+<script type="text/javascript">
+    $(document).ready(function(){
+        var statement = '{$_G[cache][plugin][xj_event][event_statements]}';
+        $('#wycj').click(function (e){
+            showFloatWindow(statement, $(this).attr('href'));
+            if (e.preventDefault) {
+                e.preventDefault();
+            } else {
+                return false;
+            }
+        })
+    })
+</script>
+<!--{/if}-->
+
+<img src="$imgurl" />
+<dl class="hd_xl">
+<dt>{lang xj_event:hdfs}: <strong>$postclass</strong></dt>
+<dt>{lang xj_event:hdlx}: $eventclass[1]</dt>
+<dt>{lang xj_event:hddq}: $citys</dt>
+<dt>{lang xj_event:kssj}: {$starttime}</dt>
+<dt>{lang xj_event:jssj}: {$endtime}</dt>
+<dt>{lang xj_event:hddd}: {$items[event_address]}</dt>
+<!--{if $items[use_extcredits_num]>0}-->
+<dt>{lang xj_event:cyjf}: {$items[use_extcredits_num]} $extcredit_title</dt>
+<!--{/if}-->
+<dt>{lang xj_event:cjme}:
+<!--{if $items[event_number]==0}-->
+{lang xj_event:buxian}
+<!--{else}-->
+{$items[event_number]} {lang xj_event:ren}
+<!--{/if}-->
+</dt>
+<dt>{通过人数}: {$applycountnumber} {lang xj_event:ren} {lang xj_event:daish} <span class="robgz">{$applycountnumberd}</span> {lang xj_event:ren}</dt>
+<dt>{lang xj_event:cjfy}: <!--{if $setting[eventaa]}-->AA <!--{if $items[use_cost]>0}-->{$items[use_cost]}{lang xj_event:yuan}{lang xj_event:zuoyou}<!--{/if}--><!--{else}-->{$items[use_cost]} {lang xj_event:yuan} <!--{if $items['reserve_cost']>0}-->预付费用: {$items['reserve_cost']} {lang xj_event:yuan} <!--{/if}--><!--{/if}--></dt>
+
+<dt>{lang xj_event:bmjz}: {$activityexpiration}</dt>
+    <!--{loop $setting[moreitem] $value}-->
+    	<dt>$value[itemname]: $value[itemcontent]</dt>
+    <!--{/loop}-->
+
+<!--{if $items[postclass]==1}-->
+    <!--ÏßÏÂ»î¶¯°´Å¥-->
+    <!--Ìõ¼þµ±Ç°Ê±¼äÐ¡ÓÚ£¨»î¶¯½áÊø+30Ìì£©µÄÊ±¼ä-->
+    <!--{if $timestamp<($items[endtime]+2592000)}-->
+    	<!--¹ýÁË±¨ÃûÊ±¼ä£¬Ã»ÓÐ±¨ÃûµÄ-->
+        <!--{if $items['activityexpiration']<=$timestamp and $verify==null}-->
+            <a href="javascript:" class="bm_btn2" title="{lang xj_event:bmjz}">{lang xj_event:bmjz}</a>
+        <!--{else}-->
+            <!--{if !$_G[uid]}-->
+                <a href="member.php?mod=logging&action=login" onclick="showWindow('login', this.href);return false;" class="bm_btn2" title="{lang xj_event:qdlhbm}">{lang xj_event:wycjqdl}</a>
+            <!--{else}-->
+                <!--{if $items['activitybegin']<=$timestamp and $items['activityexpiration']>$timestamp and $verify==null}-->
+                	<!--{if !$setting[invitation][open] || ($setting[invitation][open] && $setting[invitation][code] == $_GET[icode])}-->
+                        <!--{if $bmbtnshow}-->
+                        <a href="plugin.php?id=xj_event:event_mobile_join&tid={$tid}" class="bm_btn" id="wycj">{lang xj_event:wycj}</a>
+                        <!--{/if}-->
+                        <!--{if $setting[reply] && $replys<1}-->
+                        	<a href="javascript:" class="bm_btn2">{lang xj_event:hfhkybm}</a>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{elseif $items['activitybegin']>$timestamp and $verify==null}-->
+                	<a href="javascript:" class="bm_btn2">{lang xj_event:bmhwks}</a>
+                <!--{else}-->
+                    <!--{if $verify==0}-->
+                    	<!--{if !$pay_state}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}&formhash={$_G[formhash]}" class="bm_btn">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+                        <!--{if $setting[eventpay]}-->
+                        	<!--{if $pay_state}-->
+                        		<a href="javascript:" class="pay_btn" style="background-color:#06C; border:#06C;">{lang xj_event:fyyfdsh}</a>
+                            <!--{else}-->
+                            	<a href="plugin.php?id=xj_event:event_pay&tid={$items[tid]}" class="pay_btn">{lang xj_event:zhifufy}</a>
+                            <!--{/if}-->
+                        <!--{/if}-->
+                    <!--{else}-->
+                    	<!--{if $setting[eventzy_enable]}-->
+                        <a href="forum.php?mod=post&action=newthread&fid=<!--{if $setting[eventzy_fid]}-->{$setting[eventzy_fid]}<!--{else}-->{$_G[fid]}<!--{/if}-->&eid={$items[eid]}" class="bm_btn3" title="{lang xj_event:ldbmypshtg}">{lang xj_event:fbhdzy}{$setting[eventzy_name]}</a>
+                        <!--{/if}-->
+                    	<!--{if $setting[canceljoin]==1 && $items['activityexpiration']>$timestamp}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}&formhash={$_G[formhash]}" class="bm_btn"  style=" background:#72b615">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+
+                        <!--{if $setting[seccode]}-->
+                        	<div>
+                            	{lang xj_event:nycgbmhdbmyzm}:<span class="robgz">{$apply[seccode]}</span>
+                            </div>
+                        <!--{/if}-->
+                    <!--{/if}-->
+					<!--{if $_G[timestamp] < $items['activityexpiration']}-->
+                    <a href="plugin.php?id=xj_event:event_joinmodify&applyid={$apply[applyid]}" class="bm_btn" style="margin-top:10px;">{lang xj_event:xgbmzl}</a>
+                    <!--{/if}-->
+                <!--{/if}-->
+            <!--{/if}-->
+        <!--{/if}-->
+    <!--{/if}-->
+    <!--ÏßÏÂ»î¶¯°´Å¥end-->
+
+<!--{else}-->
+
+    <!--ÏßÉÏ»î¶¯°´Å¥-->
+    <!--Ìõ¼þµ±Ç°Ê±¼äÐ¡ÓÚ£¨»î¶¯½áÊø£©µÄÊ±¼ä-->
+    <!--{if $timestamp<$items[endtime]}-->
+    	<!--¹ýÁË±¨ÃûÊ±¼ä£¬Ã»ÓÐ±¨ÃûµÄ-->
+        <!--{if $items['activityexpiration']<=$timestamp and $verify==null}-->
+            <a href="javascript:" class="bm_btn2" title="{lang xj_event:bmjz}">{lang xj_event:bmjz}</a>
+        <!--{else}-->
+            <!--{if !$_G[uid]}-->
+                <a href="member.php?mod=logging&action=login" onclick="showWindow('login', this.href);return false;" class="bm_btn2" title="{lang xj_event:qdlhbm}">{lang xj_event:wycjqdl}</a>
+            <!--{else}-->
+                <!--{if $items['activitybegin']<$timestamp and $items['activityexpiration']>$timestamp and $verify==null}-->
+                	<!--{if !$setting[invitation][open] || ($setting[invitation][open] && $setting[invitation][code] == $_GET[icode])}-->
+                        <!--{if $bmbtnshow}-->
+                        <a href="plugin.php?id=xj_event:event_mobile_join&tid={$tid}" class="bm_btn">{lang xj_event:wycj}</a>
+                        <!--{/if}-->
+                        <!--{if $setting[reply] && $replys<1}-->
+                        	<a href="javascript:" class="bm_btn2">{lang xj_event:hfhkybm}</a>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{elseif $items['activitybegin']>$timestamp and $verify==null}-->
+                	<a href="javascript:" class="bm_btn2">{lang xj_event:bmhwks}</a>
+                <!--{else}-->
+                    <!--{if $verify==0}-->
+                    	<!--{if !$pay_state}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}&formhash={$_G[formhash]}" class="bm_btn">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+                        <!--{if $setting[eventpay]}-->
+                        	<!--{if $pay_state}-->
+                        		<a href="javascript:" class="pay_btn" style="background-color:#06C; border:#06C;">{lang xj_event:fyyfdsh}</a>
+                            <!--{else}-->
+                            	<a href="plugin.php?id=xj_event:event_pay&tid={$items[tid]}" class="pay_btn">{lang xj_event:zhifufy}</a>
+                            <!--{/if}-->
+                        <!--{/if}-->
+                    <!--{else}-->
+                        <a href="forum.php?mod=post&action=newthread&fid=<!--{if $setting[eventzy_fid]}-->{$setting[eventzy_fid]}<!--{else}-->{$_G[fid]}<!--{/if}-->&eid={$items[eid]}" class="bm_btn3" title="{lang xj_event:ldbmypshtg}">{lang xj_event:fbhdzy}{$setting[eventzy_name]}</a>
+                    	<!--{if $setting[canceljoin]==1 && $items['activityexpiration']>$timestamp}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}&formhash={$_G[formhash]}" class="bm_btn" style="  margin-top:0px; background:#72b615; border:1px solid #72b615">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+                        <!--{if $setting[seccode]}-->
+                        	<div>
+                            	{lang xj_event:nycgbmhdbmyzm}:<span class="robgz">{$apply[seccode]}</span>
+                            </div>
+                        <!--{/if}-->
+                    <!--{/if}-->
+					<!--{if $_G[timestamp] < $items['activityexpiration']}-->
+                    <a href="plugin.php?id=xj_event:event_joinmodify&applyid={$apply[applyid]}" class="bm_btn" style=" margin-top:0px; background:#72b615; border:1px solid #72b615">{lang xj_event:xgbmzl}</a>
+                    <!--{/if}-->
+                <!--{/if}-->
+            <!--{/if}-->
+        <!--{/if}-->
+    <!--{/if}-->
+    <!--ÏßÉÏ»î¶¯°´Å¥end-->
+
+<!--{/if}-->
+<!--{if $_G[uid] == $_G[thread][authorid] or $_G[groupid]==1 or $event_admin}-->
+  <a href="plugin.php?id=xj_event:event_joinmanage&tid={$tid}" id="menu1" class="bm_btn3">{lang xj_event:bmgl}</a>
+  <!--{if $setting[seccode]}-->
+    <div style="clear:both; height:20px;"></div>
+    <div style="line-height:26px;"><span class="robgz">{lang xj_event:yanzbm}:</span></div>
+    <div style=" border-top:1px dashed #bbbbbb; padding:10px; margin-bottom:10px;">
+    <form name="checkseccode" method="post" action="plugin.php?id=xj_event:event_join&action=checkseccode&eid={$items[eid]}&tid={$tid}" target="_blank">
+    <input type="hidden" name="formhash" value="{$_G[formhash]}" />
+    {lang xj_event:baomyzm}:<input name="seccode" type="text" class="px" /> <button type="submit" name="checksubmit" class="pn pnc vm"><strong>{lang xj_event:yanzheng}</strong></button>
+    </form>
+    </div>
+  <!--{/if}-->
+<!--{/if}-->
+
+
+
+
+</dl>
+
+<!--{if $items[verify] == 1}-->
+[{lang xj_event:gfrz}]
+<!--{/if}-->
+<a href="javascript:toggle_userlist()" class="bm_btn3">报名名单</a>
+<div id='joinlist_content'></div>
+
+<!--{if $setting[invitation][open] && ($_G[uid] == $_G[thread][authorid] or $_G[groupid]==1 or $event_admin) }-->
+<div style="clear:both; margin-bottom:10px; height:10px;"></div>
+<div style="padding:20px; border:1px solid #e5e5e5; background-color:#fcfcfc;">
+	{lang xj_event:yaoqbmlj}: <input type="text" value="{$_G[setting][siteurl]}/forum.php?mod=viewthread&tid=$tid&icode={$setting[invitation][code]}" id="fe_text" style="width:150px;" />
+</div>
+<!--{/if}-->
+
+<!--{/block}-->

@@ -1,0 +1,72 @@
+<!--{template common/header}-->
+
+
+
+
+
+<div style="border-top:1px solid {$_G[style][specialborder]}; border-left:1px solid {$_G[style][specialborder]};border-right:1px solid {$_G[style][specialborder]}; height:38px;background-color:{$_G[style][specialbg]};">
+  <div class="<!--{if !$_GET[action]}-->ulmenu1<!--{else}-->ulmenu2<!--{/if}-->" id="userlistmenu1" onclick="userlist_menu(1);">{lang xj_event:quanbu}({$allren})</div>
+  <div class="<!--{if $_GET[action] == pass}-->ulmenu1<!--{else}-->ulmenu2<!--{/if}-->" id="userlistmenu2" onclick="userlist_menu(2);">{lang xj_event:yitongguo}({$passren})</div>
+  <div class="<!--{if $_GET[action] == nopass}-->ulmenu1<!--{else}-->ulmenu2<!--{/if}-->" id="userlistmenu3" onclick="userlist_menu(3);">{lang xj_event:daish}({$nopassren})</div>
+</div>
+<!--{if $_G[cache][plugin][xj_event][event_showapply]}-->
+
+<table class="userlist" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="border-right:0px; width:150px; background-color:{$_G[style][commonbg]};">{lang xj_event:yhm}</td>
+    <td width="40" style="border-right:0px;background-color:{$_G[style][commonbg]};">{lang xj_event:haopin}</td>
+    <td width="40" style="border-right:0px;background-color:{$_G[style][commonbg]};">{lang xj_event:chapin}</td>
+    <td width="40" style="border-right:0px;background-color:{$_G[style][commonbg]};">{lang xj_event:ffj}</td>
+    <!--{if $eventinfo[setting][session]}-->
+    <td width="70" style="border-right:0px;background-color:{$_G[style][commonbg]};">{lang xj_event:huodongcc}</td>
+    <!--{/if}-->
+    <td style="border-right:0px;background-color:{$_G[style][commonbg]};">{lang xj_event:liuyan}</td>
+    <td width="50" style="background-color:{$_G[style][commonbg]};">{lang xj_event:zuantai}</td>
+  </tr>
+  <!--{loop $joinlist $key $value}-->
+  <tr>
+    <td style="text-align:left; padding-left:10px;"><a href="home.php?mod=space&uid={$value[uid]}">{$value[avatar]}</a> {$value[username]} [<span style="color:#06F;">{$value[applynumber]}{lang xj_event:ren}</span>]</td>
+    <td><span style="color:#F30;">$value[good]</span></td>
+    <td><span style="color:#06C;">$value[bad]</span></td>
+    <td><span style="color:#096;">$value[plane]</span></td>
+    <!--{if $eventinfo[setting][session]}-->
+    <td>$eventinfo[setting][session][$value[session]]</td>
+    <!--{/if}-->
+    <td style="text-align:left; padding-left:10px;">{$value[bmmessage]}</td>
+    <td><!--{if $value[verify]==1}--><span style="color:#009900;"><!--{if $value[pay_state]==1}-->全额付款<!--{elseif $value[pay_state]==2}-->预付<!--{else}-->{lang xj_event:yish}<!--{/if}--></span><!--{else}--><span style="color:#FF0000;">{lang xj_event:daish}</span><!--{/if}--></td>
+  </tr>
+  <!--{/loop}-->
+</table>
+<div style="clear:both;"></div>
+
+
+
+<!--{else}-->
+<div style=" border:1px solid {$_G[style][specialborder]}; padding:10px;">
+<!--{loop $joinlist $key $value}-->
+      <div style="height:100px; width:50px; float:left; margin-right:10px; margin-top:10px; line-height:20px; text-align:center;">
+      <div class="avt y"><a href="home.php?mod=space&uid={$value[uid]}">{$value[avatar]}</a></div>
+      $value[username]<br />
+      ({$value[applynumber]}{lang xj_event:ren})
+      </div>
+      <!--{/loop}-->
+<div style="clear:both;"></div>
+</div>
+<!--{/if}-->
+
+
+
+
+
+
+<!--{if $multipage}-->
+<div style="clear:both; height:30px; padding-top:5px;">$multipage</div>
+<!--{/if}-->
+
+
+
+
+
+
+
+<!--{template common/footer}-->

@@ -1,0 +1,70 @@
+<!--{template common/header}-->
+<style>
+.pay_m {
+	width:360px;
+	margin:15px 0px;
+	float:right;
+	font-size:14px;
+	line-height:40px;
+}
+.pay_m i {
+	font-family: "Microsoft YaHei";
+	font-size:16px;
+	font-weight:bold;
+	letter-spacing:-1px;
+	float:left;
+	display:block;
+	text-align:center;
+	margin:0px;
+}
+</style>
+<div style="margin:10px 0px; background:#FFFFFF; padding:20px; border:1px #ececec solid;">
+  <div style=" border:1px #d9d9d9 solid; color:#666666;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style=" margin-top:1px;">
+      <tr style="background:url(source/plugin/xj_event/images/pay_title_bg.jpg); border-bottom:1px solid #ededed;">
+        <td align="center" style="height:35px; font-size:14px; border-right:1px #e4e4e4 solid;font-weight:bold;">{lang xj_event:huodongmc}</td>
+        <td width="120" align="center" style="height:34px; font-size:14px;border-right:1px #e4e4e4 solid;font-weight:bold;">{lang xj_event:renshu}</td>
+        <td width="120" align="center" style="height:34px; font-size:14px;border-right:1px #e4e4e4 solid;font-weight:bold;">{lang xj_event:mrfy}</td>
+        <td width="120" align="center" style="height:34px; font-size:14px; font-weight:bold;">{lang xj_event:zongfeiyong}</td>
+      </tr>
+    </table>
+    <table width="100%">
+      <tr>
+        <td style="padding:0px;"><div style="width:400px; float:left; color:{$_G[style][menubgcolor]}; margin:15px;"> $subject </div>
+          <div class="pay_m"> <i style="width:110px;">$applynumber</i> <i style="width:16px;">{lang xj_event:chenghao}</i> <i style="width:108px;">{lang xj_event:renminbifh}$use_cost</i> <i style="width:16px;">=</i> <i style="width:110px; color:#ff4e00;">{lang xj_event:renminbifh}$totalprice</i> </div></td>
+      </tr>
+    </table>
+  </div>
+  <form action="plugin.php?id=xj_event:event_pay&applyid=$applyid" method="post" name="payform">
+<input type="hidden" name="formhash" value="{$_G[formhash]}" />
+<input type="hidden" name="paysubmit" value="true" />
+    <div style="border:1px #d9d9d9 solid; color:#666666; margin-top:15px;">
+      <div style="background:#f6f6f6; line-height:48px; font-size:16px; font-weight:bold; padding-left:15px;">{lang xj_event:qxzzffs}</div>
+      <div style="padding:15px;">
+      	<!--{if $_G[setting][ec_tenpay_bargainor] || $_G[setting][ec_tenpay_opentrans_chnid]}-->
+        <div class="mbm pbn bbda cl">
+          <div id="div#tenpayBankList"></div>
+          <span id="#bank_type_value"></span>
+          <link rel="stylesheet" type="text/css" href="http://union.tenpay.com/bankList/css_col3.css" />
+          <script type="text/javascript">
+$('div#tenpayBankList').html = function(){$('div#tenpayBankList').innerHTML = htmlString.replace(/<span.+?\/span>/g, ''); };
+$("#bank_type_value").val = function(){};
+appendscript('http://union.tenpay.com/bankList/bank.js', '');
+</script>
+        </div>
+        <!--{/if}-->
+        <!--{if $_G[setting][ec_account]}-->
+        <div>
+          <input name="bank_type" type="radio" value="alipay" checked="checked" />
+          <img src="source/plugin/xj_event/images/alipay.jpg" width="112" height="32" align="absmiddle" /> </div>
+        <!--{/if}-->
+      </div>
+    </div>
+    <div style="text-align:center; padding:15px;">
+      <label>
+      <input type="image" name="imageField" id="imageField" src="source/plugin/xj_event/images/btnpay.jpg" />
+      </label>
+    </div>
+  </form>
+</div>
+<!--{template common/footer}-->

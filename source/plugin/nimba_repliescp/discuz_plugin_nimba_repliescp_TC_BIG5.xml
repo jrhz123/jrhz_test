@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="Version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+	<item id="Time"><![CDATA[2014-06-21 12:34]]></item>
+	<item id="From"><![CDATA[¤H¤u´¼¯à¹êÅç«Ç (http://www.ailab.cn/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[¦^´_ºÞ²z]]></item>
+			<item id="identifier"><![CDATA[nimba_repliescp]]></item>
+			<item id="description"><![CDATA[¦^´_ºÞ²z for Discuz! §@ªÌ ¤gµÛ¤H¹ç¤Ú ¤H¤u´¼¯à¹êÅç«Ç ¥X«~¡]Made By Nimba, Team From AiLab.cn ¡^ ¥\¯à¤¶²Ð¡Jµ¹½×¾Â¼W¥[¤@­ÓºÞ²z©«¤l¦^´_ªº¥\¯à¡A¥i¥H«öª©¶ô¡B®É¶¡¡B§@ªÌ¡BÃöÁä¦rÀË¯Á¦^´_¶K¡A¨Ã¶i¦æºÞ²z¡I]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[nimba_repliescp/]]></item>
+			<item id="copyright"><![CDATA[¤H¤u´¼¯à¹êÅç«Ç]]></item>
+			<item id="version"><![CDATA[v1.6.2]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[repliescp]]></item>
+					<item id="menu"><![CDATA[¦^´_ºÞ²z]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[1]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+				<item id="1">
+					<item id="name"><![CDATA[addon]]></item>
+					<item id="menu"><![CDATA[À³¥Î¤¤¤ß]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[3]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[99]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="appname"><![CDATA[¦^´_ºÞ²z]]></item>
+				<item id="step1"><![CDATA[1.·j¯Á²Å¦X±ø¥ó¦^©«]]></item>
+				<item id="step2"><![CDATA[2.½×¾Â¦^©«ºÞ²z]]></item>
+				<item id="repliesmessage"><![CDATA[¦^´_¤º®e]]></item>
+				<item id="edit"><![CDATA[½s¿è]]></item>
+				<item id="author"><![CDATA[¦^´_ªÌ]]></item>
+				<item id="deleted1"><![CDATA[¤w¦¨¥\\§R°£ ]]></item>
+				<item id="deleted2"><![CDATA[ ±ø¦^´_¡I]]></item>
+				<item id="tips"><![CDATA[¾Þ§@´£¥Ü]]></item>
+				<item id="tip1"><![CDATA[¥»´¡¥ó¡§§R°£¦^´_¡¨¥\\¯à¾Þ§@«á³Q§R°£ªº¦^©«±N<font color="red">¤£¥i«ì´_</font>,½Ð¦b¾Þ§@«e¥J²Ó®Ö¹ï¡I]]></item>
+				<item id="tip2"><![CDATA[²Ä¤@¨Ï¥Î¥»´¡¥ó¡A½Ð¥J²Ó¬d¬Ý¤U­±¦U­Ó¿ï¾Ü¥k°¼ªº¤å¦r»¡©ú¡I]]></item>
+				<item id="tip3"><![CDATA[<font color="red">´£¥Ü¡A±z·í«e¨Ï¥Îªº¬O§K¶Oª©¡A³¡¤À¥\\¯à¦³­­¨î¡A§K¶Oª©¤£´£¨Ñ¥ô¦ó§Þ³NªA°È©M°ÝÃD«t¸ß¡A¥B§@ªÌ¦³ÅvÀH®É°±¤î§ó·s§K¶Oª©¡I</font><br><b>¦p»ÝÀò±o§ó¦nÅéÅç¡A½Ð¤ä«ù°Ó·~ª©¡J</b><a href="http://addon.discuz.com/?@nimba_repliescp.plugin">http://addon.discuz.com/?@nimba_repliescp.plugin</a>]]></item>
+				<item id="tip4"><![CDATA[¨C­¶Åã¥Ü¼Æ:]]></item>
+				<item id="tip4_20"><![CDATA[¨C­¶Åã¥Ü20­Ó]]></item>
+				<item id="tip4_50"><![CDATA[¨C­¶Åã¥Ü50­Ó]]></item>
+				<item id="tip4_100"><![CDATA[¨C­¶Åã¥Ü100­Ó]]></item>
+				<item id="tip5"><![CDATA[µoªí®É¶¡½d³ò:]]></item>
+				<item id="tip6"><![CDATA[¶}©l®É¶¡¡J]]></item>
+				<item id="tip7"><![CDATA[®É¶¡½d³ò¡J¶}©l®É¶¡¡A¯dªÅªí¥Ü±q¥»¤ëªì¶}©l¡I]]></item>
+				<item id="tip8"><![CDATA[µ²§ô®É¶¡¡J]]></item>
+				<item id="tip9"><![CDATA[®É¶¡½d³ò¡JºI¤î®É¶¡¡A¯dªÅªí¥ÜºI¤î¨ì·í«e¡I]]></item>
+				<item id="tip10"><![CDATA[¦^´_·|­û¦W:]]></item>
+				<item id="tip11"><![CDATA[¦^´_·|­û¦W¶È¤ä«ù³æ¥Î¤á¡A¯dªÅªí¥Ü¹ï©Ò¦³¥Î¤á¡I]]></item>
+				<item id="tip12"><![CDATA[<font color="red">[*]</font>¤º®eÃöÁä¦r:]]></item>
+				<item id="tip13"><![CDATA[<font color="red">[*]</font>¤ä«ù¦hÃöÁä¦r¡A¤¤¶¡½Ð¥Î¥b¨¤³r¸¹ "," ¹j¶}¡A¯dªÅªí¥Ü¤£­­ÃöÁä¦r¡I]]></item>
+				<item id="tip14"><![CDATA[«ö Enter Áä¥iÀH®É´£¥æ±zªº­×§ï]]></item>
+				<item id="tip15"><![CDATA[´£¥æ]]></item>
+				<item id="tip16"><![CDATA[½Ð¿ï¾Üª©¶ô]]></item>
+				<item id="tip17"><![CDATA[]]></item>
+				<item id="tip18"><![CDATA[]]></item>
+				<item id="allforums"><![CDATA[©Ò¦³ª©¶ô]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="appname"><![CDATA[¦^´_ºÞ²z]]></item>
+				<item id="step1"><![CDATA[1.·j¯Á²Å¦X±ø¥ó¦^©«]]></item>
+				<item id="step2"><![CDATA[2.½×¾Â¦^©«ºÞ²z]]></item>
+				<item id="repliesmessage"><![CDATA[¦^´_¤º®e]]></item>
+				<item id="edit"><![CDATA[½s¿è]]></item>
+				<item id="author"><![CDATA[¦^´_ªÌ]]></item>
+				<item id="deleted1"><![CDATA[¤w¦¨¥\\§R°£ ]]></item>
+				<item id="deleted2"><![CDATA[ ±ø¦^´_¡I]]></item>
+				<item id="tips"><![CDATA[¾Þ§@´£¥Ü]]></item>
+				<item id="tip1"><![CDATA[¥»´¡¥ó¡§§R°£¦^´_¡¨¥\\¯à¾Þ§@«á³Q§R°£ªº¦^©«±N<font color="red">¤£¥i«ì´_</font>,½Ð¦b¾Þ§@«e¥J²Ó®Ö¹ï¡I]]></item>
+				<item id="tip2"><![CDATA[²Ä¤@¨Ï¥Î¥»´¡¥ó¡A½Ð¥J²Ó¬d¬Ý¤U­±¦U­Ó¿ï¾Ü¥k°¼ªº¤å¦r»¡©ú¡I]]></item>
+				<item id="tip3"><![CDATA[<font color="red">´£¥Ü¡A±z·í«e¨Ï¥Îªº¬O§K¶Oª©¡A³¡¤À¥\\¯à¦³­­¨î¡A§K¶Oª©¤£´£¨Ñ¥ô¦ó§Þ³NªA°È©M°ÝÃD«t¸ß¡A¥B§@ªÌ¦³ÅvÀH®É°±¤î§ó·s§K¶Oª©¡I</font><br><b>¦p»ÝÀò±o§ó¦nÅéÅç¡A½Ð¤ä«ù°Ó·~ª©¡J</b><a href="http://addon.discuz.com/?@nimba_repliescp.plugin">http://addon.discuz.com/?@nimba_repliescp.plugin</a>]]></item>
+				<item id="tip4"><![CDATA[¨C­¶Åã¥Ü¼Æ:]]></item>
+				<item id="tip4_20"><![CDATA[¨C­¶Åã¥Ü20­Ó]]></item>
+				<item id="tip4_50"><![CDATA[¨C­¶Åã¥Ü50­Ó]]></item>
+				<item id="tip4_100"><![CDATA[¨C­¶Åã¥Ü100­Ó]]></item>
+				<item id="tip5"><![CDATA[µoªí®É¶¡½d³ò:]]></item>
+				<item id="tip6"><![CDATA[¶}©l®É¶¡¡J]]></item>
+				<item id="tip7"><![CDATA[®É¶¡½d³ò¡J¶}©l®É¶¡¡A¯dªÅªí¥Ü±q½×¾Â²Ä¤@½g©«¤lµo¥¬®É¶¡¶}©l¡I]]></item>
+				<item id="tip8"><![CDATA[µ²§ô®É¶¡¡J]]></item>
+				<item id="tip9"><![CDATA[®É¶¡½d³ò¡JºI¤î®É¶¡¡A¯dªÅªí¥ÜºI¤î¨ì·í«e¡I]]></item>
+				<item id="tip10"><![CDATA[¦^´_·|­û¦W:]]></item>
+				<item id="tip11"><![CDATA[¦^´_·|­û¦W¶È¤ä«ù³æ¥Î¤á¡A¯dªÅªí¥Ü¹ï©Ò¦³¥Î¤á¡I]]></item>
+				<item id="tip12"><![CDATA[<font color="red">[*]</font>¤º®eÃöÁä¦r:]]></item>
+				<item id="tip13"><![CDATA[<font color="red">[*]</font>¤ä«ù¦hÃöÁä¦r¡A¤¤¶¡½Ð¥Î¥b¨¤³r¸¹ "," ¹j¶}¡A¯dªÅªí¥Ü¤£­­ÃöÁä¦r¡I]]></item>
+				<item id="tip14"><![CDATA[«ö Enter Áä¥iÀH®É´£¥æ±zªº­×§ï]]></item>
+				<item id="tip15"><![CDATA[´£¥æ]]></item>
+				<item id="tip16"><![CDATA[]]></item>
+				<item id="tip17"><![CDATA[]]></item>
+				<item id="tip18"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="installfile"><![CDATA[install.php]]></item>
+		<item id="uninstallfile"><![CDATA[uninstall.php]]></item>
+		<item id="upgradefile"><![CDATA[upgrade.php]]></item>
+		<item id="license"><![CDATA[[list]
+[*]¥»´¡¥óª©ÅvÂkÄÝ´¡¥ó§@ªÌ©Ò¦³.
+[*]¥¼¸g´¡¥ó§@ªÌ³\¥i,¥ô¦ó¤H¤£±o¥H¥ô¦ó§Î¦¡¦b¥ô¦ó¦a¤èµo¥¬/Âàµo­ìª©¥H¤Î¨ä­l¥Íªº­×§ïª©.
+[*][b]´¡¥ó§@ªÌ:[/b]¤gµÛ¤H¹ç¤Ú Team from [url=http://www.ailab.cn/]¤H¤u´¼¯à¹êÅç«Ç[/url]
+[*][b]¥\¯àÂ²¤¶:[/b]µ¹½×¾Â¼W¥[¤@­ÓºÞ²z©«¤l¦^´_ªº¥\¯à¡A¥i¥H«öª©¶ô¡B®É¶¡¡B§@ªÌ¡BÃöÁä¦rÀË¯Á¦^´_¶K¡A¨Ã¶i¦æºÞ²z¡I
+[*][b]§Þ³N¤ä«ù:[/b][url=http://www.ailab.cn/]¤H¤u´¼¯à¹êÅç«Ç[/url]
+[*]¦p¦³¥ô¦óÃö¤_¨Ï¥Î¤WªººÃ°Ý,½Ð¦Üdiscuz¯¸ªøªÀ°Ï[url]http://dz.open.ailab.cn/[/url]´£¥X.
+[*][color=Red]½Ð±z¦b¦w¸Ë«e»{¯u¾\Åª´¡¥óªº¸Ô²Ó»¡©ú[/color]¡A¦a§}¡J[url]http://addon.discuz.com/?@nimba_repliescp.plugin[/url].
+[*][color=Red]¦pªG±zÄ@·N¸ê§U§Ú­Ì,½Ð¦Ü[url]http://me.alipay.com/lih062624[/url]¹ï§Ú­Ì¶i¦æÃÙ§U.[/color]
+[*]³Ì«á,·PÁÂ±z¨Ï¥Î§Ú­Ìªº´¡¥ó,¤]§Æ±æ±z¯à°÷µ¹§Ú­Ì´£¨Ñ§ó¦nªº·N¨£([url=http://www.ailab.cn/]½ÐÂIÀ»³o¨½¶i¤J¤H¤u´¼¯à¹êÅç«Ç[/url]).
+[/list]]]></item>
+	</item>
+</root>

@@ -1,0 +1,62 @@
+<!--{if !empty($collectiondata['follows'])}-->
+
+<!--{eval $forumscount = count($collectiondata['follows']);}-->
+<!--{eval $forumcolumns = 4;}-->
+
+<!--{eval $forumcolwidth = (floor(100 / $forumcolumns) - 0.1).'%';}-->
+$comeing_box
+<div class="bm bmw {if $forumcolumns} flg{/if} cl">
+  <div class="bm_h cl">
+    $comeing_box_h
+    <span class="o">
+      <img id="category_-1_img" src="{STYLEIMGDIR}/forum/$collapse['collapseimg_-1']" title="{lang spread}" alt="{lang spread}" onclick="toggle_collapse('category_-1');" />
+    </span>
+    <h2><a href="forum.php?mod=collection&op=my">{lang my_order_collection}</a></h2>
+    $comeing_box_2de
+  </div>
+  $comeing_box_c
+  <div class="bm_c">
+    <div id="category_-1" style="{echo $collapse['category_-1']}">
+    <table cellspacing="0" cellpadding="0" class="fl_tb">
+      <tr>
+      <!--{eval $ctorderid = 0;}-->
+      <!--{loop $collectiondata['follows'] $key $colletion}-->
+        <!--{if $ctorderid && ($ctorderid % $forumcolumns == 0)}-->
+          </tr>
+          <!--{if $ctorderid < $forumscount}-->
+            <tr class="fl_row">
+          <!--{/if}-->
+        <!--{/if}-->
+        <td class="fl_g"{if $forumcolwidth} width="$forumcolwidth"{/if}>
+          <div class="fl_icn_g">
+          <a href="forum.php?mod=collection&action=view&ctid={$colletion[ctid]}" target="_blank"><img src="{STYLEIMGDIR}/forum/forum{if $followcollections[$key]['lastvisit'] < $colletion['lastupdate']}_new{/if}.gif" alt="$colletion[name]" /></a>
+          </div>
+          <dl>
+            <dt><a href="forum.php?mod=collection&action=view&ctid={$colletion[ctid]}">$colletion[name]</a></dt>
+            <dd><em>{lang forum_threads}: <!--{echo dnumber($colletion[threadnum])}--></em>, <em>{lang collection_commentnum}: <!--{echo dnumber($colletion[commentnum])}--></em></dd>
+            <dd>
+            <!--{if $colletion['lastpost']}-->
+              <!--{if $forumcolumns < 3}-->
+                <a href="forum.php?mod=redirect&tid=$colletion[lastpost]&goto=lastpost#lastpost" class="xi2"><!--{echo cutstr($colletion[lastsubject], 30)}--></a> <cite><!--{date($colletion[lastposttime])}--> <!--{if $colletion['lastposter']}-->$colletion['lastposter']<!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
+              <!--{else}-->
+                <a href="forum.php?mod=redirect&tid=$colletion[lastpost]&goto=lastpost#lastpost">{lang forum_lastpost}: <!--{date($colletion[lastposttime])}--></a>
+              <!--{/if}-->
+            <!--{else}-->
+              {lang never}
+            <!--{/if}-->
+            </dd>
+            <!--{hook/index_followcollection_extra $colletion[ctid]}-->
+          </dl>
+        </td>
+        <!--{eval $ctorderid++;}-->
+
+      <!--{/loop}-->
+      <!--{if ($columnspad = $ctorderid % $forumcolumns) > 0}--><!--{echo str_repeat('<td class="fl_g"'.($forumcolwidth ? " width=\"$forumcolwidth\"" : '').'></td>', $forumcolumns - $columnspad);}--><!--{/if}-->
+      </tr>
+    </table>
+    </div>
+  </div>
+  $comeing_box_2de
+</div>
+$comeing_box_1de
+<!--{/if}-->

@@ -1,0 +1,29 @@
+<!--{if !empty($_G['cache']['heats']['message'])}-->
+  $comeing_box
+  <div class="bm">
+    <div class="bm_h cl">
+      $comeing_box_h
+      <h2>{lang hotthreads_forum}</h2>
+      $comeing_box_2de
+    </div>
+    $comeing_box_c
+    <div class="bm_c cl">
+      <div class="heat z">
+        <!--{loop $_G['cache']['heats']['message'] $data}-->
+          <dl class="xld">
+            <dt><!--{if $_G['adminid'] == 1}--><a class="d" href="forum.php?mod=misc&action=removeindexheats&tid=$data[tid]" onclick="return removeindexheats()">delete</a><!--{/if}-->
+            <a href="forum.php?mod=viewthread&tid=$data[tid]" target="_blank" class="xi2">$data[subject]</a></dt>
+            <dd>$data[message]</dd>
+          </dl>
+        <!--{/loop}-->
+      </div>
+      <ul class="xl xl1 heatl">
+      <!--{loop $_G['cache']['heats']['subject'] $data}-->
+        <li><!--{if $_G['adminid'] == 1}--><a class="d" href="forum.php?mod=misc&action=removeindexheats&tid=$data[tid]" onclick="return removeindexheats()">delete</a><!--{/if}-->&middot; <a href="forum.php?mod=viewthread&tid=$data[tid]" target="_blank" class="xi2">$data[subject]</a></li>
+      <!--{/loop}-->
+      </ul>
+    </div>
+    $comeing_box_2de
+  </div>
+  $comeing_box_1de
+<!--{/if}-->

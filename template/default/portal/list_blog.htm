@@ -1,0 +1,89 @@
+<!--{subtemplate common/header}-->
+<!--[name]博客首页频道模板[/name]-->
+
+<style id="diy_style" type="text/css"></style>
+<!--<link href="template/default/portal/bbs/style/bootstrap.min.css" rel="stylesheet">-->
+<!--<link rel="stylesheet" type="text/css"  href="template/default/portal/bbs/style/bbs_style.css" />-->
+
+
+<script src="http://www.huizhou.cn/images/jquery2014.js"></script>
+<script lang="javascript">
+var jq = jQuery.noConflict();
+</script>
+<script>
+
+(function () {
+    var showMoreNChildren = function (_children, n) {
+        //显示某jquery元素下的前n个隐藏的子元素
+        var _hiddenChildren = _children.filter(":hidden");
+        var cnt = _hiddenChildren.length;
+        for (var i = 0; i < n && i < cnt && i < parseInt(n)+3; i++) {
+            _hiddenChildren.eq(i).show();
+        }
+        return cnt - n;//返回还剩余的隐藏子元素的数量
+    }
+
+    jQuery.showMore = function (selector) {
+        if (selector == undefined) { selector = ".showMoreNChildren" }
+        //对页中现有的class=showMorehandle的元素，在之后添加显示更多条，并绑定点击行为
+        jq(selector).each(function () {
+            var pagesize = jq(this).attr("pagesize") || 10;
+            var _children = jq(this).find('#portal_block_114_content').children();
+            if (_children.length > pagesize) {
+                for (var i = pagesize; i < _children.length; i++) {
+                    _children.eq(i).hide();
+                }
+
+                jq("<div class='showMorehandle' >+更多</div>").insertAfter(jq(this)).click(function () {
+                    if (showMoreNChildren(_children, pagesize) <= 0) {
+                        //如果目标元素已经没有隐藏的子元素了，就隐藏“点击更多的按钮条”
+                        jq(this).hide();
+                    };
+                });
+            }
+        });
+    }
+})();
+
+</script>
+
+
+<body>
+
+<div class="alyout">
+	<div class="area m_t15">
+        <div class="float_l w702">
+        	<div class="blog_subnav">当前位置：<a href="#">东江社区</a> > 东江博客</div>
+        	
+               <!--[diy=blog_tt]--><div id="blog_tt" class="area"></div><!--[/diy]--> 
+					
+            
+            <div class="bolglist m_t">
+            <div  class="mynews" pagesize="3">
+    		  <!--[diy=blog_zs1]--><div id="blog_zs1" class="area"></div><!--[/diy]--> 
+   <script type="text/javascript">
+        //调用显示更多插件。参数是标准的 jquery 选择符 
+        jq.showMore(".showMoreNChildren,.mynews");
+    </script>              
+</div>
+            </div>
+        </div>
+        <div class="float_r w260 titlebar">
+			<div class="area">
+				<span class="float_l"><a href="home.php?mod=spacecp&ac=blog" target="_blank"><img src="template/comeing_yae_05/comeing/sq_fb_blog.jpg"/></a></span>
+				<span class="float_r"><a href="home.php?mod=space&do=blog&view=all" target="_blank"><img src="template/comeing_yae_05/comeing/sq_blog_list.jpg"/></a></span>
+			</div>
+			<div class="area m_t">
+        		<h3><span>热评博文</span></h3>
+					<div class="sq_ph m_t10">
+						<!--[diy=blog_rpbw]--><div id="blog_rpbw" class="area" ></div><!--[/diy]--> 
+					</div>
+				<h3 class="m_t15"><span>名博推荐</span></h3>
+					<!--[diy=blog_mbtj]--><div id="blog_mbtj" class="area"></div><!--[/diy]--> 
+			</div>
+          <!-- <div class="area center peolist_more clearfix"><a href="http://sns.huizhou.cn/blog/" target="_blank">+更多</a></div>-->
+        </div>
+    </div>
+</div>
+
+<!--{subtemplate common/footer}-->

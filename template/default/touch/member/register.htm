@@ -1,0 +1,174 @@
+<!--{template common/header}-->
+<link rel="stylesheet" href="static/image/mobile/style.css" type="text/css" media="all">
+
+<!--{if CURMODULE=='connect'}-->
+
+<!-- header start -->
+<header class="header">
+    <div class="nav">
+        <a href="javascript:;" onclick="history.go(-1)" class="z cf iconBack" style="margin-top:12px;" ></a>
+    <span class="name">绑定</span>
+    </div>
+</header>
+<!-- header end -->
+<!--{eval $loginhash = 'L'.random(4);}-->
+<div class="alyout">
+<form method="post" autocomplete="off" name="login" id="loginform_$loginhash" class="cl"{if $_G['setting']['regconnect']} style="display:none"{/if} 1onsubmit="ajaxpost('loginform_$loginhash', 'returnmessage4', 'returnmessage4', 'onerror');return false;" action="member.php?mod=connect&action=login&loginsubmit=yes{if !empty($_GET['handlekey'])}&handlekey=$_GET[handlekey]{/if}&loginhash=$loginhash">
+    <div style="margin:15px;">
+      <span style="font-size:16px; margin:32px;">亲爱的<i>{$_G['cookie']['connect_qq_nick']}</i>，您将使用<font color="#2aaf85">腾讯QQ</font>的帐号绑定本站帐号，请输入您东江社区的用户名和密码。</span>
+    </div>
+    <div class="login_from m_t">
+      <div class="dsf">
+        <input type="hidden" name="formhash" value="{FORMHASH}" />
+        <input type="hidden" name="referer" value="{$_G['siteurl']}" />
+        <input type="hidden" id="auth_hash" name="auth_hash" value="{$_G['qc']['connect_auth_hash']}" />
+        <input type="hidden" id="is_notify" name="is_notify" value="{$_G['qc']['connect_is_notify']}" />
+        <input type="hidden" id="is_feed" name="is_feed" value="{$_G['qc']['connect_is_feed']}" />
+        <!--{if $_G['qc']['uinlimit']}-->
+        <!--<div class="bm xi1 xw1"><div class="bm_c"><img src="{IMGDIR}/connect_qq.gif" alt="QQ" class="vm" />&nbsp;{lang qqconnect:connect_uin_limit}</div></div>-->
+          <img src="{IMGDIR}/connect_qq.gif" alt="QQ" class="mtn" />{lang qqconnect:connect_uin_limit}
+        <!--{/if}-->
+        </div>
+        <ul class="dsf_login_xg">
+          <li>
+            <span class="cf iconName float_l incon" style="font-size:18px"></span><input type="text" tabindex="1" class=" login_input" size="30" autocomplete="off" name="username" id="username_$loginhash" placeholder="{lang inputyourname}" />
+          </li>
+          <li><span class="gf icon-lock float_l incon"></span>
+            <input type="password" tabindex="2" class=" login_input" size="30" name="password" id="password3_$loginhash" placeholder="{lang login_password}" />
+          </li>
+          <li class="questionli">
+            <div class="login_select">
+            <span class="login-btn-inner" style="display:none" >
+              <span class="login-btn-text">
+                <span class="span_question">{lang security_question}</span>
+              </span>
+              <span class="icon-arrow">&nbsp;</span>
+            </span>
+            <label id="q_label">{lang security_question}</label>
+            <select id="loginquestionid_$loginhash" width="213" name="questionid" onchange="if($('loginquestionid_$loginhash').value > 0) $('loginanswer_row_$loginhash').style.display=''; else $('loginanswer_row_$loginhash').style.display='none'">
+              <option value="0"><!--{if $questionexist}-->{lang security_question_0}<!--{else}-->{lang security_question}<!--{/if}--></option>
+              <option value="1">{lang security_question_1}</option>
+              <option value="2">{lang security_question_2}</option>
+              <option value="3">{lang security_question_3}</option>
+              <option value="4">{lang security_question_4}</option>
+              <option value="5">{lang security_question_5}</option>
+              <option value="6">{lang security_question_6}</option>
+              <option value="7">{lang security_question_7}</option>
+            </select>
+            </div>
+          </li>
+          <li id="loginanswer_li_{$loginhash}" style="display:none;">
+            <input type="text" name="answer" id="loginanswer_{$loginhash}" autocomplete="off" class="login_input" placeholder="请输入答案" style="margin-left:45px;">
+          </li>
+        </ul>
+      </div>
+          <div style="display:none">
+            <input type="checkbox" name="use_qqshow" id="use_qqshow_bind" class="pc" value="1" checked="checked" tabindex="1" placeholder="答案" />
+          </div>
+          <div class="btn_login">
+            <button tabindex="3" value="true" name="loginsubmit" type="submit" class="formdialog pn pnc"><span>确定绑定</span></button>
+          </div>
+        </form>
+    </div>
+</div>
+
+<!--{else}-->
+
+<!-- header start -->
+<header class="header">
+    <div class="nav">
+        <a href="javascript:;" onclick="history.go(-1)" class="z cf iconBack" style="margin-top:12px;" ></a>
+    <span class="name">注册</span>
+    </div>
+</header>
+<!-- header end -->
+<!--{eval $loginhash = 'L'.random(4);}-->
+<div class="alyout">
+	<form method="post" autocomplete="off" name="register" id="registerform" action="member.php?mod={$_G[setting][regname]}&mobile=2">
+	<div class="login_from m_t">
+		<div class="dsf">
+		<input type="hidden" name="regsubmit" value="yes" />
+		<input type="hidden" name="formhash" value="{FORMHASH}" />
+		<!--{eval $dreferer = str_replace('&amp;', '&', dreferer());}-->
+		<input type="hidden" name="referer" value="$dreferer" />
+		<input type="hidden" name="activationauth" value="{if $_GET[action] == 'activation'}$activationauth{/if}" />
+		<input type="hidden" name="agreebbrule" value="$bbrulehash" id="agreebbrule" checked="checked" />
+		<ul class="dsf_login_xg">
+			<li><span class="cf iconName float_l incon" style="font-size:18px"></span><input type="text" tabindex="1" class="login_input" size="30" autocomplete="off" value="" name="{$_G['setting']['reginput']['username']}" placeholder="{lang registerinputtip}" fwin="login"></li>
+			<li><span class="gf icon-lock float_l incon"></span><input type="password" tabindex="2" class=" login_input" size="30" value="" name="{$_G['setting']['reginput']['password']}" placeholder="{lang login_password}" fwin="login"></li>
+			<li><span class="gf icon-lock float_l incon"></span><input type="password" tabindex="3" class=" login_input" size="30" value="" name="{$_G['setting']['reginput']['password2']}" placeholder="{lang registerpassword2}" fwin="login"></li>
+			<li ><span class="gf icon-mail float_l incon"></span><input type="email" tabindex="4" class="login_input" size="30" autocomplete="off" value="" name="{$_G['setting']['reginput']['email']}" placeholder="{lang registeremail}" fwin="login"></li>
+
+			<!--{if !empty($_G['verify_needed'])}-->
+			<!--{eval $verifycode = TRUE}-->
+			<li ><span class="gf icon-mail float_l incon"></span><input type="text" tabindex="4" class="login_input" size="30" autocomplete="off" value="" name="mobile" placeholder="请输入手机号" id="mobile">&nbsp;<button type="button" id="btn-getverifycode" style="text-align:right;float:right;">获取验证码</button></li>
+				<script type="text/javascript">
+				jQuery(function () {
+					jQuery('#btn-getverifycode').click(function () {
+						var url = '/verifycode.php?m=' + jQuery('#mobile').val();
+						console.log(url);
+						jQuery.get(url, function (data) {
+							if (data === 'OK') {
+								jQuery('#btn-getverifycode').html('验证码已发送，120 秒后方可重试');
+								jQuery('#btn-getverifycode').attr('disabled', 'disabled');
+							} else {
+								alert(data);
+							}
+						});
+					})
+				})
+				</script>
+			<li ><span class="gf icon-mail float_l incon"></span><input type="text" tabindex="4" class="login_input" size="30" autocomplete="off" value="" name="verifycode" id="verifycode" placeholder="请输入手机验证码" ></li>
+			<!--{/if}-->
+
+			<!--{if empty($invite) && ($_G['setting']['regstatus'] == 2 || $_G['setting']['regstatus'] == 3)}-->
+				<li><input type="text" name="invitecode" autocomplete="off" tabindex="5" class="login_input" size="30" value="{lang invite_code}" placeholder="{lang invite_code}" fwin="login"></li>
+			<!--{/if}-->
+			<!--{if $_G['setting']['regverify'] == 2}-->
+				<li><input type="text" name="regmessage" autocomplete="off" tabindex="6" class="login_input" size="30" value="{lang register_message}" placeholder="{lang register_message}" fwin="login"></li>
+			<!--{/if}-->
+		
+		<!--{if $secqaacheck || $seccodecheck}-->
+			<!--{subtemplate common/seccheck}-->
+		<!--{/if}-->
+        </ul>
+		</div>
+	</div>
+	<div class="btn_login">
+    <button tabindex="3" value="true" name="regsubmit" type="submit" class="formdialog pn pnc"><span>{lang quickregister}</span></button>
+  </div>
+	</form>
+</div>
+<!-- registerbox end -->
+
+<!--{/if}-->
+
+<script type="text/javascript" reload="1">
+  (function() {
+    $(document).on('change', '.sel_list', function() {
+      var obj = $(this);
+      $('.span_question').text(obj.find('option:selected').text());
+      if(obj.val() == 0) {
+        $('.answerli').css('display', 'none');
+        $('.questionli').addClass('bl_none');
+      } else {
+        $('.answerli').css('display', 'block');
+        $('.questionli').removeClass('bl_none');
+      }
+    });
+
+    $(document).on('change','#loginquestionid_{$loginhash}', function() {
+      qslt = $(this);
+      $('#q_label').html(qslt.find(":selected").text());
+      if (qslt.val()!=0) {
+        $('#loginanswer_li_{$loginhash}').show();
+      } else {
+        $('#loginanswer_li_{$loginhash}').hide();
+        $('#loginanswer_{$loginhash}').val('');
+      }
+    })
+   })();
+</script>
+
+<!--{eval updatesession();}-->
+<!--{template common/footer}-->

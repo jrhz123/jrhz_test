@@ -1,0 +1,42 @@
+<!--{template common/header}-->
+
+<!-- header start -->
+<header>
+    <div class="nav">
+       <a href="javascript:history.go(-1)" class="z cf iconBack" style="margin-top:17px;"></a>
+       <!--{if $_GET['uid']==$_G['uid']}-->
+	   	<span class="name">{lang mythread}</span>
+	   <!--{else}-->
+	   	<span class="name">相关帖子</span>
+	   <!--{/if}-->
+   </div>
+</header>
+<!-- header end -->
+<!-- main threadlist start -->
+<div class="threadlist">
+	<ul>
+	<!--{if $list}-->
+		<!--{loop $list $thread}-->
+			<li>
+			<!--{if $viewtype == 'reply' || $viewtype == 'postcomment'}-->
+			<a href="forum.php?mod=redirect&goto=findpost&ptid=$thread[tid]&pid=$thread[pid]">$thread[subject]</a>
+			<!--{else}-->
+			<a href="forum.php?mod=viewthread&tid=$thread[tid]" {if $thread['displayorder'] == -1}class="grey"{/if}>$thread[subject]</a>
+			<!--{/if}-->
+			<div style="width:100%;overflow:hidden;"><i class="incoR spr" style="float:right;">{$thread[replies]}</i></div>
+			<!--{if in_array($thread['displayorder'], array(1, 2, 3, 4))}-->
+				<span class="icon_top"><img src="{STATICURL}image/mobile/images/icon_top.png"></span>
+			<!--{elseif $thread['attachment'] == 2}-->
+				<span class="icon_tu"><img src="{STATICURL}image/mobile/images/icon_tu.png"></span>
+			<!--{/if}-->
+			</li>
+		<!--{/loop}-->
+	<!--{else}-->
+		<li>{lang no_related_posts}</li>
+	<!--{/if}-->
+	</ul>
+	$multi
+</div>
+<!-- main threadlist end -->
+<!--{eval $nofooter = true;}-->
+<!--{template common/footer}-->

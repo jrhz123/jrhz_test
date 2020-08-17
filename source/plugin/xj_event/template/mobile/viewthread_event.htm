@@ -1,0 +1,152 @@
+<!--{block return}-->
+<img src="$imgurl" width="150" height="110"/>
+<dl>
+<dt>{lang xj_event:hdfs}: <strong>$postclass</strong></dt>
+<dt>{lang xj_event:hdlx}: $eventclass[1]</dt>
+<dt>{lang xj_event:hddq}: $citys</dt>
+<dt>{lang xj_event:kssj}: {$starttime}</dt>
+<dt>{lang xj_event:jssj}: {$endtime}</dt>
+<dt>{lang xj_event:hddd}: {$items[event_address]}</dt>
+<!--{if $items[use_extcredits_num]>0}-->
+<dt>{lang xj_event:cyjf}: {$items[use_extcredits_num]} $extcredit_title</dt>
+<!--{/if}-->
+<dt>{lang xj_event:cjme}:
+<!--{if $items[event_number]==0}-->
+{lang xj_event:buxian}
+<!--{else}-->
+{$items[event_number]} {lang xj_event:ren}
+<!--{/if}-->
+</dt>
+<dt>{lang xj_event:bmrs}: {$applycountnumber} {lang xj_event:ren}</dt>
+<dt>{lang xj_event:cjfy}: {$items[use_cost]} {lang xj_event:yuan}</dt>
+<dt>预收费用: {$items[reserve_cost]} {lang xj_event:yuan}</dt>
+<dt>{lang xj_event:bmjz}: {$activityexpiration}</dt>
+    <!--{loop $setting[moreitem] $value}-->
+    	<dt>$value[itemname]: $value[itemcontent]</dt>
+    <!--{/loop}-->
+
+<!--{if $items[postclass]==1}-->
+    <!--线下活动按钮-->
+    <!--条件当前时间小于（活动结束+30天）的时间-->
+    <!--{if $timestamp<($items[endtime]+2592000)}-->
+    	<!--过了报名时间，没有报名的-->
+        <!--{if $items['activityexpiration']<=$timestamp and $verify==null}-->
+            <a href="javascript:" class="bm_btn2" title="{lang xj_event:bmjz}">{lang xj_event:bmjz}</a>
+        <!--{else}-->
+            <!--{if !$_G[uid]}-->
+                <a href="member.php?mod=logging&action=login" onclick="showWindow('login', this.href);return false;" class="bm_btn2" title="{lang xj_event:qdlhbm}">{lang xj_event:wycjqdl}</a>
+            <!--{else}-->
+                <!--{if $items['activitybegin']<$timestamp and $items['activityexpiration']>$timestamp and $verify==null}-->
+                	<!--{if !$setting[invitation][open] || ($setting[invitation][open] && $setting[invitation][code] == $_GET[icode])}-->
+                        <!--{if $bmbtnshow}-->
+                        <a href="plugin.php?id=xj_event:event_mobile_join&tid={$tid}" class="bm_btn">{lang xj_event:wycj}</a>
+                        <!--{/if}-->
+                        <!--{if $setting[reply] && $replys<1}-->
+                        	<a href="javascript:" class="bm_btn2">{lang xj_event:hfhkybm}</a>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{elseif $items['activitybegin']>$timestamp and $verify==null}-->
+                	<a href="javascript:" class="bm_btn2">{lang xj_event:bmhwks}</a>
+                <!--{else}-->
+                    <!--{if $verify==0}-->
+                    	<!--{if !$pay_state}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}" class="bm_btn">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+                        <!--{if $setting[eventpay]}-->
+                        	<!--{if $pay_state}-->
+                        		<a href="javascript:" class="pay_btn" style="background-color:#06C; border:#06C;">{lang xj_event:fyyfdsh}</a>
+                            <!--{else}-->
+                            	<a href="plugin.php?id=xj_event:event_pay&tid={$items[tid]}" class="pay_btn">{lang xj_event:zhifufy}</a>
+                            <!--{/if}-->
+                        <!--{/if}-->
+                    <!--{else}-->
+                    	<!--{if $setting[eventzy_enable]}-->
+                        <a href="forum.php?mod=post&action=newthread&fid=<!--{if $setting[eventzy_fid]}-->{$setting[eventzy_fid]}<!--{else}-->{$_G[fid]}<!--{/if}-->&eid={$items[eid]}" class="bm_btn3" title="{lang xj_event:ldbmypshtg}">{lang xj_event:fbhdzy}{$setting[eventzy_name]}</a>
+                        <!--{/if}-->
+                    	<!--{if $setting[canceljoin]==1 && $items['activityexpiration']>$timestamp}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}&formhash={$_G[formhash]}" class="bm_btn" style="margin-top:10px;">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+
+                        <!--{if $setting[seccode]}-->
+                        	<div>
+                            	{lang xj_event:nycgbmhdbmyzm}:<span class="robgz">{$apply[seccode]}</span>
+                            </div>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{/if}-->
+            <!--{/if}-->
+        <!--{/if}-->
+    <!--{/if}-->
+    <!--线下活动按钮end-->
+
+<!--{else}-->
+
+    <!--线上活动按钮-->
+    <!--条件当前时间小于（活动结束）的时间-->
+    <!--{if $timestamp<$items[endtime]}-->
+    	<!--过了报名时间，没有报名的-->
+        <!--{if $items['activityexpiration']<=$timestamp and $verify==null}-->
+            <a href="javascript:" class="bm_btn2" title="{lang xj_event:bmjz}">{lang xj_event:bmjz}</a>
+        <!--{else}-->
+            <!--{if !$_G[uid]}-->
+                <a href="member.php?mod=logging&action=login" onclick="showWindow('login', this.href);return false;" class="bm_btn2" title="{lang xj_event:qdlhbm}">{lang xj_event:wycjqdl}</a>
+            <!--{else}-->
+                <!--{if $items['activitybegin']<$timestamp and $items['activityexpiration']>$timestamp and $verify==null}-->
+                	<!--{if !$setting[invitation][open] || ($setting[invitation][open] && $setting[invitation][code] == $_GET[icode])}-->
+                        <!--{if $bmbtnshow}-->
+                        <a href="plugin.php?id=xj_event:event_mobile_join&tid={$tid}" class="bm_btn">{lang xj_event:wycj}</a>
+                        <!--{/if}-->
+                        <!--{if $setting[reply] && $replys<1}-->
+                        	<a href="javascript:" class="bm_btn2">{lang xj_event:hfhkybm}</a>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{elseif $items['activitybegin']>$timestamp and $verify==null}-->
+                	<a href="javascript:" class="bm_btn2">{lang xj_event:bmhwks}</a>
+                <!--{else}-->
+                    <!--{if $verify==0}-->
+                    	<!--{if !$pay_state}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}" class="bm_btn">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+                        <!--{if $setting[eventpay]}-->
+                        	<!--{if $pay_state}-->
+                        		<a href="javascript:" class="pay_btn" style="background-color:#06C; border:#06C;">{lang xj_event:fyyfdsh}</a>
+                            <!--{else}-->
+                            	<a href="plugin.php?id=xj_event:event_pay&tid={$items[tid]}" class="pay_btn">{lang xj_event:zhifufy}</a>
+                            <!--{/if}-->
+                        <!--{/if}-->
+                    <!--{else}-->
+                        <a href="forum.php?mod=post&action=newthread&fid=<!--{if $setting[eventzy_fid]}-->{$setting[eventzy_fid]}<!--{else}-->{$_G[fid]}<!--{/if}-->&eid={$items[eid]}" class="bm_btn3" title="{lang xj_event:ldbmypshtg}">{lang xj_event:fbhdzy}{$setting[eventzy_name]}</a>
+                    	<!--{if $setting[canceljoin]==1 && $items['activityexpiration']>$timestamp}-->
+                    			<a href="plugin.php?id=xj_event:event_join&action=cannel&tid={$tid}&formhash={$_G[formhash]}" class="bm_btn" style="margin-top:10px;">{lang xj_event:qxbm}</a>
+                    	<!--{/if}-->
+                        <!--{if $setting[seccode]}-->
+                        	<div>
+                            	{lang xj_event:nycgbmhdbmyzm}:<span class="robgz">{$apply[seccode]}</span>
+                            </div>
+                        <!--{/if}-->
+                    <!--{/if}-->
+                <!--{/if}-->
+            <!--{/if}-->
+        <!--{/if}-->
+    <!--{/if}-->
+    <!--线上活动按钮end-->
+
+<!--{/if}-->
+</dl>
+
+<!--{if $items[verify] == 1}-->
+[{lang xj_event:gfrz}]
+<!--{/if}-->
+
+<!--{if $_G[uid] == $_G[thread][authorid] or $_G[groupid]==1 or $event_admin}-->
+<div style="clear:both; height:20px;"></div>
+<div style="line-height:26px;"><span class="robgz">{lang xj_event:yanzbm}:</span></div>
+<div style=" border-top:1px dashed #bbbbbb; padding:10px; margin-bottom:10px;">
+<form name="checkseccode" method="post" action="plugin.php?id=xj_event:event_join&action=checkseccode&eid={$items[eid]}&tid={$tid}" target="_blank">
+<input type="hidden" name="formhash" value="{$_G[formhash]}" />
+{lang xj_event:baomyzm}:<input name="seccode" type="text" class="px" /> <button type="submit" name="checksubmit" class="pn pnc vm"><strong>{lang xj_event:yanzheng}</strong></button>
+</form>
+</div>
+<!--{/if}-->
+
+<!--{/block}-->

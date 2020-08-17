@@ -1,0 +1,65 @@
+<!--{subtemplate common/header_common}-->
+
+</head>
+
+<body id="nv_search" onkeydown="if(event.keyCode==27) return false;">
+	<div id="append_parent"></div><div id="ajaxwaitid"></div>
+	
+	
+	
+		
+		<div class="sq_nav clearfix">
+        
+		
+		
+		<div class="area ">
+		        <h2 class="float_l"><a href="http://www.huizhou.cn" target="_blank"><img src="template/comeing_yae_05/comeing/index_logo.jpg" /></a></h2>
+				
+        <div class="sq_navlist w670 float_l">
+        	<ul >
+            	<li><a href="http://www.huizhou.cn/news/" target="_blank">新闻</a></li><li><a href="http://www.huizhou.cn/gov/" target="_blank">时政</a></li><li><a href="http://www.huizhou.cn/jrhz_hmlt/hd/" target="_blank">向书记说说心里话</a></li><li><a href="http://www.huizhou.cn/jrhz_hmlt/" target="_blank">惠民在线</a></li><li><a href="http://www.huizhou.cn/lawonline/" target="_blank">法治在线</a></li><li><a href="http://v.huizhou.cn/" target="_blank">视频</a></li><li><a href="http://www.huizhou.cn/house/" target="_blank">房产</a></li><li><a href="http://www.huizhou.cn/auto/" target="_blank">汽车</a></li><li><a href="http://www.huizhou.cn/travel/" target="_blank">旅游</a></li><li><a href="http://www.huizhou.cn/food/" target="_blank">美食</a></li><li><a href="http://www.huizhou.cn/ent/" target="_blank">文娱</a></li><li><a href="bbs" target="_blank">社区</a></li>
+                
+            </ul>
+        </div>
+		
+		
+		<div class=" float_r">
+		    <ul class="menu float_r">
+			<!--{if $_G['uid']}-->
+				<strong><a href="home.php?mod=space" target="_blank" title="{lang visit_my_space}">{$_G[member][username]}</a></strong>
+				
+				
+				&nbsp;
+				<!--{if $_G['uid'] && ($_G['group']['radminid'] == 1 || getstatus($_G['member']['allowadmincp'], 1))}--><a href="admin.php" target="_blank">{lang admincp}</a><!--{/if}-->
+				<!--{hook/global_usernav_extra2}-->
+				&nbsp;
+				<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+			<!--{elseif !empty($_G['cookie']['loginuser'])}-->
+				<strong><a id="loginuser">$_G['cookie']['loginuser']</a></strong>
+				<a href="member.php?mod=logging&action=login" onClick="showWindow('login', this.href)">{lang activation}</a>
+				&nbsp;
+				<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+			<!--{else}-->
+				<a href="member.php?mod={$_G[setting][regname]}">$_G['setting']['reglinkname']</a>
+				<a href="member.php?mod=logging&action=login" onClick="showWindow('login', this.href)">{lang login}</a>
+			<!--{/if}-->
+			
+		 </ul>	
+			
+			
+			
+				
+		</div>
+		 <div class="clearfix"></div>
+	</div>
+	
+			
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	

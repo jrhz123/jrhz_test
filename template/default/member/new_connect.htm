@@ -1,0 +1,64 @@
+<!--{template common/header}-->
+<style type="text/css">
+	.connect_btn{
+		display: block;
+		text-align: center;
+		border-style: solid;
+		border-color: #E0E0E0 #848484 #848484 #E0E0E0;
+		background-color: #0099c0;
+		font-size: 24px;
+		width: 250px;
+		height: 150px;
+	}
+
+	.connect_btn:link, .connect_btn:visited, .connect_btn:hover, .connect_btn:active {
+		font-weight: bolder;
+	    color: white;
+	    text-decoration: none;
+	}
+
+	.vt {
+		position: relative;
+		top: 40%;
+	}
+</style>
+<div id="ct" class="ptm wp cl">
+	<div class="nfl" id="main_succeed" style="display: none">
+		<div class="f_c altw">
+			<div class="alert_right">
+				<p id="succeedmessage"></p>
+				<p id="succeedlocation" class="alert_btnleft"></p>
+				<p class="alert_btnleft"><a id="succeedmessage_href">{lang message_forward}</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="mn">
+		<div class="bm" id="main_message">
+			<div class="bm_h bbs" id="main_hnav">
+				<h3 id="layer_reginfo_t" class="xs2">
+					QQ快速登录
+				</h3>
+			</div>
+			<p id="returnmessage4"></p>
+			<div class="rfm">
+				<table>
+					<tr>
+						<th>
+							<a href="member.php?mod=connect&action=bind" class="connect_btn">
+								<span class="vt">绑定帐号</span>
+							</a>
+						</th>
+						<th></th>
+						<th>
+							<a href="qqconnect-quick.html" class="connect_btn">
+								<span class="vt">直接登录</span>
+							</a>
+						</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<!--{eval updatesession();}-->
+<!--{template common/footer}-->

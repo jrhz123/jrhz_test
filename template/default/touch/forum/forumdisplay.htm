@@ -1,0 +1,137 @@
+<!--{template common/header}-->
+<!-- header start -->
+<header>
+    <div class="nav">
+		<a class="y cf iconNew" style="margin-top:17px;"   href="forum.php?mod=post&action=newthread&fid=$_G[fid]{if $_G[fid]==874}&special=4{/if}" title="{lang send_threads}"></a>
+        <a href="plugin.php?id=hzww&m=bbs"  class="z iconBack cf" style="margin-top:17px;"  ></a>
+			<!--{if $subexists && $_G['page'] == 1}-->
+			<span class="category">
+				<span class="display name vm" href="#subname_list">
+					<h2 class="tit"><!--{eval echo strip_tags($_G['forum']['name']) ? strip_tags($_G['forum']['name']) : $_G['forum']['name'];}--></h2>
+					<img src="{STATICURL}image/mobile/images/icon_arrow_down.png">
+				</span>
+				<div id="subname_list" class="subname_list" display="true" style="display:none;">
+					<ul>
+					<!--{loop $sublist $sub}-->
+					<li>
+						<a href="forum.php?mod=forumdisplay&fid={$sub[fid]}">{$sub['name']}</a>
+					</li>
+					<!--{/loop}-->
+					</ul>
+				</div>
+			</span>
+			<!--{else}-->
+			<span class="name">
+				<!--{eval echo strip_tags($_G['forum']['name']) ? strip_tags($_G['forum']['name']) : $_G['forum']['name'];}-->
+			</span>
+			<!--{/if}-->
+    </div>
+</header>
+<!-- header end -->
+
+<!--{hook/forumdisplay_top_mobile}-->
+<!-- main threadlist start -->
+<!--{if !$subforumonly}-->
+<!--Enicn_d 修改 2015-07-21 替换原列表样式-->
+<div class="container" id="container">
+	<div id="topicList1">
+			<!--{if $_G['forum_threadcount']}-->
+				<!--{loop $_G['forum_threadlist'] $key $thread}-->
+				<!--{eval //var_dump($thread)}-->
+					<!--{if !$_G['setting']['mobile']['mobiledisplayorder3'] && $thread['displayorder'] > 0}-->
+						{eval //continue;}<!--Enicn_d 修改 2015-09-08 允许显示置顶帖子-->
+					<!--{/if}-->
+                	<!--{if $thread['displayorder'] > 0 && !$displayorder_thread}-->
+                		{eval $displayorder_thread = 1;}
+                    <!--{/if}-->
+					<!--{if $thread['moved']}-->
+						<!--{eval $thread[tid]=$thread[closed];}-->
+					<!--{/if}-->
+
+					<div class="topicBox threadList" tid="{$thread['tid']}" page="1" id="thread{$thread['tid']}">
+						<!--{hook/forumdisplay_thread_mobile $key}-->
+					    <div class="topicCon">
+                        <a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra" $thread[highlight] style="font-size:16px; font-weight:bold; display:block; position:relative;" >
+                        <p class="title">
+					            	<!--{if $thread['typename']}-->
+					                <span class="studioBtn db">{$thread['typename']}</span>
+					                <!--{/if}-->
+    					            {$thread['subject']}
+
+										<!--{if $thread['attachment'] == 2}-->
+											<span class="icon_top"><img src="{STATICURL}image/filetype/image_s.gif" alt="attach_img" title="{lang attach_img}" style="vertical-align: middle;" /></span>
+										<!--{elseif $thread['attachment'] == 1}-->
+											<span class="icon_top"><img src="{STATICURL}image/filetype/common.gif" alt="attachment" title="{lang attachment}" style="vertical-align: middle;" /></span>
+										<!--{/if}-->
+										<!--{if $thread['mobile']}-->
+											<span class="icon_top"><img src="{IMGDIR}/mobile-attach-$thread['mobile'].png" alt="{lang post_mobile}" style="vertical-align: middle;" /></span>
+										<!--{/if}-->
+										<!--{if $thread['digest'] > 0 && $filter != 'digest'}-->
+											<span class="icon_top"><img src="{IMGDIR}/digest_$thread[digest].gif" alt="digest" title="{lang thread_digest} $thread[digest]" style="vertical-align: middle;" /></span>
+										<!--{/if}-->
+										<!--{if $thread['displayorder'] == 0}-->
+											<!--{if $thread[recommendicon] && $filter != 'recommend'}-->
+												<span class="icon_top"><img src="{IMGDIR}/recommend_$thread[recommendicon].gif" alt="recommend" title="{lang thread_recommend} $thread[recommends]" style="vertical-align: middle;" /></span>
+											<!--{/if}-->
+											<!--{if $thread[heatlevel]}-->
+												<span class="icon_top"><img src="{IMGDIR}/hot_$thread[heatlevel].gif" alt="heatlevel" title="{lang heats}: {$thread[heats]}" style="vertical-align: middle;" /></span>
+											<!--{/if}-->
+											<!--{if $thread['rate'] > 0}-->
+												<span class="icon_top"><img src="{IMGDIR}/agree.gif" alt="agree" title="{lang rate_credit_add}" style="vertical-align: middle;" /></span>
+											<!--{elseif $thread['rate'] < 0}-->
+												<span class="icon_top"><img src="{IMGDIR}/disagree.gif" alt="disagree" title="{lang posts_deducted}" style="vertical-align: middle;" /></span>
+											<!--{/if}-->
+										<!--{/if}-->
+
+
+								<!--{if 0}-->
+									<!--{if in_array($thread['displayorder'], array(1, 2, 3, 4))}-->
+										<span class="icon_top"><img src="{STATICURL}image/mobile/images/icon_top.png"></span>
+									<!--{elseif $thread['digest'] > 0}-->
+										<span class="icon_top"><img src="{STATICURL}image/mobile/images/icon_digest.png"></span>
+									<!--{elseif $thread['attachment'] == 2 && $_G['setting']['mobile']['mobilesimpletype'] == 0}-->
+										<span class="photoInco db">图</span>
+									<!--{/if}-->
+								<!--{/if}-->
+					            </p>
+					        
+                            
+                            
+                            <div class="area msg ">
+                            
+                            <span class="cf iconName float_l ">
+					                    $thread['author']
+					                    
+					                </span>
+                               
+                              <span class="replyShare_list db fr float_r">
+				              $thread['lastpost']&nbsp;
+				              <i class="incoR spr" style="font-size:14px;"></i>{$thread['replies']}
+					          </span>
+                                   
+                            </div>
+					            
+					            <span class="perPop" tid="{$thread['tid']}" style="display:none"></span>
+                                
+					        </p>
+					      </a>
+					    </div>
+					</div>
+                <!--{/loop}-->
+            <!--{else}-->
+				<div>{lang forum_nothreads}</div>
+			<!--{/if}-->
+	</div>			
+</div>
+$multipage
+<!--{/if}-->
+<!-- main threadlist end -->
+<!--{hook/forumdisplay_bottom_mobile}-->
+<div class="pullrefresh" style="display:none;"></div>
+<div class="bottomBar">
+	<div class="bottomBarCon">
+		<a href="plugin.php?id=hzww&m=bbs" id="forumlist" class="blockSec db" style="color:#769cdc"><i class="incoSec"></i>版块</a>
+    	<a href="forum.php?mod=post&action=newthread&fid=$_G[fid]" title="{lang send_threads}" class="replyBtn db" bind="1" style="color:#769cdc"><i class="incoR"></i>发帖</a>
+	</div>
+</div>
+<!--{template common/footer}-->

@@ -1,0 +1,22 @@
+{eval
+function wx_mobile_tpl_login_bar() {
+global $_G;
+}
+<!--{block return}-->
+<a href="plugin.php?id=wx_mobile:login"><img src="source/plugin/wx_mobile/image/wechat_login.png" class="vm"/></a>
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+function wx_mobile_tpl_share() {
+global $_G;
+}
+<!--{block return}-->
+	<a href="javascript:;" onclick="showWindow('wx_mobile_share', 'plugin.php?id=wx_mobile:qrcode&threadqr={$_G[tid]}&access=yes&share=yes')"><i><img src="source/plugin/wx_mobile/image/share.png" alt="{lang wx_mobile:wx_mobile_share}" />{lang wx_mobile:wx_mobile_share}</i></a>
+<!--{/block}-->
+<!--{eval return $return;}-->
+{eval
+}
+
+}
